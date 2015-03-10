@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 73e7bec237e724bb0af7b7dcb8cdc392
+timeCreated: 1425596024
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - itemWord: {fileID: 123286, guid: ff65c026d543946b6a32c3bcbf744a41, type: 2}
+  - itemWord_bad: {fileID: 169734, guid: 0afea033639e1487b913208a22fc5c24, type: 2}
+  - itemPicture: {fileID: 169766, guid: c046352a076eb4315a1fca647ea22de0, type: 2}
+  - itemPicture_bad: {fileID: 169766, guid: 418045004cfbf4b80a656032f77ccfa4, type: 2}
+  - Canvas: {fileID: 192876, guid: ebc11275e62b04da6a833afef28d188a, type: 2}
+  - Details: {instanceID: 0}
+  - healthBar: {fileID: 11492354, guid: ebc11275e62b04da6a833afef28d188a, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
