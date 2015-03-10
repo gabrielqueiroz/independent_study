@@ -12,8 +12,9 @@ public class LevelEditor : MonoBehaviour {
 	public GameObject itemPicture_bad;
 	public GameObject Canvas;
 	public GameObject Details;
+	public GameObject Player;
 
-	public Scrollbar healthBar;
+	public Scrollbar progressBar;
 	public int score =0;
 	public int life;
 	
@@ -25,6 +26,10 @@ public class LevelEditor : MonoBehaviour {
 	}
 	
 	void Update(){
+
+		if(Player.activeSelf)
+			HelpUpdate ();
+
 		if (life == 0)
 			Application.LoadLevel(2);
 
@@ -37,7 +42,7 @@ public class LevelEditor : MonoBehaviour {
 
 	public void AddScore(){
 		score = score + 1;
-		healthBar.size = score / 3f;
+		progressBar.size = score / 3f;
 	}
 
 	public void DecScore(){
@@ -47,12 +52,15 @@ public class LevelEditor : MonoBehaviour {
 		life--;
 	}
 
+	public void HelpUpdate(){
+		Details.transform.position = Player.transform.position + new Vector3 (0, 0, 9.5f);
+	}
 
 	IEnumerator LevelComplete()
 	{
 		while (true) {
 			Details.SetActive(true);
-			Transform getChild = Details.transform.FindChild("Level_Text");
+			Transform getChild = Details.transform.FindChild("Text");
 			GameObject child = getChild.gameObject;
 			child.GetComponent<UnityEngine.UI.Text>().text = "Congratulations!";
 			yield return new WaitForSeconds(3.0f);

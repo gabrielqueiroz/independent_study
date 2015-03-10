@@ -1,5 +1,5 @@
 # =============== #
-# Unity generated #
+# Unity generated       #
 # =============== #
 Temp/
 Obj/
@@ -8,7 +8,7 @@ Library/
 Assets/AssetStoreTools*
 
 # ===================================== #
-# Visual Studio / MonoDevelop generated #
+# Visual Studio / MonoDevelop generated               #
 # ===================================== #
 ExportedObj/
 *.svd
@@ -21,9 +21,9 @@ ExportedObj/
 *.unityproj
 *.booproj
 
-# ============ #
-# OS generated #
-# ============ #
+# ============#
+# OS generated   #
+# ============#
 .DS_Store
 .DS_Store?
 ._*

@@ -15,7 +15,7 @@ public class LoadOnClick : MonoBehaviour {
 		}
 		if (gamecontroller == null)
 		{
-			Debug.Log ("Cannot find 'Level Editor' script");
+			Debug.Log ("Cannot find 'gameController' script");
 		}
 	}
 	
