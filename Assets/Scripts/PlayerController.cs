@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
@@ -10,6 +11,12 @@ public class PlayerController : MonoBehaviour {
 
 	//Private Vars
 	private Vector3 mousePosition;
+
+	public Image damageImage;
+	public float flashSpeed = 0.1f;
+	public Color flashColour = new Color (1f, 0f, 0f, 1f);
+	
+	public bool damaged = false;
 
 	void Update ()
 	{
@@ -38,10 +45,24 @@ public class PlayerController : MonoBehaviour {
 			spaceship.GetComponent<SpriteRenderer> ().sprite = propulsion;
 
 		} else {
-
 			// Change the sprite that don't have the propulsion
 			spaceship.GetComponent<SpriteRenderer> ().sprite = normal;
 
+		}
+
+		if(damaged) {
+			damageImage.color = flashColour;
+		} else {
+			damageImage.color = Color.Lerp (damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+		}
+		
+		damaged = false;
+	}
+
+	IEnumerator damagePerSecond(){
+		for (int i = 0; i <= 2; i++) {
+			yield return new WaitForSeconds (0.1f);
+			damageImage.color = flashColour;
 		}
 	}
 

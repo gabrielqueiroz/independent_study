@@ -26,6 +26,10 @@ public class LevelEditor : MonoBehaviour {
 			LoadLevel1 ();	
 		if (Application.loadedLevel == 4)
 			LoadLevel2 ();	
+
+		//Level Test
+		if (Application.loadedLevel == 5)
+			LoadLevel1 ();
 	}
 	
 	void Update(){

@@ -14,7 +14,6 @@ public class HelpAnimation : MonoBehaviour {
 	private bool helpUp = false;
 	private bool clicked = false;
 	private Vector3 PlayerPosition;
-	private Vector3 OriginalPosition;
 	private Vector3 Offset = new Vector3 (0, 1.0f, 9.0f);
 
 	void Start(){		
@@ -31,7 +30,6 @@ public class HelpAnimation : MonoBehaviour {
 	void Update(){
 		if (Player.activeSelf) {
 			PlayerPosition = Player.transform.position;
-			OriginalPosition = Details.transform.position;
 		} 
 
 		if (helpDown)
