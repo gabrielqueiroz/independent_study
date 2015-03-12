@@ -60,7 +60,7 @@ public class LevelEditor : MonoBehaviour {
 	}
 
 	public void HelpUpdate(){
-		Details.transform.position = Player.transform.position + new Vector3 (0, 1.0f, 9.0f);
+		Details.transform.position = Player.transform.position + new Vector3 (0, 1.0f, 8.6f);
 	}
 
 	IEnumerator LevelComplete()
@@ -77,12 +77,12 @@ public class LevelEditor : MonoBehaviour {
 	
 	void LoadLevel1(){
 
-		Dictionary<string, Vector3> level1 = new Dictionary<string, Vector3>();
-		level1.Add ("Cat_1", new Vector3 (Random.Range(-15,15), 0, Random.Range(-15,15)));
-		level1.Add ("Cat_2", new Vector3 (Random.Range(-15,15), 0, Random.Range(-15,15)));
-		level1.Add ("Cat_3", new Vector3 (Random.Range(-15,15), 0, Random.Range(-15,15)));
+		Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
+		levelObject.Add ("Cat_1", randomPosition());
+		levelObject.Add ("Cat_2", randomPosition());
+		levelObject.Add ("Cat_3", randomPosition());
 
-		foreach (KeyValuePair<string, Vector3> pair in level1){			
+		foreach (KeyValuePair<string, Vector3> pair in levelObject){			
 			Vector3 position = pair.Value;
 			Quaternion rotation = Quaternion.identity;
 			Transform getChild = itemPicture.transform.FindChild("Sprite");
@@ -91,9 +91,9 @@ public class LevelEditor : MonoBehaviour {
 			Instantiate (itemPicture, position, rotation);
 		}
 
-		Dictionary<string, Vector3> level1_wrong = randomWrong (3, "cat");
+		Dictionary<string, Vector3> levelObject_wrong = randomWrong (3, "cat");
 
-		foreach (KeyValuePair<string, Vector3> pair in level1_wrong){			
+		foreach (KeyValuePair<string, Vector3> pair in levelObject_wrong){			
 			Vector3 position = pair.Value;
 			Quaternion rotation = Quaternion.identity;
 			Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
@@ -105,15 +105,15 @@ public class LevelEditor : MonoBehaviour {
 
 	void LoadLevel2(){
 		
-		Dictionary<string, Vector3> level1 = new Dictionary<string, Vector3>();
-		level1.Add ("frog_1", new Vector3 (Random.Range(-15,15), 0, Random.Range(-15,15)));
-		level1.Add ("frog_2", new Vector3 (Random.Range(-15,15), 0, Random.Range(-15,15)));
-		level1.Add ("frog_3", new Vector3 (Random.Range(-15,15), 0, Random.Range(-15,15)));
-		level1.Add ("frog_4", new Vector3 (Random.Range(-15,15), 0, Random.Range(-15,15)));
-		level1.Add ("frog_5", new Vector3 (Random.Range(-15,15), 0, Random.Range(-15,15)));
-		level1.Add ("frog_6", new Vector3 (Random.Range(-15,15), 0, Random.Range(-15,15)));
+		Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
+		levelObject.Add ("frog_1", randomPosition());
+		levelObject.Add ("frog_2", randomPosition());
+		levelObject.Add ("frog_3", randomPosition());
+		levelObject.Add ("frog_4", randomPosition());
+		levelObject.Add ("frog_5", randomPosition());
+		levelObject.Add ("frog_6", randomPosition());
 		
-		foreach (KeyValuePair<string, Vector3> pair in level1){			
+		foreach (KeyValuePair<string, Vector3> pair in levelObject){			
 			Vector3 position = pair.Value;
 			Quaternion rotation = Quaternion.identity;
 			Transform getChild = itemPicture.transform.FindChild("Sprite");
@@ -122,9 +122,9 @@ public class LevelEditor : MonoBehaviour {
 			Instantiate (itemPicture, position, rotation);
 		}
 		
-		Dictionary<string, Vector3> level1_wrong = randomWrong (6, "frog");
+		Dictionary<string, Vector3> levelObject_wrong = randomWrong (6, "frog");
 		
-		foreach (KeyValuePair<string, Vector3> pair in level1_wrong){			
+		foreach (KeyValuePair<string, Vector3> pair in levelObject_wrong){			
 			Vector3 position = pair.Value;
 			Quaternion rotation = Quaternion.identity;
 			Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
@@ -144,7 +144,7 @@ public class LevelEditor : MonoBehaviour {
 			while (current.Contains(levelWord) || randomWrong.ContainsKey(current))
 				current = allObjects [Random.Range (0, allObjects.Count)];
 
-			randomWrong.Add ( current , new Vector3 (Random.Range(-15,15), 0, Random.Range(-15,15)));
+			randomWrong.Add ( current , randomPosition());
 		}
 			
 		return randomWrong;
@@ -159,6 +159,13 @@ public class LevelEditor : MonoBehaviour {
 			levelContent.Add(temp);
 		}
 		return levelContent;
+	}
+
+	Vector3 randomPosition(){
+		float x = Random.Range (-15, 5);
+		float z = Random.Range (5, 15);
+
+		return new Vector3 (x, 0.0f, z);
 	}
 
 	/**

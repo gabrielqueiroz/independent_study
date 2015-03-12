@@ -14,7 +14,7 @@ public class HelpAnimation : MonoBehaviour {
 	private bool helpUp = false;
 	private bool clicked = false;
 	private Vector3 PlayerPosition;
-	private Vector3 Offset = new Vector3 (0, 1.0f, 9.0f);
+	private Vector3 Offset = new Vector3 (0, 1.0f, 8.6f);
 
 	void Start(){		
 		Player = GameObject.FindWithTag ("Player");
