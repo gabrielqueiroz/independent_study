@@ -62,10 +62,10 @@ public class LevelEditor : MonoBehaviour {
 	IEnumerator LevelComplete()
 	{
 		while (true) {
-			Details.SetActive(true);
-			Transform getChild = Details.transform.FindChild("Text");
-			GameObject child = getChild.gameObject;
-			child.GetComponent<UnityEngine.UI.Text>().text = "Congratulations!";
+			//Details.SetActive(true);
+			//Transform getChild = Details.transform.FindChild("Text");
+			//GameObject child = getChild.gameObject;
+			//child.GetComponent<UnityEngine.UI.Text>().text = "Congratulations!";
 			yield return new WaitForSeconds(3.0f);
 			Application.LoadLevel(0);
 		}
@@ -83,7 +83,7 @@ public class LevelEditor : MonoBehaviour {
 			Quaternion rotation = Quaternion.identity;
 			Transform getChild = itemPicture.transform.FindChild("Sprite");
 			GameObject child = getChild.gameObject;
-			child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite> ("LevelContent/"+pair.Key);			
+			child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite> ("LevelContentUpdates/"+pair.Key);			
 			Instantiate (itemPicture, position, rotation);
 		}
 
@@ -94,7 +94,7 @@ public class LevelEditor : MonoBehaviour {
 			Quaternion rotation = Quaternion.identity;
 			Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
 			GameObject child = getChild.gameObject;
-			child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite> ("LevelContent/"+pair.Key);			
+			child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite> ("LevelContentUpdates/"+pair.Key);			
 			Instantiate (itemPicture_bad, position, rotation);
 		}
 	}
@@ -114,7 +114,7 @@ public class LevelEditor : MonoBehaviour {
 			Quaternion rotation = Quaternion.identity;
 			Transform getChild = itemPicture.transform.FindChild("Sprite");
 			GameObject child = getChild.gameObject;
-			child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite> ("LevelContent/"+pair.Key);			
+			child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite> ("LevelContentUpdates/"+pair.Key);			
 			Instantiate (itemPicture, position, rotation);
 		}
 		
@@ -125,7 +125,7 @@ public class LevelEditor : MonoBehaviour {
 			Quaternion rotation = Quaternion.identity;
 			Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
 			GameObject child = getChild.gameObject;
-			child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite> ("LevelContent/"+pair.Key);			
+			child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite> ("LevelContentUpdates/"+pair.Key);			
 			Instantiate (itemPicture_bad, position, rotation);
 		}
 	}
@@ -148,7 +148,7 @@ public class LevelEditor : MonoBehaviour {
 
 	List<string> levelContent(){
 		List<string> levelContent = new List<string>();
-		DirectoryInfo dir = new DirectoryInfo("Assets/Resources/LevelContent");
+		DirectoryInfo dir = new DirectoryInfo("Assets/Resources/LevelContentUpdates");
 		FileInfo[] info = dir.GetFiles ("*.png");
 		foreach (FileInfo f in info) {
 			string temp = f.Name.Remove(f.Name.Length - 4);

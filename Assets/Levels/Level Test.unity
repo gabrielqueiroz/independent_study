@@ -565,8 +565,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemWord: {fileID: 123286, guid: ff65c026d543946b6a32c3bcbf744a41, type: 2}
   itemWord_bad: {fileID: 169734, guid: 0afea033639e1487b913208a22fc5c24, type: 2}
-  itemPicture: {fileID: 169766, guid: c046352a076eb4315a1fca647ea22de0, type: 2}
-  itemPicture_bad: {fileID: 169766, guid: 418045004cfbf4b80a656032f77ccfa4, type: 2}
+  itemPicture: {fileID: 147500, guid: c046352a076eb4315a1fca647ea22de0, type: 2}
+  itemPicture_bad: {fileID: 196886, guid: 418045004cfbf4b80a656032f77ccfa4, type: 2}
   Canvas: {fileID: 1002601411}
   Details: {fileID: 66920297}
   progressBar: {fileID: 924596412}
