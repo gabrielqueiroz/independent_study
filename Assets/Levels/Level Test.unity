@@ -569,7 +569,6 @@ MonoBehaviour:
   itemPicture_bad: {fileID: 169766, guid: 418045004cfbf4b80a656032f77ccfa4, type: 2}
   Canvas: {fileID: 1002601411}
   Details: {fileID: 66920297}
-  Player: {fileID: 2069854256}
   progressBar: {fileID: 924596412}
   score: 0
   life: 3
@@ -1384,7 +1383,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1191001266}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d936c09ceb125433198447a7773e198c, type: 3}
+  m_Script: {fileID: 11500000, guid: 26b903d92da524f13bfd80bc7bc602c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Details: {fileID: 66920297}

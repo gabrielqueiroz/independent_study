@@ -5,17 +5,27 @@ public class HelpAnimation : MonoBehaviour {
 
 	public GameObject Details;
 	public float speed;
-
+	
 	private GameObject Player;
+	private GameObject ButtonText;
+	private GameObject Counter;
+	private Transform getChild;
 	private bool helpDown = false;
 	private bool helpUp = false;
 	private bool clicked = false;
 	private Vector3 PlayerPosition;
 	private Vector3 OriginalPosition;
-	private Vector3 Offset = new Vector3 (0, 0, 9.5f);
+	private Vector3 Offset = new Vector3 (0, 1.0f, 9.0f);
 
 	void Start(){		
 		Player = GameObject.FindWithTag ("Player");
+
+		getChild = Details.transform.FindChild("Button");
+		getChild = getChild.transform.FindChild("Text");
+		ButtonText = getChild.gameObject;
+
+		getChild = Details.transform.FindChild("Counter");
+		Counter = getChild.gameObject;
 	}
 
 	void Update(){
@@ -30,23 +40,19 @@ public class HelpAnimation : MonoBehaviour {
 		if (helpUp)
 			AnimationUp ();
 
+		//if (clicked)
+		//	StartCoroutine (countPerSecond());
 	}
 
 	void OnMouseDown() {
-		if (!clicked) {
-				Transform getChild = Details.transform.FindChild("Button");
-				getChild = getChild.transform.FindChild("Text");
-				GameObject child = getChild.gameObject;
-				child.GetComponent<TextMesh>().text = "Back";
+		if (!clicked) {				
+			ButtonText.GetComponent<TextMesh>().text = "Back";
 			Player.SetActive (false);
 			helpDown = true;
 			helpUp = false;
 			clicked = true;
-		} else {
-				Transform getChild = Details.transform.FindChild("Button");
-				getChild = getChild.transform.FindChild("Text");
-				GameObject child = getChild.gameObject;
-				child.GetComponent<TextMesh>().text = "Help";
+		} else {				
+			ButtonText.GetComponent<TextMesh>().text = "Help";
 			helpUp = true;
 			helpDown = false;
 			clicked = false;
@@ -60,6 +66,11 @@ public class HelpAnimation : MonoBehaviour {
 
 	void AnimationUp(){
 		Details.transform.position = Vector3.Lerp (Details.transform.position, PlayerPosition + Offset, (Time.deltaTime * speed));
+	}
+
+	IEnumerator countPerSecond(){
+		yield return new WaitForSeconds (5.0f);
+		Counter.GetComponent<TextMesh> ().text = Time.time.ToString();
 	}
 
 	IEnumerator activePlayer()

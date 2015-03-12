@@ -12,13 +12,16 @@ public class LevelEditor : MonoBehaviour {
 	public GameObject itemPicture_bad;
 	public GameObject Canvas;
 	public GameObject Details;
-	public GameObject Player;
+
+	private GameObject Player;
 
 	public Scrollbar progressBar;
 	public int score =0;
 	public int life;
 	
 	void Start (){
+		Player = GameObject.FindWithTag ("Player");
+
 		if (Application.loadedLevel == 3)
 			LoadLevel1 ();	
 		if (Application.loadedLevel == 4)
@@ -53,7 +56,7 @@ public class LevelEditor : MonoBehaviour {
 	}
 
 	public void HelpUpdate(){
-		Details.transform.position = Player.transform.position + new Vector3 (0, 0, 9.5f);
+		Details.transform.position = Player.transform.position + new Vector3 (0, 1.0f, 9.0f);
 	}
 
 	IEnumerator LevelComplete()
