@@ -12,6 +12,7 @@ public class LevelEditor : MonoBehaviour {
 	public GameObject itemPicture_bad;
 	public GameObject Canvas;
 	public GameObject Details;
+	public GameObject Notification;
 
 	private GameObject Player;
 
@@ -22,13 +23,13 @@ public class LevelEditor : MonoBehaviour {
 	void Start (){
 		Player = GameObject.FindWithTag ("Player");
 
-		if (Application.loadedLevel == 3)
+		if (Application.loadedLevel == 2)
 			LoadLevel1 ();	
-		if (Application.loadedLevel == 4)
+		if (Application.loadedLevel == 3)
 			LoadLevel2 ();	
 
 		//Level Test
-		if (Application.loadedLevel == 5)
+		if (Application.loadedLevel == 4)
 			LoadLevel1 ();
 	}
 	
@@ -38,7 +39,7 @@ public class LevelEditor : MonoBehaviour {
 			HelpUpdate ();
 
 		if (life == 0)
-			Application.LoadLevel(2);
+			Application.LoadLevel(1);
 
 		if (score == 3)
 			StartCoroutine (LevelComplete());
@@ -60,16 +61,13 @@ public class LevelEditor : MonoBehaviour {
 	}
 
 	public void HelpUpdate(){
-		Details.transform.position = Player.transform.position + new Vector3 (0, 1.0f, 8.6f);
+			Details.transform.position = Player.transform.position + new Vector3 (0, 1.0f, 8.6f);
 	}
 
 	IEnumerator LevelComplete()
 	{
 		while (true) {
-			//Details.SetActive(true);
-			//Transform getChild = Details.transform.FindChild("Text");
-			//GameObject child = getChild.gameObject;
-			//child.GetComponent<UnityEngine.UI.Text>().text = "Congratulations!";
+			Notification.SetActive(true);
 			yield return new WaitForSeconds(3.0f);
 			Application.LoadLevel(0);
 		}
@@ -162,8 +160,8 @@ public class LevelEditor : MonoBehaviour {
 	}
 
 	Vector3 randomPosition(){
-		float x = Random.Range (-15, 5);
-		float z = Random.Range (5, 15);
+		float x = Random.Range (-15, 1);
+		float z = Random.Range (1, 15);
 
 		return new Vector3 (x, 0.0f, z);
 	}

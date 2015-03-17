@@ -29,7 +29,7 @@ GameObject:
   - 136: {fileID: 13669732}
   m_Layer: 0
   m_Name: ItemWord Bad
-  m_TagString: Untagged
+  m_TagString: ItemWordBad
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

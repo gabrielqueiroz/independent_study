@@ -46,7 +46,7 @@ GameObject:
   - 135: {fileID: 13515058}
   m_Layer: 0
   m_Name: ItemPicture Bad
-  m_TagString: Untagged
+  m_TagString: ItemPicture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,7 +179,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8d72ce8252b8e4831aa2fd49084d35d7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a81976e8b8b14516b86984a9a990511, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

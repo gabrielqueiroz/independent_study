@@ -1,23 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class HelpAnimation : MonoBehaviour {
 
 	public GameObject Details;
 	public float speed;
-	
+
+	private GameObject Canvas;
+	private List<GameObject> Pictures = new List<GameObject>();
 	private GameObject Player;
 	private GameObject ButtonText;
 	private GameObject Counter;
 	private Transform getChild;
 	private bool helpDown = false;
 	private bool helpUp = false;
-	private bool clicked = false;
+	private bool clicked = true;
 	private Vector3 PlayerPosition;
 	private Vector3 Offset = new Vector3 (0, 1.0f, 8.6f);
 
 	void Start(){		
 		Player = GameObject.FindWithTag ("Player");
+		Canvas = GameObject.Find ("Canvas");
+
+		foreach (GameObject picture in GameObject.FindGameObjectsWithTag("ItemPicture")) {
+			Pictures.Add(picture);
+		}
 
 		getChild = Details.transform.FindChild("Button");
 		getChild = getChild.transform.FindChild("Text");
@@ -25,13 +33,15 @@ public class HelpAnimation : MonoBehaviour {
 
 		getChild = Details.transform.FindChild("Counter");
 		Counter = getChild.gameObject;
+
+		DeactivateAll();
+		Details.transform.position = PlayerPosition;	
 	}
 
 	void Update(){
-		if (Player.activeSelf) {
+		if (Player.activeSelf)
 			PlayerPosition = Player.transform.position;
-		} 
-
+	
 		if (helpDown)
 			AnimationDown ();
 
@@ -45,7 +55,7 @@ public class HelpAnimation : MonoBehaviour {
 	void OnMouseDown() {
 		if (!clicked) {				
 			ButtonText.GetComponent<TextMesh>().text = "Back";
-			Player.SetActive (false);
+			DeactivateAll();
 			helpDown = true;
 			helpUp = false;
 			clicked = true;
@@ -54,7 +64,7 @@ public class HelpAnimation : MonoBehaviour {
 			helpUp = true;
 			helpDown = false;
 			clicked = false;
-			StartCoroutine(activePlayer());
+			StartCoroutine(activeAll());
 		}
 	}
 
@@ -71,10 +81,22 @@ public class HelpAnimation : MonoBehaviour {
 		Counter.GetComponent<TextMesh> ().text = Time.time.ToString();
 	}
 
-	IEnumerator activePlayer()
+	IEnumerator activeAll()
 	{
 		yield return new WaitForSeconds(1.0f);
-		Player.SetActive(true);
+		Player.SetActive (true);
+		Canvas.SetActive (true);
+		foreach (GameObject picture in Pictures) {
+			picture.SetActive(true);
+		}
 	}
 
+	void DeactivateAll(){
+		Player.SetActive (false);
+		Canvas.SetActive (false);
+		foreach (GameObject picture in Pictures) {
+			picture.SetActive(false);
+		}
+	}
+	
 }
