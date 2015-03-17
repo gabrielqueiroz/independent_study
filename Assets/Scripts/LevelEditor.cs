@@ -11,6 +11,7 @@ public class LevelEditor : MonoBehaviour {
 	public GameObject itemPicture;
 	public GameObject itemPicture_bad;
 
+    private ProgressBar progressBar;
 	private GameObject Player;
 	private GameObject Canvas;
 	private GameObject Details;
@@ -26,6 +27,16 @@ public class LevelEditor : MonoBehaviour {
 		Details = GameObject.Find ("Details");
 		Notification = GameObject.Find ("Notification");
 		Notification.SetActive (false);
+
+        GameObject progressObject = GameObject.FindGameObjectWithTag("Progress");
+        if (progressObject != null)
+        {
+            progressBar = progressObject.GetComponent<ProgressBar>();
+        }
+        if (progressBar == null)
+        {
+            Debug.Log("Cannot find 'Progress bar' script");
+        }
 		
 		if (Application.loadedLevel == 2)
 			LoadLevel1 ();	
@@ -40,14 +51,22 @@ public class LevelEditor : MonoBehaviour {
 		if(Player.activeSelf)
 			HelpUpdate ();
 
-		if (life == 0)
-			Application.LoadLevel(1);
+        if (life == 0)
+        {
+            progressBar.UpdateScore(Application.loadedLevel, score);
+            Application.LoadLevel(5);
 
-		if (score == 3)
-			StartCoroutine (LevelComplete());
+        }
+
+        if (score == 3)
+        {
+            progressBar.UpdateScore(Application.loadedLevel, score);
+            StartCoroutine(LevelComplete());
+        }
+			
 
 		if (Input.GetKeyDown(KeyCode.Escape))
-			Application.LoadLevel(0);
+			Application.LoadLevel(5);
 	}
 
 	public void AddScore(){
@@ -73,7 +92,7 @@ public class LevelEditor : MonoBehaviour {
 		while (true) {
 			Notification.SetActive(true);
 			yield return new WaitForSeconds(3.0f);
-			Application.LoadLevel(0);
+			Application.LoadLevel(5);
 		}
 	}
 	

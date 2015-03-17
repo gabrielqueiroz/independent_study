@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - ItemPicture
+  - ItemWord
+  - ItemWordBad
+  - Progress
   layers:
   - Default
   - TransparentFX

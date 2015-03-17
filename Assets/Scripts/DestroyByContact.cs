@@ -6,7 +6,7 @@ public class DestroyByContact : MonoBehaviour {
 	
 	private LevelEditor leveleditor;
 	private PlayerController playercontroller;
-
+    public GameObject explosion;
 	void Start ()
 	{
 		GameObject editorOnlyObject = GameObject.FindGameObjectWithTag ("EditorOnly");
@@ -39,6 +39,7 @@ public class DestroyByContact : MonoBehaviour {
 		Debug.Log (gameObject.name);
 		if (gameObject.name.Equals ("ItemWord(Clone)") || gameObject.name.Equals ("ItemPicture(Clone)")){
 			leveleditor.AddScore ();
+            Instantiate(explosion, transform.position, transform.rotation);
 		} else {
 			leveleditor.DecScore ();
 			playercontroller.damaged = true;
