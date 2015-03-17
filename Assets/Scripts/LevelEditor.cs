@@ -10,25 +10,27 @@ public class LevelEditor : MonoBehaviour {
 	public GameObject itemWord_bad;
 	public GameObject itemPicture;
 	public GameObject itemPicture_bad;
-	public GameObject Canvas;
-	public GameObject Details;
-	public GameObject Notification;
 
 	private GameObject Player;
-
-	public Scrollbar progressBar;
+	private GameObject Canvas;
+	private GameObject Details;
+	private GameObject Notification;
+	
 	public int score =0;
 	public int life;
 	
 	void Start (){
-		Player = GameObject.FindWithTag ("Player");
 
+		Player = GameObject.FindWithTag ("Player");
+		Canvas = GameObject.Find ("Canvas");
+		Details = GameObject.Find ("Details");
+		Notification = GameObject.Find ("Notification");
+		Notification.SetActive (false);
+		
 		if (Application.loadedLevel == 2)
 			LoadLevel1 ();	
 		if (Application.loadedLevel == 3)
 			LoadLevel2 ();	
-
-		//Level Test
 		if (Application.loadedLevel == 4)
 			LoadLevel1 ();
 	}
@@ -49,8 +51,10 @@ public class LevelEditor : MonoBehaviour {
 	}
 
 	public void AddScore(){
+		Transform getChild = Canvas.transform.FindChild ("Progress_Bar");
+		GameObject child = getChild.gameObject;
 		score = score + 1;
-		progressBar.size = score / 3f;
+		child.GetComponent<Scrollbar>().size = score / 3f;
 	}
 
 	public void DecScore(){

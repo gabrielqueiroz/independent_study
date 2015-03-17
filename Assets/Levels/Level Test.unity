@@ -136,7 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: d02a36528f3a58848b1b5f7dba8c482b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e185699285a84844981b4a60fa08b94, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -160,7 +160,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 66920298}
   m_Layer: 0
-  m_Name: Detail
+  m_Name: Details
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -327,7 +327,7 @@ GameObject:
   - 4: {fileID: 164862326}
   - 212: {fileID: 164862327}
   m_Layer: 0
-  m_Name: Planet
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -369,7 +369,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 21f10b2c99e9e28449883ed084e8cded, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ab7c2828f6fae4466ac13c4184aed7bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &241518457
 GameObject:
@@ -674,10 +674,6 @@ MonoBehaviour:
   itemWord_bad: {fileID: 169734, guid: 0afea033639e1487b913208a22fc5c24, type: 2}
   itemPicture: {fileID: 147500, guid: c046352a076eb4315a1fca647ea22de0, type: 2}
   itemPicture_bad: {fileID: 196886, guid: 418045004cfbf4b80a656032f77ccfa4, type: 2}
-  Canvas: {fileID: 1002601411}
-  Details: {fileID: 66920297}
-  Notification: {fileID: 655616976}
-  progressBar: {fileID: 924596412}
   score: 0
   life: 3
 --- !u!4 &488260622
@@ -773,7 +769,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &655616977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1475,7 +1471,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8e3e547f434128749a8fb89c48a55b0a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 46c8e59798b924c50ab7834cee0166d1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1147290304
 GameObject:
@@ -1986,7 +1982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 15670a5a71f70eb4093b6ae8a9cc0a1b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2314237689b3d47afa02a2dda38afa4c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2313,7 +2309,6 @@ MonoBehaviour:
   spaceship: {fileID: 821846190}
   normal: {fileID: 21300000, guid: 8b317c11016134050b11968ba81f57b0, type: 3}
   propulsion: {fileID: 21300000, guid: 22dad720104434b1eb90b9eb1e04effe, type: 3}
-  damageImage: {fileID: 1775526656}
   flashSpeed: 5
   flashColour: {r: 1, g: 0, b: 0, a: .588235319}
   damaged: 0

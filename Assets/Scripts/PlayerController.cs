@@ -11,12 +11,20 @@ public class PlayerController : MonoBehaviour {
 
 	//Private Vars
 	private Vector3 mousePosition;
+	private GameObject Canvas;
+	private Image damageImage;
 
-	public Image damageImage;
 	public float flashSpeed = 0.1f;
 	public Color flashColour = new Color (1f, 0f, 0f, 1f);
 	
 	public bool damaged = false;
+
+	void Start (){
+		Canvas = GameObject.Find ("Canvas");
+		Transform getChild = Canvas.transform.FindChild ("Damage");
+		GameObject child = getChild.gameObject;
+		damageImage = child.GetComponent<UnityEngine.UI.Image> ();
+	}
 
 	void Update ()
 	{
