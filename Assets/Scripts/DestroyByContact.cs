@@ -36,6 +36,7 @@ public class DestroyByContact : MonoBehaviour {
 
 	void OnTriggerEnter (Collider other)
 	{
+
 		Debug.Log (gameObject.name);
 		if (gameObject.name.Equals ("ItemWord(Clone)") || gameObject.name.Equals ("ItemPicture(Clone)")){
 			leveleditor.AddScore ();
