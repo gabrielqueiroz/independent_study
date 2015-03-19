@@ -87,7 +87,8 @@ public class HelpAnimation : MonoBehaviour {
 		Player.SetActive (true);
 		Canvas.SetActive (true);
 		foreach (GameObject picture in Pictures) {
-			picture.SetActive(true);
+			if(picture != null)
+				picture.SetActive(true);
 		}
 	}
 
@@ -95,7 +96,8 @@ public class HelpAnimation : MonoBehaviour {
 		Player.SetActive (false);
 		Canvas.SetActive (false);
 		foreach (GameObject picture in Pictures) {
-			picture.SetActive(false);
+			if(picture != null)
+				picture.SetActive(false);
 		}
 	}
 	
