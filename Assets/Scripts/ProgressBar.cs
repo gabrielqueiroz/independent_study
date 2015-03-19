@@ -8,6 +8,7 @@ public class ProgressBar : MonoBehaviour {
     public static Dictionary<int, int> progress = new Dictionary<int, int>();
     private GameObject Canvas;
     private GameObject Progress;
+    private GameObject levels;
 
     void Awake()
     {
@@ -29,15 +30,30 @@ public class ProgressBar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Canvas = GameObject.Find("Canvas Select");
+
 
         if (Application.loadedLevel == 1)
         {
-			foreach(KeyValuePair<int, int> pair in progress){
-	            Transform getChild = Canvas.transform.FindChild("Progress_Bar"+pair.Key);
-	            GameObject child = getChild.gameObject;
-	            child.GetComponent<Scrollbar>().size = pair.Value / 3f;
-			}
+            Canvas = GameObject.Find("Canvas Select");
+            levels = GameObject.Find("Levels");
+            foreach (KeyValuePair<int, int> pair in progress)
+            {
+                Transform getChild = Canvas.transform.FindChild("Progress_Bar" + pair.Key);
+                GameObject child = getChild.gameObject;
+                child.SetActive(false);
+                Transform getLevelChild = levels.transform.FindChild(pair.Key + "/Background");
+                GameObject childLevel = getLevelChild.gameObject;
+                if (pair.Value == 3)
+                {
+                    childLevel.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/won");
+                }
+                else if (pair.Value != 0)
+                {
+                    childLevel.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/notWon");
+                    child.SetActive(true);
+                    child.GetComponent<Scrollbar>().size = pair.Value / 3f;
+                }
+            }
         }
 	}
 
