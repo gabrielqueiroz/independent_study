@@ -176,7 +176,7 @@ RectTransform:
   - {fileID: 180538997}
   - {fileID: 1603511880}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 5}
@@ -192,7 +192,7 @@ GameObject:
   - 4: {fileID: 37546345}
   - 212: {fileID: 37546344}
   m_Layer: 0
-  m_Name: Planet
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,7 +222,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6f0a54bd06bfcae4fbda4f18809a80c8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f0ca3661c8c9041b0834eecf11826b1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &37546345
 Transform:
@@ -246,7 +246,7 @@ GameObject:
   - 4: {fileID: 49171563}
   - 212: {fileID: 49171564}
   m_Layer: 0
-  m_Name: planet
+  m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -288,7 +288,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6f0a54bd06bfcae4fbda4f18809a80c8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f0ca3661c8c9041b0834eecf11826b1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &105141983
 GameObject:
@@ -769,7 +769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99dcd5a439c3e4affb17878a65fd2d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 2
+  level: 5
 --- !u!23 &276917231
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1155,7 +1155,7 @@ GameObject:
   - 4: {fileID: 550610254}
   - 212: {fileID: 550610255}
   m_Layer: 0
-  m_Name: Planet
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1197,7 +1197,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6f0a54bd06bfcae4fbda4f18809a80c8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f0ca3661c8c9041b0834eecf11826b1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &552344746
 GameObject:
@@ -1380,7 +1380,7 @@ GameObject:
   - 23: {fileID: 721413880}
   - 114: {fileID: 721413884}
   m_Layer: 0
-  m_Name: 1
+  m_Name: 1 - Find 3 Cats Pictures
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1454,7 +1454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99dcd5a439c3e4affb17878a65fd2d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
+  level: 3
 --- !u!1001 &759108909
 Prefab:
   m_ObjectHideFlags: 0
@@ -1746,7 +1746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99dcd5a439c3e4affb17878a65fd2d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 2
+  level: 5
 --- !u!23 &999580851
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2056,7 +2056,7 @@ GameObject:
   - 4: {fileID: 1312455320}
   - 212: {fileID: 1312455321}
   m_Layer: 0
-  m_Name: Planet
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2098,7 +2098,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6f0a54bd06bfcae4fbda4f18809a80c8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f0ca3661c8c9041b0834eecf11826b1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1347937247
 GameObject:
@@ -2475,7 +2475,7 @@ GameObject:
   - 4: {fileID: 1397437801}
   - 212: {fileID: 1397437802}
   m_Layer: 0
-  m_Name: Planet
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2517,7 +2517,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6f0a54bd06bfcae4fbda4f18809a80c8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f0ca3661c8c9041b0834eecf11826b1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1429427986
 GameObject:
@@ -2652,45 +2652,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9930946b7c5f48e44aef1e56c2de7315, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1529399709
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1529399710}
-  - 114: {fileID: 1529399711}
-  m_Layer: 0
-  m_Name: Progress
-  m_TagString: Progress
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1529399710
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1529399709}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.0316901766, y: 4.50235367, z: .195170164}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
---- !u!114 &1529399711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1529399709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4030e71c729c51243a46e5dffc8ea4de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1532188639
 GameObject:
   m_ObjectHideFlags: 0
@@ -2704,7 +2665,7 @@ GameObject:
   - 23: {fileID: 1532188641}
   - 114: {fileID: 1532188644}
   m_Layer: 0
-  m_Name: 2
+  m_Name: 2 - Find 3 Frogs Pictures
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2778,7 +2739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99dcd5a439c3e4affb17878a65fd2d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 2
+  level: 4
 --- !u!1 &1603511879
 GameObject:
   m_ObjectHideFlags: 0
@@ -3040,7 +3001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99dcd5a439c3e4affb17878a65fd2d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 2
+  level: 5
 --- !u!23 &1723093769
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3290,7 +3251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99dcd5a439c3e4affb17878a65fd2d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 2
+  level: 5
 --- !u!23 &1972625229
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3600,7 +3561,7 @@ GameObject:
   - 4: {fileID: 2124220802}
   - 212: {fileID: 2124220803}
   m_Layer: 0
-  m_Name: Planet
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3642,7 +3603,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6f0a54bd06bfcae4fbda4f18809a80c8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f0ca3661c8c9041b0834eecf11826b1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2146547122
 GameObject:

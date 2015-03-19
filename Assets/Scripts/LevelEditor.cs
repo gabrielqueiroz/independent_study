@@ -38,11 +38,11 @@ public class LevelEditor : MonoBehaviour {
             Debug.Log("Cannot find 'Progress bar' script");
         }
 		
-		if (Application.loadedLevel == 2)
-			LoadLevel1 ();	
 		if (Application.loadedLevel == 3)
-			LoadLevel2 ();	
+			LoadLevel1 ();	
 		if (Application.loadedLevel == 4)
+			LoadLevel2 ();	
+		if (Application.loadedLevel == 5)
 			LoadLevel1 ();
 	}
 	
@@ -53,14 +53,16 @@ public class LevelEditor : MonoBehaviour {
 
         if (life == 0)
         {
-            progressBar.UpdateScore(Application.loadedLevel, score);
-            Application.LoadLevel(5);
+			if(progressBar != null)
+            	progressBar.UpdateScore(Application.loadedLevel, score);
+            Application.LoadLevel(2);
 
         }
 
         if (score == 3)
         {
-            progressBar.UpdateScore(Application.loadedLevel, score);
+			if(progressBar != null)
+            	progressBar.UpdateScore(Application.loadedLevel, score);
             StartCoroutine(LevelComplete());
         }
 			
@@ -92,11 +94,11 @@ public class LevelEditor : MonoBehaviour {
 		while (true) {
 			Notification.SetActive(true);
 			yield return new WaitForSeconds(3.0f);
-			Application.LoadLevel(5);
+			Application.LoadLevel(1);
 		}
 	}
 	
-	void LoadLevel1(){
+	private void LoadLevel1(){
 
 		Stack<Vector3> levelPositions = randomPosition (6);
 
@@ -126,7 +128,7 @@ public class LevelEditor : MonoBehaviour {
 		}
 	}
 
-	void LoadLevel2(){
+	private void LoadLevel2(){
 
 		Stack<Vector3> levelPositions = randomPosition (12);
 		
@@ -156,6 +158,41 @@ public class LevelEditor : MonoBehaviour {
 			GameObject child = getChild.gameObject;
 			child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite> ("LevelContentUpdates/"+pair.Key);			
 			Instantiate (itemPicture_bad, position, rotation);
+		}
+	}
+
+	
+	private void LoadLevel3(){
+		Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
+		
+		//Load Good Words
+		levelObject.Add ("Word1", new Vector3 (0,0,5));
+		levelObject.Add ("Word3", new Vector3 (5,0,10));
+		levelObject.Add ("Word5", new Vector3 (-5,0,10));
+		
+		foreach (KeyValuePair<string, Vector3> pair in levelObject){
+			
+			Vector3 position = pair.Value;
+			Quaternion rotation = Quaternion.identity;
+			Transform getChild = itemWord.transform.FindChild("Word");
+			GameObject child = getChild.gameObject;
+			child.GetComponent<TextMesh>().text = pair.Key;
+			Instantiate (itemWord, position, rotation);
+		}
+		
+		//Load Bad Words
+		levelObject.Add ("Word2", new Vector3 (-5,0,5));
+		levelObject.Add ("Word4", new Vector3 (0,0,10));
+		levelObject.Add ("Word6", new Vector3 (5,0,5));
+		
+		foreach (KeyValuePair<string, Vector3> pair in levelObject){
+			
+			Vector3 position = pair.Value;
+			Quaternion rotation = Quaternion.identity;
+			Transform getChild = itemWord_bad.transform.FindChild("Word");
+			GameObject child = getChild.gameObject;
+			child.GetComponent<TextMesh>().text = pair.Key;
+			Instantiate (itemWord_bad, position, rotation);
 		}
 	}
 
@@ -218,37 +255,4 @@ public class LevelEditor : MonoBehaviour {
 		return stack;
 	}
 
-	/**
-	void LoadWords(){
-		//Load Good Words
-		words.Add ("Word1", new Vector3 (0,0,5));
-		words.Add ("Word3", new Vector3 (5,0,10));
-		words.Add ("Word5", new Vector3 (-5,0,10));
-		
-		foreach (KeyValuePair<string, Vector3> pair in words){
-			
-			Vector3 position = pair.Value;
-			Quaternion rotation = Quaternion.identity;
-			Transform getChild = itemWord.transform.FindChild("Word");
-			GameObject child = getChild.gameObject;
-			child.GetComponent<TextMesh>().text = pair.Key;
-			Instantiate (itemWord, position, rotation);
-		}
-		
-		//Load Bad Words
-		words_bad.Add ("Word2", new Vector3 (-5,0,5));
-		words_bad.Add ("Word4", new Vector3 (0,0,10));
-		words_bad.Add ("Word6", new Vector3 (5,0,5));
-		
-		foreach (KeyValuePair<string, Vector3> pair in words_bad){
-			
-			Vector3 position = pair.Value;
-			Quaternion rotation = Quaternion.identity;
-			Transform getChild = itemWord_bad.transform.FindChild("Word");
-			GameObject child = getChild.gameObject;
-			child.GetComponent<TextMesh>().text = pair.Key;
-			Instantiate (itemWord_bad, position, rotation);
-		}
-	}
-	*/
 }

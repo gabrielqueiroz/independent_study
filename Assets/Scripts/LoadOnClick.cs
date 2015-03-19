@@ -6,7 +6,7 @@ public class LoadOnClick : MonoBehaviour {
 	public int level;
 	
 	void OnMouseDown() {
-			Application.LoadLevel (level + 1);
+			Application.LoadLevel (level);
 	}
 
 }

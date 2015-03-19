@@ -11,14 +11,12 @@ public class ProgressBar : MonoBehaviour {
 
     void Awake()
     {
-        Debug.Log("awake");
        // DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(gameObject);
     }
 
 	// Use this for initialization
 	void Start () {
-        Debug.Log("Entrei");
         progress.Add(1, 0);
         progress.Add(2, 0);
         progress.Add(3, 0);
@@ -33,17 +31,19 @@ public class ProgressBar : MonoBehaviour {
 	void Update () {
         Canvas = GameObject.Find("Canvas Select");
 
-        if (Application.loadedLevel==5)
+        if (Application.loadedLevel == 1)
         {
-            Transform getChild = Canvas.transform.FindChild("Progress_Bar1");
-            GameObject child = getChild.gameObject;
-            child.GetComponent<Scrollbar>().size = progress[1] / 3f;
+			foreach(KeyValuePair<int, int> pair in progress){
+	            Transform getChild = Canvas.transform.FindChild("Progress_Bar"+pair.Key);
+	            GameObject child = getChild.gameObject;
+	            child.GetComponent<Scrollbar>().size = pair.Value / 3f;
+			}
         }
 	}
 
     public void UpdateScore(int level, int score)
     {
-        level--;
+        level = level - 2;
         progress[level] = score;
     }
 

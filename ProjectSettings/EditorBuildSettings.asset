@@ -6,6 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Levels/Start Screen.unity
+  - enabled: 1
     path: Assets/Levels/Level Select.unity
   - enabled: 1
     path: Assets/Levels/Game Over.unity
@@ -15,5 +17,3 @@ EditorBuildSettings:
     path: Assets/Levels/Level 2.unity
   - enabled: 1
     path: Assets/Levels/Level Test.unity
-  - enabled: 1
-    path: Assets/Levels/Level Select 1.unity

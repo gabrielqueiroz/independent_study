@@ -7,6 +7,7 @@ public class DestroyByContact : MonoBehaviour {
 	private LevelEditor leveleditor;
 	private PlayerController playercontroller;
     public GameObject explosion;
+
 	void Start ()
 	{
 		GameObject editorOnlyObject = GameObject.FindGameObjectWithTag ("EditorOnly");

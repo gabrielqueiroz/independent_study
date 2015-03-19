@@ -45,7 +45,7 @@ GameObject:
   - 198: {fileID: 19800004}
   - 199: {fileID: 19900004}
   m_Layer: 0
-  m_Name: explosion_asteroid
+  m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4156,7 +4156,7 @@ ParticleSystemRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 8c27a26541dfb7142889417b43088968, type: 2}
+  - {fileID: 2100000, guid: 185f97f18bd603a478461ce9c08bd039, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -4192,7 +4192,7 @@ ParticleSystemRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 91ca9d660dba38f4f99af51c964b803d, type: 2}
+  - {fileID: 2100000, guid: 04affead1e3e0476889530ed42f67543, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -4228,7 +4228,7 @@ ParticleSystemRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: e121e86f66666c242bd25cd0ab8d0daa, type: 2}
+  - {fileID: 2100000, guid: 04affead1e3e0476889530ed42f67543, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -4264,7 +4264,7 @@ ParticleSystemRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_Materials:
-  - {fileID: 2100000, guid: 60b58d1fc9445d243b4a1e09bd5787cd, type: 2}
+  - {fileID: 2100000, guid: fc12dd97304df430b80fc17f32d85d62, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
