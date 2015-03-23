@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +8,7 @@ public class PersistentController : MonoBehaviour {
 
     public static Dictionary<int, int> progress = new Dictionary<int, int>();
 	private GameObject Canvas;
+	private GameObject InputCanvas;
     private GameObject levels;
 	private GameObject Session;
 
@@ -23,10 +24,10 @@ public class PersistentController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		Session = GameObject.Find ("Session");
-		session = Random.Range (1, 10000).ToString();
-
-		Session.GetComponent<TextMesh>().text = session;
+		InputCanvas = GameObject.Find("InputCanvas");
+		Transform getInputField = InputCanvas.transform.FindChild("InputField");
+		GameObject inputField = getInputField.gameObject;
+		session = inputField.GetComponent<UnityEngine.UI.InputField>().text;
 
 		filename = "Assets/" + session + ".txt";
  
@@ -44,6 +45,7 @@ public class PersistentController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 
 
         if (Application.loadedLevel == 1)
