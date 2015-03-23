@@ -227,17 +227,18 @@ public class LevelEditor : MonoBehaviour {
 		List<Vector3> positions = new List<Vector3>();
 		Stack<Vector3> stack = new Stack<Vector3>();
 
+		Vector3 spaceShip = new Vector3 (0, 0, 0);
 		Vector3 testPosition;
 		bool validPosition;
 
-		positions.Add (new Vector3(Random.Range (-14, 5), 0 ,Random.Range (5,14)));
+		positions.Add (new Vector3(Random.Range (-12, 12), 0 ,Random.Range (-12, 12)));
 
 		while (qnt > 0) {
-			testPosition = new Vector3(Random.Range (-14, 5), 0 ,Random.Range (5,14)); 
+			testPosition = new Vector3(Random.Range (-12, 12), 0 ,Random.Range (-12, 12)); 
 			validPosition = true;
 
 			foreach(Vector3 pos in positions){
-				if(Vector3.Distance(pos,testPosition) <= 3.0f)
+				if((Vector3.Distance(pos,testPosition) <= 5.0f) || (Vector3.Distance(spaceShip,testPosition) <= 5.0f))
 					validPosition=false;				
 			}
 
