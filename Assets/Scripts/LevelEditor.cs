@@ -11,7 +11,7 @@ public class LevelEditor : MonoBehaviour {
 	public GameObject itemPicture;
 	public GameObject itemPicture_bad;
 
-    private ProgressBar progressBar;
+    private PersistentController progressBar;
 	private GameObject Player;
 	private GameObject Canvas;
 	private GameObject Details;
@@ -28,14 +28,14 @@ public class LevelEditor : MonoBehaviour {
 		Notification = GameObject.Find ("Notification");
 		Notification.SetActive (false);
 
-        GameObject progressObject = GameObject.FindGameObjectWithTag("Progress");
+        GameObject progressObject = GameObject.FindGameObjectWithTag("Persistent");
         if (progressObject != null)
         {
-            progressBar = progressObject.GetComponent<ProgressBar>();
-        }
-        if (progressBar == null)
+			progressBar = progressObject.GetComponent<PersistentController>();
+		}
+		if (progressBar == null)
         {
-            Debug.Log("Cannot find 'Progress bar' script");
+            Debug.Log("Cannot find 'Persistent Controller' script");
         }
 		
 		if (Application.loadedLevel == 3)

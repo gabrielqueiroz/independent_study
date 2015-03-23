@@ -2,13 +2,17 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
-public class ProgressBar : MonoBehaviour {
+public class PersistentController : MonoBehaviour {
 
     public static Dictionary<int, int> progress = new Dictionary<int, int>();
-    private GameObject Canvas;
-    private GameObject Progress;
+	private GameObject Canvas;
     private GameObject levels;
+	private GameObject Session;
+
+	private string filename;
+	private string session;
 
     void Awake()
     {
@@ -18,13 +22,23 @@ public class ProgressBar : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        progress.Add(1, 0);
-        progress.Add(2, 0);
-        progress.Add(3, 0);
-        progress.Add(4, 0);
-        progress.Add(5, 0);
-        progress.Add(6, 0);
-        Progress = GameObject.FindGameObjectWithTag("Progress");
+
+		Session = GameObject.Find ("Session");
+		session = Random.Range (1, 10000).ToString();
+
+		Session.GetComponent<TextMesh>().text = session;
+
+		filename = "Assets/" + session + ".txt";
+ 
+		if (!File.Exists (filename))
+			File.Create (filename);
+
+		progress.Add(1, 0);
+		progress.Add(2, 0);
+		progress.Add(3, 0);
+		progress.Add(4, 0);
+		progress.Add(5, 0);
+		progress.Add(6, 0);
 
 	}
 	
@@ -63,4 +77,7 @@ public class ProgressBar : MonoBehaviour {
         progress[level] = score;
     }
 
+	public string getFileName(){
+		return filename;
+	}
 }

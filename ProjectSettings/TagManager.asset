@@ -7,7 +7,7 @@ TagManager:
   - ItemPicture
   - ItemWord
   - ItemWordBad
-  - Progress
+  - Persistent
   layers:
   - Default
   - TransparentFX
