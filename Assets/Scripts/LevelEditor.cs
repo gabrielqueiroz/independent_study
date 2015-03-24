@@ -11,7 +11,7 @@ public class LevelEditor : MonoBehaviour {
 	public GameObject itemPicture;
 	public GameObject itemPicture_bad;
 
-    private PersistentController progressBar;
+    private PersistentController persistent;
 	private GameObject Player;
 	private GameObject Canvas;
 	private GameObject Details;
@@ -28,26 +28,39 @@ public class LevelEditor : MonoBehaviour {
 		Notification = GameObject.Find ("Notification");
 		Notification.SetActive (false);
 
-        GameObject progressObject = GameObject.FindGameObjectWithTag("Persistent");
-        if (progressObject != null)
-        {
-			progressBar = progressObject.GetComponent<PersistentController>();
+		GameObject persistentObject = GameObject.FindGameObjectWithTag ("Persistent");
+		if (persistentObject != null) {
+			persistent = persistentObject.GetComponent<PersistentController> ();
 		}
-		if (progressBar == null)
-        {
-            Debug.Log("Cannot find 'Persistent Controller' script");
-        }
+		if (persistent == null) {
+			Debug.Log ("Cannot find 'Persistent Controller' script");
+		}
 		
-		if (Application.loadedLevel == 3)
+		if (Application.loadedLevel == 3) {
+			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" start level 1");
 			LoadLevel1 ();	
-		if (Application.loadedLevel == 4)
-			LoadLevel2 ();	
-		if (Application.loadedLevel == 5)
+		}
+
+		if (Application.loadedLevel == 4) {
+			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" start level 2");
+			LoadLevel2 ();
+		}
+				
+		if (Application.loadedLevel == 5) {
+			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" start level 3");
 			LoadLevel3 ();
-        if (Application.loadedLevel == 6)
-            LoadLevel4();
-        if (Application.loadedLevel == 7)
-            LoadLevel5();
+		}
+			
+		if (Application.loadedLevel == 6) {
+			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" start level 4");
+			LoadLevel4();
+		}
+            
+		if (Application.loadedLevel == 7) {
+			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" start level 5");
+			LoadLevel5();
+		}
+
 	}
 	
 	void Update(){
@@ -57,16 +70,16 @@ public class LevelEditor : MonoBehaviour {
 
         if (life == 0)
         {
-			if(progressBar != null)
-            	progressBar.UpdateScore(Application.loadedLevel, score);
-            Application.LoadLevel(2);
+			persistent.UpdateScore(Application.loadedLevel, score);
+			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" gameover "+score);
+
+			Application.LoadLevel(2);
 
         }
 
         if (score == 3)
         {
-			if(progressBar != null)
-            	progressBar.UpdateScore(Application.loadedLevel, score);
+			persistent.UpdateScore(Application.loadedLevel, score);
             StartCoroutine(LevelComplete());
         }
 			
@@ -98,6 +111,7 @@ public class LevelEditor : MonoBehaviour {
 		while (true) {
 			Notification.SetActive(true);
 			yield return new WaitForSeconds(3.0f);
+			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" level complete");
 			Application.LoadLevel(1);
 		}
 	}
@@ -107,9 +121,9 @@ public class LevelEditor : MonoBehaviour {
 		Stack<Vector3> levelPositions = randomPosition (6);
 
 		Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
-		levelObject.Add ("Cat_1", levelPositions.Pop() );
-		levelObject.Add ("Cat_2", levelPositions.Pop() );
-		levelObject.Add ("Cat_3", levelPositions.Pop() );
+		levelObject.Add ("cat_1", levelPositions.Pop() );
+		levelObject.Add ("cat_2", levelPositions.Pop() );
+		levelObject.Add ("cat_3", levelPositions.Pop() );
 
 		foreach (KeyValuePair<string, Vector3> pair in levelObject){			
 			Vector3 position = pair.Value;
@@ -143,8 +157,6 @@ public class LevelEditor : MonoBehaviour {
 		levelObject.Add ("car_4", levelPositions.Pop() );
 		levelObject.Add ("car_5", levelPositions.Pop() );
 		levelObject.Add ("car_6", levelPositions.Pop() );
-        levelObject.Add("car_7", levelPositions.Pop());
-        levelObject.Add("car_8", levelPositions.Pop()); 
 		
 		foreach (KeyValuePair<string, Vector3> pair in levelObject){			
 			Vector3 position = pair.Value;
@@ -155,7 +167,7 @@ public class LevelEditor : MonoBehaviour {
 			Instantiate (itemPicture, position, rotation);
 		}
 		
-		Dictionary<string, Vector3> levelObject_wrong = randomWrong (8, "car", levelPositions);
+		Dictionary<string, Vector3> levelObject_wrong = randomWrong (6, "car", levelPositions);
 		
 		foreach (KeyValuePair<string, Vector3> pair in levelObject_wrong){			
 			Vector3 position = pair.Value;
@@ -169,13 +181,13 @@ public class LevelEditor : MonoBehaviour {
 
 	
 	private void LoadLevel3(){
-        Stack<Vector3> levelPositions = randomPosition(12);
+
+        Stack<Vector3> levelPositions = randomPosition(6);
 
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
         levelObject.Add("pencil_1", levelPositions.Pop());
         levelObject.Add("pencil_2", levelPositions.Pop());
         levelObject.Add("pencil_3", levelPositions.Pop());
-
 
         foreach (KeyValuePair<string, Vector3> pair in levelObject)
         {
@@ -212,7 +224,6 @@ public class LevelEditor : MonoBehaviour {
         levelObject.Add("frog_5", levelPositions.Pop());
         levelObject.Add("frog_6", levelPositions.Pop());
 
-
         foreach (KeyValuePair<string, Vector3> pair in levelObject)
         {
             Vector3 position = pair.Value;
@@ -238,7 +249,7 @@ public class LevelEditor : MonoBehaviour {
 
     private void LoadLevel5()
     {
-        Stack<Vector3> levelPositions = randomPosition(12);
+        Stack<Vector3> levelPositions = randomPosition(6);
 
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
         levelObject.Add("horse_1", levelPositions.Pop());
