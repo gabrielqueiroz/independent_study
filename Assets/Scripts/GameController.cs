@@ -15,7 +15,16 @@ public class GameController : MonoBehaviour {
 
 	void Start(){			
 		details.Add (1, "Find and collect three cats");
-		details.Add (2, "Find and collect three frogs");
+		details.Add (2, "Find and collect three cars");
+        details.Add(3, "Find and collect three pencils");
+        details.Add(4, "Find and collect three frogs");
+        details.Add(5, "Find the word that describes this object three times");
+        details.Add(6, "Find the word that describes this object three times");
+        details.Add(7, "Find the word that describes this object three times");
+        details.Add(8, "Find three different words that describe this object");
+        details.Add(9, "Find three different words that describe this object");
+        details.Add(10, "Find three different words that describe this object");
+        details.Add(11, "Find three different words that DO NOT describe this object");
 	}
 
 	void Update(){

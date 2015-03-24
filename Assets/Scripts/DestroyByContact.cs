@@ -55,7 +55,7 @@ public class DestroyByContact : MonoBehaviour {
 				if (other.name.Equals("PointingAt")){				
 
 					Debug.Log ("consider "+child.GetComponent<SpriteRenderer>().sprite.name);
-					File.AppendAllText (persistent.getFileName(), "\n Pointing at "+child.GetComponent<SpriteRenderer>().sprite.name);
+					//File.AppendAllText (persistent.getFileName(), "\n Pointing at "+child.GetComponent<SpriteRenderer>().sprite.name);
 
 				} else {
 					
@@ -69,7 +69,7 @@ public class DestroyByContact : MonoBehaviour {
 			
 					Debug.Log ("collided with "+child.GetComponent<SpriteRenderer>().sprite.name);
 					Destroy (gameObject);
-					File.AppendAllText (persistent.getFileName(), "\n collided with "+child.GetComponent<SpriteRenderer>().sprite.name);
+					//File.AppendAllText (persistent.getFileName(), "\n collided with "+child.GetComponent<SpriteRenderer>().sprite.name);
 						
 				}
 			}
@@ -87,7 +87,7 @@ public class DestroyByContact : MonoBehaviour {
 
 		if (child.GetComponent<SpriteRenderer> ().isVisible) {
 			Debug.Log("avoid "+child.GetComponent<SpriteRenderer>().sprite.name);
-			File.AppendAllText (persistent.getFileName(), "\n avoid "+child.GetComponent<SpriteRenderer>().sprite.name);
+			//File.AppendAllText (persistent.getFileName(), "\n avoid "+child.GetComponent<SpriteRenderer>().sprite.name);
 		}
 			
 	}
