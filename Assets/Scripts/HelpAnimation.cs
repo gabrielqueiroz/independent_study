@@ -11,7 +11,6 @@ public class HelpAnimation : MonoBehaviour {
 	private List<GameObject> Pictures = new List<GameObject>();
 	private GameObject Player;
 	private GameObject ButtonText;
-	private GameObject Counter;
 	private Transform getChild;
 	private bool helpDown = false;
 	private bool helpUp = false;
@@ -31,9 +30,6 @@ public class HelpAnimation : MonoBehaviour {
 		getChild = getChild.transform.FindChild("Text");
 		ButtonText = getChild.gameObject;
 
-		getChild = Details.transform.FindChild("Counter");
-		Counter = getChild.gameObject;
-
 		DeactivateAll();
 		Details.transform.position = PlayerPosition;	
 	}
@@ -48,8 +44,6 @@ public class HelpAnimation : MonoBehaviour {
 		if (helpUp)
 			AnimationUp ();
 
-		//if (clicked)
-		//	StartCoroutine (countPerSecond());
 	}
 
 	void OnMouseDown() {
@@ -74,11 +68,6 @@ public class HelpAnimation : MonoBehaviour {
 
 	void AnimationUp(){
 		Details.transform.position = Vector3.Lerp (Details.transform.position, PlayerPosition + Offset, (Time.deltaTime * speed));
-	}
-
-	IEnumerator countPerSecond(){
-		yield return new WaitForSeconds (5.0f);
-		Counter.GetComponent<TextMesh> ().text = Time.time.ToString();
 	}
 
 	IEnumerator activeAll()

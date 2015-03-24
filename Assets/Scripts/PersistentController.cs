@@ -9,6 +9,7 @@ public class PersistentController : MonoBehaviour {
     public static Dictionary<int, int> progress = new Dictionary<int, int>();
 	private GameObject Canvas;
 	private GameObject InputCanvas;
+	private GameObject InputField;
     private GameObject levels;
 	private GameObject Session;
 
@@ -26,13 +27,7 @@ public class PersistentController : MonoBehaviour {
 
 		InputCanvas = GameObject.Find("InputCanvas");
 		Transform getInputField = InputCanvas.transform.FindChild("InputField");
-		GameObject inputField = getInputField.gameObject;
-		session = inputField.GetComponent<UnityEngine.UI.InputField>().text;
-
-		filename = "Assets/" + session + ".txt";
- 
-		if (!File.Exists (filename))
-			File.Create (filename);
+		InputField = getInputField.gameObject;
 
 		progress.Add(1, 0);
 		progress.Add(2, 0);
@@ -45,8 +40,10 @@ public class PersistentController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-
+		if (Application.loadedLevel == 0) {
+			session = InputField.GetComponent<UnityEngine.UI.InputField>().text;
+			filename = "Assets/" + session.ToUpper() + ".txt";
+		}
 
         if (Application.loadedLevel == 1)
         {
@@ -82,4 +79,24 @@ public class PersistentController : MonoBehaviour {
 	public string getFileName(){
 		return filename;
 	}
+
+	public string getSessionName(){
+		return session.ToUpper ();
+	}
+
+	public void createFile(){
+		if (!File.Exists (filename))
+			File.Create (filename);
+
+		StartCoroutine(writeFileName());
+	}
+
+	IEnumerator writeFileName()
+	{
+		yield return new WaitForSeconds(2.0f);
+		File.AppendAllText(getFileName(), "[session started] "+getSessionName());
+	}
+
+
+
 }
