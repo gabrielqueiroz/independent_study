@@ -48,6 +48,10 @@ public class LevelEditor : MonoBehaviour {
             LoadLevel4();
         if (Application.loadedLevel == 7)
             LoadLevel5();
+        if (Application.loadedLevel == 8)
+            LoadLevel6();
+        if (Application.loadedLevel == 9)
+            LoadLevel7();
 	}
 	
 	void Update(){
@@ -238,7 +242,7 @@ public class LevelEditor : MonoBehaviour {
 
     private void LoadLevel5()
     {
-        Stack<Vector3> levelPositions = randomPosition(12);
+        Stack<Vector3> levelPositions = randomPosition(9);
 
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
         levelObject.Add("horse_1", levelPositions.Pop());
@@ -256,7 +260,7 @@ public class LevelEditor : MonoBehaviour {
             Instantiate(itemPicture, position, rotation);
         }
 
-        Dictionary<string, Vector3> levelObject_wrong = randomWrong(6, "horse", levelPositions);
+        Dictionary<string, Vector3> levelObject_wrong = randomWordsWrong(6, "horse", levelPositions);
 
         foreach (KeyValuePair<string, Vector3> pair in levelObject_wrong)
         {
@@ -264,22 +268,20 @@ public class LevelEditor : MonoBehaviour {
             Quaternion rotation = Quaternion.identity;
             Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentUpdates/" + pair.Key);
+            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentWords/" + pair.Key);
             Instantiate(itemPicture_bad, position, rotation);
         }
     }
 
     private void LoadLevel6()
     {
-        Stack<Vector3> levelPositions = randomPosition(12);
+        Stack<Vector3> levelPositions = randomPosition(14);
 
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
-        levelObject.Add("frog_1", levelPositions.Pop());
-        levelObject.Add("frog_2", levelPositions.Pop());
-        levelObject.Add("frog_3", levelPositions.Pop());
-        levelObject.Add("frog_4", levelPositions.Pop());
-        levelObject.Add("frog_5", levelPositions.Pop());
-        levelObject.Add("frog_6", levelPositions.Pop());
+        levelObject.Add("phone_1", levelPositions.Pop());
+        levelObject.Add("phone_2", levelPositions.Pop());
+        levelObject.Add("phone_3", levelPositions.Pop());
+
 
 
         foreach (KeyValuePair<string, Vector3> pair in levelObject)
@@ -288,11 +290,22 @@ public class LevelEditor : MonoBehaviour {
             Quaternion rotation = Quaternion.identity;
             Transform getChild = itemPicture.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentUpdates/" + pair.Key);
+            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentWords/" + pair.Key);
             Instantiate(itemPicture, position, rotation);
         }
 
-        Dictionary<string, Vector3> levelObject_wrong = randomWrong(6, "frog", levelPositions);
+        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
+        levelObject_wrong.Add("nature_1", levelPositions.Pop());
+        levelObject_wrong.Add("animal_1", levelPositions.Pop());
+        levelObject_wrong.Add("celebrate_1", levelPositions.Pop());
+        levelObject_wrong.Add("phony_1", levelPositions.Pop());
+        levelObject_wrong.Add("edible_1", levelPositions.Pop());
+        levelObject_wrong.Add("photography_1", levelPositions.Pop());
+        levelObject_wrong.Add("pickle_1", levelPositions.Pop());
+        levelObject_wrong.Add("phantom_1", levelPositions.Pop());
+        levelObject_wrong.Add("philosophy_1", levelPositions.Pop());
+        levelObject_wrong.Add("fossil_1", levelPositions.Pop());
+        levelObject_wrong.Add("fees_1", levelPositions.Pop());
 
         foreach (KeyValuePair<string, Vector3> pair in levelObject_wrong)
         {
@@ -300,7 +313,52 @@ public class LevelEditor : MonoBehaviour {
             Quaternion rotation = Quaternion.identity;
             Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentUpdates/" + pair.Key);
+            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentWords/" + pair.Key);
+            Instantiate(itemPicture_bad, position, rotation);
+        }
+    }
+
+    private void LoadLevel7()
+    {
+        Stack<Vector3> levelPositions = randomPosition(14);
+
+        Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
+        levelObject.Add("cow_1", levelPositions.Pop());
+        levelObject.Add("cow_2", levelPositions.Pop());
+        levelObject.Add("cow_3", levelPositions.Pop());
+
+
+
+        foreach (KeyValuePair<string, Vector3> pair in levelObject)
+        {
+            Vector3 position = pair.Value;
+            Quaternion rotation = Quaternion.identity;
+            Transform getChild = itemPicture.transform.FindChild("Sprite");
+            GameObject child = getChild.gameObject;
+            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentWords/" + pair.Key);
+            Instantiate(itemPicture, position, rotation);
+        }
+
+        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
+        levelObject_wrong.Add("cat_1", levelPositions.Pop());
+        levelObject_wrong.Add("can_1", levelPositions.Pop());
+        levelObject_wrong.Add("cap_1", levelPositions.Pop());
+        levelObject_wrong.Add("cup_1", levelPositions.Pop());
+        levelObject_wrong.Add("car_1", levelPositions.Pop());
+        levelObject_wrong.Add("cot_1", levelPositions.Pop());
+        levelObject_wrong.Add("cud_1", levelPositions.Pop());
+        levelObject_wrong.Add("cab_1", levelPositions.Pop());
+        levelObject_wrong.Add("cam_1", levelPositions.Pop());
+        levelObject_wrong.Add("camp_1", levelPositions.Pop());
+        levelObject_wrong.Add("cast_1", levelPositions.Pop());
+
+        foreach (KeyValuePair<string, Vector3> pair in levelObject_wrong)
+        {
+            Vector3 position = pair.Value;
+            Quaternion rotation = Quaternion.identity;
+            Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
+            GameObject child = getChild.gameObject;
+            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentWords/" + pair.Key);
             Instantiate(itemPicture_bad, position, rotation);
         }
     }
@@ -321,6 +379,24 @@ public class LevelEditor : MonoBehaviour {
 		return randomWrong;
 	}
 
+    private Dictionary<string, Vector3> randomWordsWrong(int length, string levelWord, Stack<Vector3> positions)
+    {
+        Dictionary<string, Vector3> randomWrong = new Dictionary<string, Vector3>();
+        List<string> allObjects = levelContentWord();
+
+        for (int i = 0; i < length; i++)
+        {
+            string current = allObjects[Random.Range(0, allObjects.Count)];
+
+            while (current.Contains(levelWord) || randomWrong.ContainsKey(current))
+                current = allObjects[Random.Range(0, allObjects.Count)];
+
+            randomWrong.Add(current, positions.Pop());
+        }
+
+        return randomWrong;
+    }
+
 	List<string> levelContent(){
 		List<string> levelContent = new List<string>();
 		DirectoryInfo dir = new DirectoryInfo("Assets/Resources/LevelContentUpdates");
@@ -331,6 +407,19 @@ public class LevelEditor : MonoBehaviour {
 		}
 		return levelContent;
 	}
+
+    List<string> levelContentWord()
+    {
+        List<string> levelContent = new List<string>();
+        DirectoryInfo dir = new DirectoryInfo("Assets/Resources/LevelContentWords");
+        FileInfo[] info = dir.GetFiles("*.png");
+        foreach (FileInfo f in info)
+        {
+            string temp = f.Name.Remove(f.Name.Length - 4);
+            levelContent.Add(temp);
+        }
+        return levelContent;
+    }
 	
 	Stack<Vector3> randomPosition(int qnt){
 		List<Vector3> positions = new List<Vector3>();
