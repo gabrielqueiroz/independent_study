@@ -3,20 +3,20 @@ using System.Collections;
 using System.IO;
 
 public class StartAnimation : MonoBehaviour {
-
+	
 	public int speed;
-
-	private GameObject camera;
+	
+	private GameObject cam;
 	private GameObject startButton;
 	private PersistentController persistent;
 	private Vector3 goalPosition = new Vector3(0.0f,15.0f,-12.0f);
 	private bool clicked = false;
-
+	
 	// Use this for initialization
 	void Start () {
-		camera = GameObject.Find ("Main Camera");
+		cam = GameObject.Find ("Main Camera");
 		startButton = GameObject.Find ("Start Button");
-
+		
 		GameObject persistentObject = GameObject.FindGameObjectWithTag("Persistent");
 		if (persistentObject != null)
 		{
@@ -26,7 +26,7 @@ public class StartAnimation : MonoBehaviour {
 		{
 			Debug.Log("Cannot find 'Persistent Controller' script");
 		}
-
+		
 	}
 	
 	// Update is called once per frame
@@ -34,9 +34,9 @@ public class StartAnimation : MonoBehaviour {
 		if (clicked)
 			AnimationDown ();
 	}
-
+	
 	void OnMouseDown() {
-		if (camera.transform.position == goalPosition) {
+		if (cam.transform.position == goalPosition) {
 			persistent.createFile();
 			Application.LoadLevel(1);
 		} else {
@@ -46,8 +46,8 @@ public class StartAnimation : MonoBehaviour {
 			child.GetComponent<TextMesh> ().text = "Submit Code";
 		}
 	}
-
+	
 	void AnimationDown(){	
-		camera.transform.position = Vector3.Lerp (camera.transform.position, goalPosition, (Time.deltaTime * speed));
+		cam.transform.position = Vector3.Lerp (cam.transform.position, goalPosition, (Time.deltaTime * speed));
 	}
 }
