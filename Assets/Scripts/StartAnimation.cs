@@ -3,8 +3,6 @@ using System.Collections;
 using System.IO;
 
 public class StartAnimation : MonoBehaviour {
-	
-	public int speed;
 
 	private GameObject warnLabel;
 	private GameObject cam;
@@ -71,6 +69,6 @@ public class StartAnimation : MonoBehaviour {
 	}
 
 	void AnimationDown(){	
-		cam.transform.position = Vector3.Lerp (cam.transform.position, goalPosition, (Time.deltaTime * speed));
+		cam.transform.position = Vector3.Lerp (cam.transform.position, goalPosition, (Time.deltaTime * 5));
 	}
 }

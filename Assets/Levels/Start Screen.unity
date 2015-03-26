@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e5a72eedcb7a446a6bef3495b48096ae, type: 3}
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -591,10 +591,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 721413879}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf998e17e10bb554fbdf765545f04004, type: 3}
+  m_Script: {fileID: 11500000, guid: 029def0b7bf4346a5a4ff549a01cd2db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
 --- !u!65 &721413881
 BoxCollider:
   m_ObjectHideFlags: 0
