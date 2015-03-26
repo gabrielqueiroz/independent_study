@@ -14,7 +14,7 @@ public class PersistentController : MonoBehaviour {
 	private GameObject Session;
 	
 	private string filename;
-	private string session;
+	private string session = "";
 	private string time;
 	
 	void Awake()

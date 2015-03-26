@@ -98,6 +98,10 @@ public class LevelEditor : MonoBehaviour {
 			Application.LoadLevel(5);
 	}
 
+	public int getScore(){
+		return score;
+	}
+
 	public void AddScore(){
 		Transform getChild = Canvas.transform.FindChild ("Progress_Bar");
 		GameObject child = getChild.gameObject;
@@ -106,10 +110,12 @@ public class LevelEditor : MonoBehaviour {
 	}
 
 	public void DecScore(){
-		Transform getChild = Canvas.transform.FindChild("Heart_"+life);
-		GameObject child = getChild.gameObject;
-		child.GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load <Sprite> ("Sprites/DeadHeart");
-		life--;
+		if (score <= 3) {
+			Transform getChild = Canvas.transform.FindChild("Heart_"+life);
+			GameObject child = getChild.gameObject;
+			child.GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load <Sprite> ("Sprites/DeadHeart");
+			life--;
+		}
 	}
 
 	public void HelpUpdate(){

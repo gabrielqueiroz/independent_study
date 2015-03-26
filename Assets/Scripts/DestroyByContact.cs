@@ -77,7 +77,6 @@ public class DestroyByContact : MonoBehaviour {
 				
 				Debug.Log (persistent.getTime()+" collided "+target);
 				File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" collided "+target);
-				
 				target = "";
 				Destroy (gameObject);
 			}
@@ -91,9 +90,8 @@ public class DestroyByContact : MonoBehaviour {
 		GameObject child = getChild.gameObject;
 		
 		if (child.GetComponent<SpriteRenderer>().isVisible) {
-			Debug.Log("\n"+persistent.getTime()+" avoid "+child.GetComponent<SpriteRenderer>().sprite.name);
+			Debug.Log(persistent.getTime()+" avoid "+child.GetComponent<SpriteRenderer>().sprite.name);
 			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" avoid "+child.GetComponent<SpriteRenderer>().sprite.name);
-			
 			target = "";
 		}
 		
