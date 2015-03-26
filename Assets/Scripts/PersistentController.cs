@@ -47,11 +47,13 @@ public class PersistentController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		//Debug.Log (Application.persistentDataPath);
 		time = Time.time.ToString ("00.00");
 		
 		if (Application.loadedLevel == 0) {
 			session = InputField.GetComponent<UnityEngine.UI.InputField>().text;
-			filename = "Assets/" + session.ToUpper() + ".txt";
+
+			filename = Application.persistentDataPath +"/"+ session.ToUpper() + ".txt";
 		}
 		
 		if (Application.loadedLevel == 1)
@@ -107,6 +109,7 @@ public class PersistentController : MonoBehaviour {
 	IEnumerator writeFileName()
 	{
 		yield return new WaitForSeconds(0.5f);
+		Debug.Log("FILE CREATED AT "+Application.persistentDataPath);
         File.AppendAllText(getFileName(), getTime() + " session started " + getSessionName() + " device " + SystemInfo.deviceType.ToString());
 	}
 	
