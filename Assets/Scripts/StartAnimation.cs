@@ -6,7 +6,7 @@ public class StartAnimation : MonoBehaviour {
 
 	public int speed;
 
-	private GameObject cam;
+	private GameObject camera;
 	private GameObject startButton;
 	private PersistentController persistent;
 	private Vector3 goalPosition = new Vector3(0.0f,15.0f,-12.0f);
@@ -14,7 +14,7 @@ public class StartAnimation : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		cam = GameObject.Find ("Main Camera");
+		camera = GameObject.Find ("Main Camera");
 		startButton = GameObject.Find ("Start Button");
 
 		GameObject persistentObject = GameObject.FindGameObjectWithTag("Persistent");
@@ -36,7 +36,7 @@ public class StartAnimation : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
-		if (cam.transform.position == goalPosition) {
+		if (camera.transform.position == goalPosition) {
 			persistent.createFile();
 			Application.LoadLevel(1);
 		} else {
@@ -48,6 +48,6 @@ public class StartAnimation : MonoBehaviour {
 	}
 
 	void AnimationDown(){	
-		cam.transform.position = Vector3.Lerp (cam.transform.position, goalPosition, (Time.deltaTime * speed));
+		camera.transform.position = Vector3.Lerp (camera.transform.position, goalPosition, (Time.deltaTime * speed));
 	}
 }

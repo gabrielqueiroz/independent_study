@@ -15,7 +15,6 @@ public class PersistentController : MonoBehaviour {
 
 	private string filename;
 	private string session;
-	private string time;
 
     void Awake()
     {
@@ -44,8 +43,6 @@ public class PersistentController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		time = Time.time.ToString ("00.00");
-
 		if (Application.loadedLevel == 0) {
 			session = InputField.GetComponent<UnityEngine.UI.InputField>().text;
 			filename = "Assets/" + session.ToUpper() + ".txt";
@@ -90,10 +87,6 @@ public class PersistentController : MonoBehaviour {
 		return session.ToUpper ();
 	}
 
-	public string getTime(){
-		return ("[" + time + "]");
-	}
-
 	public void createFile(){
 		if (!File.Exists (filename))
 			File.Create (filename);
@@ -103,8 +96,8 @@ public class PersistentController : MonoBehaviour {
 
 	IEnumerator writeFileName()
 	{
-		yield return new WaitForSeconds(0.5f);
-		File.AppendAllText(getFileName(),getTime()+" session started "+getSessionName());
+		yield return new WaitForSeconds(2.0f);
+		File.AppendAllText(getFileName(), "[session started] "+getSessionName());
 	}
 
 

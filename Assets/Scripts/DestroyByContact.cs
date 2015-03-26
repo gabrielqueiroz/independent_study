@@ -8,7 +8,6 @@ public class DestroyByContact : MonoBehaviour {
 	private LevelEditor leveleditor;
 	private PlayerController playercontroller;
 	private PersistentController persistent;
-	private string target = "";
 
 	public GameObject explosion;
 
@@ -46,42 +45,38 @@ public class DestroyByContact : MonoBehaviour {
 
 	}
 
-	/**
-	 * Using on trigger stay to receive an upate per frame until the object is rendered in the screen
-	 */
-
 	void OnTriggerStay(Collider other) {
 
 		Transform getChild = gameObject.transform.FindChild("Sprite");
 		GameObject child = getChild.gameObject;
 
-		if (child.GetComponent<SpriteRenderer>().isVisible) {
-
-			if (other.name.Equals("PointingAt")){	
-
-				if (!target.Equals(child.GetComponent<SpriteRenderer>().sprite.name)){
-					target = child.GetComponent<SpriteRenderer> ().sprite.name;
-					Debug.Log (persistent.getTime()+" consider "+target);
-					File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" consider "+target);
-				}
-
-			} else {
+			if (child.GetComponent<SpriteRenderer> ().isVisible) {
 				
-				if (gameObject.name.Equals ("ItemWord(Clone)") || gameObject.name.Equals ("ItemPicture(Clone)")){
-					leveleditor.AddScore ();
-					Instantiate(explosion, transform.position, transform.rotation);
-				} else {
-					leveleditor.DecScore ();
-					playercontroller.damaged = true;
-				}
-		
-				Debug.Log (persistent.getTime()+" collided "+target);
-				File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" collided "+target);
+				if (other.name.Equals("PointingAt")){				
 
-				target = "";
-				Destroy (gameObject);
+					Debug.Log ("consider "+child.GetComponent<SpriteRenderer>().sprite.name);
+					//File.AppendAllText (persistent.getFileName(), "\n Pointing at "+child.GetComponent<SpriteRenderer>().sprite.name);
+
+				} else {
+					
+					if (gameObject.name.Equals ("ItemWord(Clone)") || gameObject.name.Equals ("ItemPicture(Clone)")){
+						leveleditor.AddScore ();
+						Instantiate(explosion, transform.position, transform.rotation);
+					} else {
+						leveleditor.DecScore ();
+						playercontroller.damaged = true;
+					}
+			
+					Debug.Log ("collided with "+child.GetComponent<SpriteRenderer>().sprite.name);
+					Destroy (gameObject);
+					//File.AppendAllText (persistent.getFileName(), "\n collided with "+child.GetComponent<SpriteRenderer>().sprite.name);
+						
+				}
 			}
-		}
+
+	}
+
+	void OnTriggerEnter(Collider other){
 
 	}
 
@@ -90,11 +85,9 @@ public class DestroyByContact : MonoBehaviour {
 		Transform getChild = gameObject.transform.FindChild("Sprite");
 		GameObject child = getChild.gameObject;
 
-		if (child.GetComponent<SpriteRenderer>().isVisible) {
-			Debug.Log("\n"+persistent.getTime()+" avoid "+child.GetComponent<SpriteRenderer>().sprite.name);
-			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" avoid "+child.GetComponent<SpriteRenderer>().sprite.name);
-
-			target = "";
+		if (child.GetComponent<SpriteRenderer> ().isVisible) {
+			Debug.Log("avoid "+child.GetComponent<SpriteRenderer>().sprite.name);
+			//File.AppendAllText (persistent.getFileName(), "\n avoid "+child.GetComponent<SpriteRenderer>().sprite.name);
 		}
 			
 	}
