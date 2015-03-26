@@ -123,14 +123,14 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 48139809}
-  m_Text: "Find three different words\n that describe this object"
+  m_Text: "Find three different words that \nDO NOT describe this object"
   m_OffsetZ: 0
   m_CharacterSize: .100000001
   m_LineSpacing: 1
   m_Anchor: 1
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 75
+  m_FontSize: 70
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: e5a72eedcb7a446a6bef3495b48096ae, type: 3}
@@ -2093,7 +2093,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fce5bc5c164db4bc2babcefed9f136a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 88c75c30eeabf4c46a5d30fec91d59ef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1927874159
 GameObject:

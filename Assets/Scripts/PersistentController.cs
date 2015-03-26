@@ -36,6 +36,12 @@ public class PersistentController : MonoBehaviour {
 		progress.Add(4, 0);
 		progress.Add(5, 0);
 		progress.Add(6, 0);
+        progress.Add(7, 0);
+        progress.Add(8, 0);
+        progress.Add(9, 0);
+        progress.Add(10, 0);
+        progress.Add(11, 0);
+        progress.Add(12, 0);
 		
 	}
 	
@@ -101,7 +107,7 @@ public class PersistentController : MonoBehaviour {
 	IEnumerator writeFileName()
 	{
 		yield return new WaitForSeconds(0.5f);
-		File.AppendAllText(getFileName(),getTime()+" session started "+getSessionName());
+        File.AppendAllText(getFileName(), getTime() + " session started " + getSessionName() + " device " + SystemInfo.deviceType.ToString());
 	}
 	
 	
