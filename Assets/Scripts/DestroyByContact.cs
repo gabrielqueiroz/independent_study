@@ -74,11 +74,12 @@ public class DestroyByContact : MonoBehaviour {
 					leveleditor.DecScore ();
 					playercontroller.damaged = true;
 				}
-				
-				Debug.Log (persistent.getTime()+" collided "+target);
-				File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" collided "+target);
+
+				Debug.Log (persistent.getTime()+" collect "+target);
+				File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" collect "+target);
 				target = "";
 				Destroy (gameObject);
+
 			}
 		}
 		

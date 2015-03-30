@@ -82,7 +82,7 @@ public class LevelEditor : MonoBehaviour {
 		if (life == 0)
 		{
 			persistent.UpdateScore(Application.loadedLevel, score);
-			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" gameover "+score);
+			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" lose level " +(Application.loadedLevel-2)+ " score " +score);
 			Application.LoadLevel(2);
 			
 		}
@@ -127,7 +127,7 @@ public class LevelEditor : MonoBehaviour {
 		while (true) {
 			Notification.SetActive(true);
 			yield return new WaitForSeconds(3.0f);
-			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" level complete");
+			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" win level " + (Application.loadedLevel-2));
 			Application.LoadLevel(1);
 		}
 	}

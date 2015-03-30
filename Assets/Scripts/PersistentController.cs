@@ -110,7 +110,7 @@ public class PersistentController : MonoBehaviour {
 	{
 		yield return new WaitForSeconds(0.5f);
 		Debug.Log("FILE CREATED AT "+Application.persistentDataPath);
-        File.AppendAllText(getFileName(), getTime() + " session started " + getSessionName() + " device " + SystemInfo.deviceType.ToString());
+        File.AppendAllText(getFileName(), getTime() + " session started " + getSessionName() + " " + SystemInfo.deviceType.ToString() + " " + SystemInfo.operatingSystem);
 	}
 	
 	
