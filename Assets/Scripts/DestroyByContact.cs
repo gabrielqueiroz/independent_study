@@ -24,7 +24,7 @@ public class DestroyByContact : MonoBehaviour {
 			Debug.Log("Cannot find 'Persistent Controller' script");
 		}
 		
-		GameObject editorOnlyObject = GameObject.FindGameObjectWithTag ("EditorOnly");
+		GameObject editorOnlyObject = GameObject.FindGameObjectWithTag ("LevelEditor");
 		if (editorOnlyObject != null){
 			leveleditor = editorOnlyObject.GetComponent <LevelEditor>();
 		}
@@ -62,7 +62,8 @@ public class DestroyByContact : MonoBehaviour {
 				if (!target.Equals(child.GetComponent<SpriteRenderer>().sprite.name)){
 					target = child.GetComponent<SpriteRenderer> ().sprite.name;
 					Debug.Log (persistent.getTime()+" consider "+target);
-					File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" consider "+target);
+					//File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" consider "+target);
+					persistent.AddLevelLog("\r\n"+persistent.getTime()+" consider "+target);
 				}
 				
 			} else {
@@ -76,7 +77,9 @@ public class DestroyByContact : MonoBehaviour {
 				}
 
 				Debug.Log (persistent.getTime()+" collect "+target);
-				File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" collect "+target);
+				//File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" collect "+target);
+				persistent.AddLevelLog("\r\n"+persistent.getTime()+" collect "+target);
+
 				target = "";
 				Destroy (gameObject);
 
@@ -92,9 +95,9 @@ public class DestroyByContact : MonoBehaviour {
 		
 		if (child.GetComponent<SpriteRenderer>().isVisible) {
 			Debug.Log(persistent.getTime()+" avoid "+child.GetComponent<SpriteRenderer>().sprite.name);
-			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" avoid "+child.GetComponent<SpriteRenderer>().sprite.name);
+			//File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" avoid "+child.GetComponent<SpriteRenderer>().sprite.name);
+			persistent.AddLevelLog( "\r\n"+persistent.getTime()+" collect "+target);
 			target = "";
-		}
-		
+		}		
 	}
 }

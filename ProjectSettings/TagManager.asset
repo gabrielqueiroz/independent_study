@@ -8,6 +8,7 @@ TagManager:
   - ItemWord
   - ItemWordBad
   - Persistent
+  - LevelEditor
   layers:
   - Default
   - TransparentFX

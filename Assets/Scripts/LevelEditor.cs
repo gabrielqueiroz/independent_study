@@ -12,13 +12,14 @@ public class LevelEditor : MonoBehaviour {
 	public GameObject itemPicture_bad;
 
 	private PersistentController persistent;
+	private DestroyByContact destroyByContact;
 	private GameObject Player;
 	private GameObject Canvas;
 	private GameObject Details;
 	private GameObject Notification;
 	
-	public int score =0;
-	public int life;
+	public int score = 0;
+	public int life = 3;
 	
 	void Start (){
 
@@ -39,37 +40,44 @@ public class LevelEditor : MonoBehaviour {
         }
 		
 		if (Application.loadedLevel == 3) {
-			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" start level 1");
+			//File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" start level 1");
+			persistent.postHTML("\r\n"+persistent.getTime()+" start level 1");
 			LoadLevel1 ();	
 		}
 		
 		if (Application.loadedLevel == 4) {
-			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" start level 2");
+			//File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" start level 2");
+			persistent.postHTML("\r\n"+persistent.getTime()+" start level 2");
 			LoadLevel2 ();
 		}
 		
 		if (Application.loadedLevel == 5) {
-			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" start level 3");
+			//File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" start level 3");
+			persistent.postHTML("\r\n"+persistent.getTime()+" start level 3");
 			LoadLevel3 ();
 		}
 		
 		if (Application.loadedLevel == 6) {
-			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" start level 4");
+			//File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" start level 4");
+			persistent.postHTML("\r\n"+persistent.getTime()+" start level 4");
 			LoadLevel4();
 		}
 		
 		if (Application.loadedLevel == 7) {
-			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" start level 5");
+			//File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" start level 5");
+			persistent.postHTML("\r\n"+persistent.getTime()+" start level 5");
 			LoadLevel5();
 		}
 
 		if (Application.loadedLevel == 8) {
-			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" start level 6");
+			//File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" start level 6");
+			persistent.postHTML("\r\n"+persistent.getTime()+" start level 6");
 			LoadLevel6 ();
 		}
 
 		if (Application.loadedLevel == 9) {
-			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" start level 7");
+			//File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" start level 7");
+			persistent.postHTML("\r\n"+persistent.getTime()+" start level 7");
 			LoadLevel7 ();
 		}
 	}
@@ -82,9 +90,10 @@ public class LevelEditor : MonoBehaviour {
 		if (life == 0)
 		{
 			persistent.UpdateScore(Application.loadedLevel, score);
-			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" lose level " +(Application.loadedLevel-2)+ " score " +score);
+			//File.AppendAllText(persistent.getFileName(), "\r\n"+persistent.getTime()+" lose level " +(Application.loadedLevel-2)+ " score " +score);
+			persistent.postHTML( persistent.returnLevelLog() );
+			persistent.postHTML("\r\n"+persistent.getTime()+" lose level " +(Application.loadedLevel-2)+ " score " +score);
 			Application.LoadLevel(2);
-			
 		}
 		
 		if (score == 3)
@@ -127,8 +136,9 @@ public class LevelEditor : MonoBehaviour {
 		while (true) {
 			Notification.SetActive(true);
 			yield return new WaitForSeconds(3.0f);
-			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" win level " + (Application.loadedLevel-2));
-			persistent.postHTML();
+			//File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" win level " + (Application.loadedLevel-2));
+			persistent.postHTML(persistent.returnLevelLog());
+			persistent.postHTML("\r\n"+persistent.getTime()+" win level " + (Application.loadedLevel-2));
 			Application.LoadLevel(1);
 		}
 	}
@@ -417,12 +427,11 @@ public class LevelEditor : MonoBehaviour {
 
 	List<string> levelContent(){
 		List<string> levelContent = new List<string>();
-		DirectoryInfo dir = new DirectoryInfo("Assets/Resources/LevelContentUpdates");
-		FileInfo[] info = dir.GetFiles ("*.png");
-		foreach (FileInfo f in info) {
-			string temp = f.Name.Remove(f.Name.Length - 4);
-			levelContent.Add(temp);
-		}
+		Object[] sprites = Resources.LoadAll ("LevelContentUpdates");
+
+		foreach (Object o in sprites) 
+			levelContent.Add(o.name);
+		
 		return levelContent;
 	}
 

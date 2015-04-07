@@ -16,7 +16,8 @@ public class PersistentController : MonoBehaviour {
 	private string filename;
 	private string session = "";
 	private string time;
-	
+	private string levelLog = "";
+
 	void Awake()
 	{
 		DontDestroyOnLoad(gameObject);
@@ -53,7 +54,7 @@ public class PersistentController : MonoBehaviour {
 
 			filename = Application.persistentDataPath +"/"+ session.ToUpper() + ".txt";
 		} else {
-			time = Time.time.ToString ("00.00");
+			time = Time.timeSinceLevelLoad.ToString ("00.00");
 		}
 		
 		if (Application.loadedLevel == 1) {
@@ -100,20 +101,31 @@ public class PersistentController : MonoBehaviour {
 		
 		StartCoroutine(writeFileName());
 	}
-	
+
 	IEnumerator writeFileName()
 	{
 		yield return new WaitForSeconds(0.5f);
 		Debug.Log("FILE CREATED AT "+Application.persistentDataPath);
-        File.AppendAllText(getFileName()," session started " + getSessionName() + " " + SystemInfo.deviceType.ToString() + " " + SystemInfo.operatingSystem);
+        //File.AppendAllText(getFileName(),"session started " + getSessionName() + " " + SystemInfo.deviceType.ToString() + " " + SystemInfo.operatingSystem);
+		postHTML("session started " + getSessionName() + " " + SystemInfo.deviceType.ToString() + " " + SystemInfo.operatingSystem);
 	}
 
-	public void postHTML(){
+	public void AddLevelLog(string log){
+		levelLog = levelLog + log;
+	}
+
+	public string returnLevelLog(){
+		string log = levelLog;
+		levelLog = "";
+		return log;  
+	}
+
+	public void postHTML(string value){
 		string url = "http://nil.cs.uno.edu/studies/readingrocket/log.php";
-		string filevalue = File.ReadAllText (getFileName());
 
 		WWWForm form = new WWWForm();
-		form.AddField("log", filevalue);
+		form.AddField("log", value);
+		form.AddField("id", getSessionName());
 
 		WWW www = new WWW (url, form);
 		StartCoroutine(WaitForRequest(www));
@@ -123,7 +135,7 @@ public class PersistentController : MonoBehaviour {
 	{
 		yield return www;
 		if(www.error == null){
-			Debug.Log("WWW Ok!: " + www.text);
+			Debug.Log("WWW OK!: " + www.text);
 		} else {
 			Debug.Log("WWW Error: "+ www.error);
 		}    

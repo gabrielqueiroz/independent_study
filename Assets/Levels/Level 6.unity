@@ -668,7 +668,7 @@ GameObject:
   - 114: {fileID: 488260621}
   m_Layer: 0
   m_Name: LevelEditor
-  m_TagString: EditorOnly
+  m_TagString: LevelEditor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

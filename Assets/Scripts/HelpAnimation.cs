@@ -46,7 +46,8 @@ public class HelpAnimation : MonoBehaviour {
 		Details.transform.position = PlayerPosition;	
 		
 		Debug.Log(persistent.getTime()+" help open");
-		File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" help open");
+		//File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" help open");
+		persistent.postHTML("\r\n"+persistent.getTime()+" help open");
 	}
 	
 	void Update(){
@@ -63,8 +64,9 @@ public class HelpAnimation : MonoBehaviour {
 	void OnMouseDown() {
 		if (!clicked) {		
 			Debug.Log(persistent.getTime()+" help open");
-			File.AppendAllText (persistent.getFileName(),"\r\n"+persistent.getTime()+" help open");
-			
+			//File.AppendAllText (persistent.getFileName(),"\r\n"+persistent.getTime()+" help open");
+			persistent.postHTML("\r\n"+persistent.getTime()+" help open");
+
 			ButtonText.GetComponent<TextMesh>().text = "Back";
 			DeactivateAll();
 			helpDown = true;
@@ -72,8 +74,9 @@ public class HelpAnimation : MonoBehaviour {
 			clicked = true;
 		} else {				
 			Debug.Log(persistent.getTime()+"help close");
-			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" help close");
-			
+			//File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" help close");
+			persistent.postHTML("\r\n"+persistent.getTime()+" help close");
+
 			ButtonText.GetComponent<TextMesh>().text = "Help";
 			helpUp = true;
 			helpDown = false;
