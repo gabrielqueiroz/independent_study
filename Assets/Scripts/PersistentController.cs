@@ -19,7 +19,6 @@ public class PersistentController : MonoBehaviour {
 	
 	void Awake()
 	{
-		// DontDestroyOnLoad(gameObject);
 		DontDestroyOnLoad(gameObject);
 	}
 	
@@ -42,43 +41,39 @@ public class PersistentController : MonoBehaviour {
         progress.Add(10, 0);
         progress.Add(11, 0);
         progress.Add(12, 0);
-		
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		//Debug.Log (Application.persistentDataPath);
-		time = Time.time.ToString ("00.00");
 		
 		if (Application.loadedLevel == 0) {
 			session = InputField.GetComponent<UnityEngine.UI.InputField>().text;
 
 			filename = Application.persistentDataPath +"/"+ session.ToUpper() + ".txt";
+		} else {
+			time = Time.time.ToString ("00.00");
 		}
 		
-		if (Application.loadedLevel == 1)
-		{
-			Canvas = GameObject.Find("Canvas Select");
-			levels = GameObject.Find("Levels");
-			foreach (KeyValuePair<int, int> pair in progress)
-			{
-				Transform getChild = Canvas.transform.FindChild("Progress_Bar" + pair.Key);
+		if (Application.loadedLevel == 1) {
+			Canvas = GameObject.Find ("Canvas Select");
+			levels = GameObject.Find ("Levels");
+			foreach (KeyValuePair<int, int> pair in progress) {
+				Transform getChild = Canvas.transform.FindChild ("Progress_Bar" + pair.Key);
 				GameObject child = getChild.gameObject;
-				child.SetActive(false);
-				Transform getLevelChild = levels.transform.FindChild(pair.Key + "/Background");
+				child.SetActive (false);
+				Transform getLevelChild = levels.transform.FindChild (pair.Key + "/Background");
 				GameObject childLevel = getLevelChild.gameObject;
-				if (pair.Value == 3)
-				{
-					childLevel.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/won");
-				}
-				else if (pair.Value != 0)
-				{
-					childLevel.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/notWon");
-					child.SetActive(true);
-					child.GetComponent<Scrollbar>().size = pair.Value / 3f;
+				if (pair.Value == 3) {
+					childLevel.GetComponent<SpriteRenderer> ().sprite = Resources.Load<Sprite> ("Sprites/won");
+				} else if (pair.Value != 0) {
+					childLevel.GetComponent<SpriteRenderer> ().sprite = Resources.Load<Sprite> ("Sprites/notWon");
+					child.SetActive (true);
+					child.GetComponent<Scrollbar> ().size = pair.Value / 3f;
 				}
 			}
-		}
+		} 
 	}
 	
 	public void UpdateScore(int level, int score)
@@ -110,9 +105,28 @@ public class PersistentController : MonoBehaviour {
 	{
 		yield return new WaitForSeconds(0.5f);
 		Debug.Log("FILE CREATED AT "+Application.persistentDataPath);
-        File.AppendAllText(getFileName(), getTime() + " session started " + getSessionName() + " " + SystemInfo.deviceType.ToString() + " " + SystemInfo.operatingSystem);
+        File.AppendAllText(getFileName()," session started " + getSessionName() + " " + SystemInfo.deviceType.ToString() + " " + SystemInfo.operatingSystem);
 	}
-	
-	
-	
+
+	public void postHTML(){
+		string url = "http://nil.cs.uno.edu/studies/readingrocket/log.php";
+		string filevalue = File.ReadAllText (getFileName());
+
+		WWWForm form = new WWWForm();
+		form.AddField("log", filevalue);
+
+		WWW www = new WWW (url, form);
+		StartCoroutine(WaitForRequest(www));
+	}
+
+	IEnumerator WaitForRequest(WWW www)
+	{
+		yield return www;
+		if(www.error == null){
+			Debug.Log("WWW Ok!: " + www.text);
+		} else {
+			Debug.Log("WWW Error: "+ www.error);
+		}    
+	}  
+
 }

@@ -128,6 +128,7 @@ public class LevelEditor : MonoBehaviour {
 			Notification.SetActive(true);
 			yield return new WaitForSeconds(3.0f);
 			File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" win level " + (Application.loadedLevel-2));
+			persistent.postHTML();
 			Application.LoadLevel(1);
 		}
 	}
