@@ -107,7 +107,7 @@ public class PersistentController : MonoBehaviour {
 		yield return new WaitForSeconds(0.5f);
 		Debug.Log("FILE CREATED AT "+Application.persistentDataPath);
         //File.AppendAllText(getFileName(),"session started " + getSessionName() + " " + SystemInfo.deviceType.ToString() + " " + SystemInfo.operatingSystem);
-		postHTML("session started " + getSessionName() + " " + SystemInfo.deviceType.ToString() + " " + SystemInfo.operatingSystem);
+		postHTML("session started " + getSessionName() + " " + SystemInfo.deviceType.ToString() + " " + SystemInfo.operatingSystem+ " ");
 	}
 
 	public void AddLevelLog(string log){

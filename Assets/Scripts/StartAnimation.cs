@@ -36,7 +36,28 @@ public class StartAnimation : MonoBehaviour {
 			AnimationDown ();
 		if (shake)
 			shakeWarning ();
+		if (Input.GetKeyDown ("enter")) {
+
+			if (cam.transform.position == goalPosition) {
+				if(persistent.getSessionName().Length < 3){
+					warnLabel.SetActive(true);
+					shake = true;
+					StartCoroutine(shakeFalse());			
+				} else {
+					persistent.createFile();
+					Application.LoadLevel(1);
+				}
+			} else {
+				clicked = true;
+				Transform getChild = startButton.transform.FindChild ("label");
+				GameObject child = getChild.gameObject;
+				child.GetComponent<TextMesh> ().text = "Submit Code";
+				TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default, false, false, true, true);
+			}
+
+		}
 	}
+
 	
 	void OnMouseDown() {
 		if (cam.transform.position == goalPosition) {

@@ -128,6 +128,7 @@ public class HelpAnimation : MonoBehaviour {
 
 	void LevelComplete(){
 		Canvas.SetActive (false);
+		Details.SetActive (false);
 		foreach (GameObject picture in Pictures) {
 			if(picture != null)
 				picture.SetActive(false);
