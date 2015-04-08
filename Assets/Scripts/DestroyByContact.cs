@@ -75,19 +75,26 @@ public class DestroyByContact : MonoBehaviour {
 					leveleditor.DecScore ();
 					playercontroller.damaged = true;
 				}
-
 				Debug.Log (persistent.getTime()+" collect "+target);
 				//File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" collect "+target);
 				persistent.AddLevelLog("\r\n"+persistent.getTime()+" collect "+target);
 
-				target = "";
 				Destroy (gameObject);
-
+				StartCoroutine(waitDestroy());
 			}
 		}
 		
 	}
-	
+
+	IEnumerator waitDestroy()
+	{
+		while (true) {
+			yield return new WaitForSeconds(0.5f);
+			target = "";
+		}
+	}
+
+
 	void OnTriggerExit(Collider other){
 		
 		Transform getChild = gameObject.transform.FindChild("Sprite");

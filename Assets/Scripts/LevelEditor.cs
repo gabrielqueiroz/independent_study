@@ -438,13 +438,11 @@ public class LevelEditor : MonoBehaviour {
     List<string> levelContentWord()
     {
         List<string> levelContent = new List<string>();
-        DirectoryInfo dir = new DirectoryInfo("Assets/Resources/LevelContentWords");
-        FileInfo[] info = dir.GetFiles("*.png");
-        foreach (FileInfo f in info)
-        {
-            string temp = f.Name.Remove(f.Name.Length - 4);
-            levelContent.Add(temp);
-        }
+		Object[] sprites = Resources.LoadAll ("LevelContentWords");
+		
+		foreach (Object o in sprites) 
+			levelContent.Add(o.name);
+
         return levelContent;
     }
 	

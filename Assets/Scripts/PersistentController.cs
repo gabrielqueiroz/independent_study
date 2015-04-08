@@ -96,8 +96,8 @@ public class PersistentController : MonoBehaviour {
 	}
 	
 	public void createFile(){
-		if (!File.Exists (filename))
-			File.Create (filename);
+		//if (!File.Exists (filename))
+		//	File.Create (filename);
 		
 		StartCoroutine(writeFileName());
 	}

@@ -9,6 +9,7 @@ public class HelpAnimation : MonoBehaviour {
 	public float speed;
 	
 	private PersistentController persistent;
+	private LevelEditor leveleditor;
 	private GameObject Canvas;
 	private List<GameObject> Pictures = new List<GameObject>();
 	private GameObject Player;
@@ -29,6 +30,15 @@ public class HelpAnimation : MonoBehaviour {
 		if (persistent == null)
 		{
 			Debug.Log("Cannot find 'Persistent Controller' script");
+		}
+
+		GameObject editorOnlyObject = GameObject.FindGameObjectWithTag ("LevelEditor");
+		if (editorOnlyObject != null){
+			leveleditor = editorOnlyObject.GetComponent <LevelEditor>();
+		}
+		
+		if (leveleditor == null){
+			Debug.Log ("Cannot find 'Level Editor' script");
 		}
 		
 		Player = GameObject.FindWithTag ("Player");
@@ -59,6 +69,9 @@ public class HelpAnimation : MonoBehaviour {
 		
 		if (helpUp)
 			AnimationUp ();
+
+		if(leveleditor.getScore() == 3)
+			LevelComplete();
 	}
 	
 	void OnMouseDown() {
@@ -106,6 +119,14 @@ public class HelpAnimation : MonoBehaviour {
 	
 	void DeactivateAll(){
 		Player.SetActive (false);
+		Canvas.SetActive (false);
+		foreach (GameObject picture in Pictures) {
+			if(picture != null)
+				picture.SetActive(false);
+		}
+	}
+
+	void LevelComplete(){
 		Canvas.SetActive (false);
 		foreach (GameObject picture in Pictures) {
 			if(picture != null)
