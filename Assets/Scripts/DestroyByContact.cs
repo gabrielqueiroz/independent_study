@@ -5,7 +5,8 @@ using System.IO;
 
 public class DestroyByContact : MonoBehaviour {
 
-	public AudioClip collect;
+	public AudioClip score;
+	public AudioClip wrong;
 	private LevelEditor leveleditor;
 	private PlayerController playercontroller;
 	private PersistentController persistent;
@@ -16,7 +17,8 @@ public class DestroyByContact : MonoBehaviour {
 
 	void Start ()
 	{
-		collect = Resources.Load <AudioClip>("Sounds/Score");
+		score = Resources.Load <AudioClip>("Sounds/Score");
+		wrong = Resources.Load <AudioClip>("Sounds/wrong_sound");
 
 		GameObject persistentObject = GameObject.FindGameObjectWithTag("Persistent");
 		if (persistentObject != null)
@@ -73,16 +75,17 @@ public class DestroyByContact : MonoBehaviour {
 			} else {
 				
 				if (gameObject.name.Equals ("ItemWord(Clone)") || gameObject.name.Equals ("ItemPicture(Clone)")){
-					AudioSource.PlayClipAtPoint(collect, transform.position);
+					AudioSource.PlayClipAtPoint(score, transform.position);
 					leveleditor.AddScore ();
 					Instantiate(explosion, transform.position, transform.rotation);
 				} else {
+					AudioSource.PlayClipAtPoint(wrong, transform.position);
 					leveleditor.DecScore ();
 					playercontroller.damaged = true;
 				}
-				Debug.Log (persistent.getTime()+" collect "+target);
-				//File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" collect "+target);
-				persistent.AddLevelLog("\r\n"+persistent.getTime()+" collect "+target);
+				Debug.Log (persistent.getTime()+" score "+target);
+				//File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" score "+target);
+				persistent.AddLevelLog("\r\n"+persistent.getTime()+" score "+target);
 
 				Destroy (gameObject);
 				StartCoroutine(waitDestroy());
@@ -107,7 +110,7 @@ public class DestroyByContact : MonoBehaviour {
 		if (child.GetComponent<SpriteRenderer>().isVisible) {
 			Debug.Log(persistent.getTime()+" avoid "+child.GetComponent<SpriteRenderer>().sprite.name);
 			//File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" avoid "+child.GetComponent<SpriteRenderer>().sprite.name);
-			persistent.AddLevelLog( "\r\n"+persistent.getTime()+" collect "+target);
+			persistent.AddLevelLog( "\r\n"+persistent.getTime()+" score "+target);
 			target = "";
 		}		
 	}
