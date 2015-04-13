@@ -7,6 +7,9 @@ using System.IO;
 public class PersistentController : MonoBehaviour {
 	
 	public static Dictionary<int, int> progress = new Dictionary<int, int>();
+
+	AudioSource fxSound;
+
 	private GameObject Canvas;
 	private GameObject InputCanvas;
 	private GameObject InputField;
@@ -25,7 +28,10 @@ public class PersistentController : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		
+
+		fxSound = GetComponent<AudioSource> ();
+		fxSound.Play ();
+
 		InputCanvas = GameObject.Find("InputCanvas");
 		Transform getInputField = InputCanvas.transform.FindChild("InputField");
 		InputField = getInputField.gameObject;

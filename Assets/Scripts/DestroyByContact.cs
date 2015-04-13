@@ -4,16 +4,20 @@ using System.Collections;
 using System.IO;
 
 public class DestroyByContact : MonoBehaviour {
-	
+
+	public AudioClip collect;
 	private LevelEditor leveleditor;
 	private PlayerController playercontroller;
 	private PersistentController persistent;
 	private string target = "";
 	
 	public GameObject explosion;
-	
+
+
 	void Start ()
 	{
+		collect = Resources.Load <AudioClip>("Sounds/Score");
+
 		GameObject persistentObject = GameObject.FindGameObjectWithTag("Persistent");
 		if (persistentObject != null)
 		{
@@ -69,6 +73,7 @@ public class DestroyByContact : MonoBehaviour {
 			} else {
 				
 				if (gameObject.name.Equals ("ItemWord(Clone)") || gameObject.name.Equals ("ItemPicture(Clone)")){
+					AudioSource.PlayClipAtPoint(collect, transform.position);
 					leveleditor.AddScore ();
 					Instantiate(explosion, transform.position, transform.rotation);
 				} else {
@@ -93,7 +98,6 @@ public class DestroyByContact : MonoBehaviour {
 			target = "";
 		}
 	}
-
 
 	void OnTriggerExit(Collider other){
 		
