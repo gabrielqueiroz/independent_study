@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
 	public float rotationSpeed;
 	public GameObject spaceship;
 	public Sprite normal, propulsion;
+	private float speed =7f;
 
 	//Private Vars
 	private Vector3 mousePosition;
@@ -40,7 +41,6 @@ public class PlayerController : MonoBehaviour {
 		float hitdist = 0.0f;
 		// If the ray is parallel to the plane, Raycast will return false.
 		if (playerPlane.Raycast (ray, out hitdist) && Input.GetMouseButton (0)) {
-
 			// Get the point along the ray that hits the calculated distance.
 			Vector3 targetPoint = ray.GetPoint (hitdist);
 			// Determine the target rotation.  This is the rotation if the transform looks at the target point.
@@ -48,14 +48,14 @@ public class PlayerController : MonoBehaviour {
 			// Smoothly rotate towards the target point.
 			transform.rotation = Quaternion.Slerp (transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 			// Add force in order to accelerate or slow down the spaceship
-			GetComponent<Rigidbody>().AddForce (transform.forward * 10);	
+			GetComponent<Rigidbody>().AddForce (transform.forward * speed);	
 			// Change the sprite that have the propulsion
 			spaceship.GetComponent<SpriteRenderer> ().sprite = propulsion;
-
 		} else {
 			// Change the sprite that don't have the propulsion
 			spaceship.GetComponent<SpriteRenderer> ().sprite = normal;
-
+			// Add sound
+			playSound();
 		}
 
 		if(damaged) {
@@ -72,6 +72,10 @@ public class PlayerController : MonoBehaviour {
 			yield return new WaitForSeconds (0.1f);
 			damageImage.color = flashColour;
 		}
+	}
+
+	void playSound(){
+		spaceship.GetComponent<AudioSource>().Play();
 	}
 
 }

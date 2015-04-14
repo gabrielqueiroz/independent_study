@@ -17,6 +17,7 @@ public class LevelEditor : MonoBehaviour {
 	private GameObject Canvas;
 	private GameObject Details;
 	private GameObject Notification;
+	private AudioClip winSound;
 	
 	public int score = 0;
 	public int life = 3;
@@ -28,6 +29,7 @@ public class LevelEditor : MonoBehaviour {
 		Details = GameObject.Find ("Details");
 		Notification = GameObject.Find ("Notification");
 		Notification.SetActive (false);
+		winSound = Resources.Load<AudioClip>("Sounds/level-win");
 
 		GameObject persistentObject = GameObject.FindGameObjectWithTag("Persistent");
 		if (persistentObject != null)
@@ -99,6 +101,7 @@ public class LevelEditor : MonoBehaviour {
 		if (score == 3)
 		{
 			persistent.UpdateScore(Application.loadedLevel, score);
+			AudioSource.PlayClipAtPoint(winSound,transform.position);
 			StartCoroutine(LevelComplete());
 		}
 			
@@ -110,6 +113,7 @@ public class LevelEditor : MonoBehaviour {
 	public int getScore(){
 		return score;
 	}
+	
 
 	public void AddScore(){
 		Transform getChild = Canvas.transform.FindChild ("Progress_Bar");
@@ -130,6 +134,7 @@ public class LevelEditor : MonoBehaviour {
 	public void HelpUpdate(){
 			Details.transform.position = Player.transform.position + new Vector3 (0, 1.0f, 8.6f);
 	}
+	
 
 	IEnumerator LevelComplete()
 	{
