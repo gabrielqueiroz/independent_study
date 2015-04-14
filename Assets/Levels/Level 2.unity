@@ -784,7 +784,7 @@ Transform:
   - {fileID: 1982596911}
   - {fileID: 1666757513}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!114 &299677963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1300,6 +1300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPicture: {fileID: 147500, guid: c046352a076eb4315a1fca647ea22de0, type: 2}
   itemPicture_bad: {fileID: 147500, guid: 9501c4280d37842da8bd9d9a923e8ece, type: 2}
+  explosion: {fileID: 0}
   score: 0
   life: 3
 --- !u!4 &488260622
@@ -2487,6 +2488,7 @@ GameObject:
   - 65: {fileID: 1036859568}
   - 23: {fileID: 1036859567}
   - 114: {fileID: 1036859566}
+  - 114: {fileID: 1036859570}
   m_Layer: 0
   m_Name: Quit
   m_TagString: Untagged
@@ -2562,6 +2564,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1036859564}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1036859570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1036859564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0483946a6f117744befd8b4bb75bb05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1071334295
 GameObject:
   m_ObjectHideFlags: 0
@@ -2598,7 +2611,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1071334295}
-  m_Text: find and collect three cats
+  m_Text: find and collect three cars
   m_OffsetZ: 0
   m_CharacterSize: .100000001
   m_LineSpacing: 1
@@ -4023,6 +4036,7 @@ GameObject:
   - 65: {fileID: 1910701014}
   - 23: {fileID: 1910701013}
   - 114: {fileID: 1910701012}
+  - 114: {fileID: 1910701016}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -4100,6 +4114,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1910701010}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1910701016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1910701010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0483946a6f117744befd8b4bb75bb05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1962616541
 GameObject:
   m_ObjectHideFlags: 0

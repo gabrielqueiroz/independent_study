@@ -8,6 +8,7 @@ public class LevelEditor : MonoBehaviour {
 	
 	public GameObject itemPicture;
 	public GameObject itemPicture_bad;
+	public GameObject explosion;
 
 	private PersistentController persistent;
 	private DestroyByContact destroyByContact;
@@ -104,8 +105,8 @@ public class LevelEditor : MonoBehaviour {
 		}
 			
 
-		if (Input.GetKeyDown(KeyCode.Escape))
-			Application.LoadLevel(5);
+		if (Input.GetKeyDown (KeyCode.Escape))
+			QuitLevel ();
 	}
 
 	public int getScore(){
@@ -138,8 +139,10 @@ public class LevelEditor : MonoBehaviour {
 	{
 		while (true) {
 			Notification.SetActive(true);
+			Instantiate(explosion, Player.transform.position + new Vector3(0,0,3f), Player.transform.rotation);
+			Instantiate(explosion, Player.transform.position + new Vector3(-3f,0,3f), Player.transform.rotation);
+			Instantiate(explosion, Player.transform.position + new Vector3(3f,0,3f), Player.transform.rotation);
 			yield return new WaitForSeconds(3.0f);
-			//File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" win level " + (Application.loadedLevel-2));
 			persistent.postHTML(persistent.returnLevelLog());
 			persistent.postHTML("\r\n"+persistent.getTime()+" win level " + (Application.loadedLevel-2));
 			Application.LoadLevel(1);

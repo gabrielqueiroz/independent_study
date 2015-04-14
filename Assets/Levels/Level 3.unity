@@ -860,6 +860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPicture: {fileID: 147500, guid: c046352a076eb4315a1fca647ea22de0, type: 2}
   itemPicture_bad: {fileID: 147500, guid: 9501c4280d37842da8bd9d9a923e8ece, type: 2}
+  explosion: {fileID: 0}
   score: 0
   life: 3
 --- !u!4 &488260622
@@ -1548,7 +1549,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 741894413}
-  m_Text: find and collect three cats
+  m_Text: find and collect three pencils
   m_OffsetZ: 0
   m_CharacterSize: .100000001
   m_LineSpacing: 1
@@ -2949,7 +2950,7 @@ Transform:
   - {fileID: 1817206740}
   - {fileID: 891565493}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!1 &1454364766
 GameObject:
   m_ObjectHideFlags: 0
@@ -3584,6 +3585,7 @@ GameObject:
   - 65: {fileID: 1726833509}
   - 23: {fileID: 1726833508}
   - 114: {fileID: 1726833507}
+  - 114: {fileID: 1726833511}
   m_Layer: 0
   m_Name: Quit
   m_TagString: Untagged
@@ -3659,6 +3661,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1726833505}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1726833511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1726833505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0483946a6f117744befd8b4bb75bb05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1754083369
 GameObject:
   m_ObjectHideFlags: 0
@@ -4039,6 +4052,7 @@ GameObject:
   - 65: {fileID: 1907841580}
   - 23: {fileID: 1907841579}
   - 114: {fileID: 1907841578}
+  - 114: {fileID: 1907841582}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -4116,6 +4130,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1907841576}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1907841582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1907841576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0483946a6f117744befd8b4bb75bb05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2018186653
 GameObject:
   m_ObjectHideFlags: 0

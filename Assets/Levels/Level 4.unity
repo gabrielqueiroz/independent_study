@@ -945,6 +945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPicture: {fileID: 147500, guid: c046352a076eb4315a1fca647ea22de0, type: 2}
   itemPicture_bad: {fileID: 147500, guid: 9501c4280d37842da8bd9d9a923e8ece, type: 2}
+  explosion: {fileID: 0}
   score: 0
   life: 3
 --- !u!4 &488260622
@@ -1519,6 +1520,7 @@ GameObject:
   - 65: {fileID: 722480996}
   - 23: {fileID: 722480995}
   - 114: {fileID: 722480994}
+  - 114: {fileID: 722480998}
   m_Layer: 0
   m_Name: Quit
   m_TagString: Untagged
@@ -1594,6 +1596,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 722480992}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &722480998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 722480992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0483946a6f117744befd8b4bb75bb05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &723514098
 GameObject:
   m_ObjectHideFlags: 0
@@ -1942,7 +1955,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 842868038}
-  m_Text: find and collect three cats
+  m_Text: find and collect three frogs
   m_OffsetZ: 0
   m_CharacterSize: .100000001
   m_LineSpacing: 1
@@ -2611,6 +2624,7 @@ GameObject:
   - 65: {fileID: 1131408591}
   - 23: {fileID: 1131408590}
   - 114: {fileID: 1131408589}
+  - 114: {fileID: 1131408593}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -2688,6 +2702,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1131408587}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1131408593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1131408587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0483946a6f117744befd8b4bb75bb05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1180675341
 GameObject:
   m_ObjectHideFlags: 0

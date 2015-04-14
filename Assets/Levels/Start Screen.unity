@@ -576,6 +576,7 @@ GameObject:
   - 33: {fileID: 721413882}
   - 65: {fileID: 721413881}
   - 114: {fileID: 721413880}
+  - 114: {fileID: 721413884}
   m_Layer: 0
   m_Name: Start Button
   m_TagString: Untagged
@@ -620,13 +621,24 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 721413879}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .5, z: -6}
+  m_LocalPosition: {x: 0, y: 2.5, z: -6}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children:
   - {fileID: 1353059188}
   - {fileID: 49171563}
   m_Father: {fileID: 0}
   m_RootOrder: 8
+--- !u!114 &721413884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 721413879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0483946a6f117744befd8b4bb75bb05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &727864503
 GameObject:
   m_ObjectHideFlags: 0

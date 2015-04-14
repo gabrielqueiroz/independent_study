@@ -529,6 +529,7 @@ GameObject:
   - 65: {fileID: 241302495}
   - 23: {fileID: 241302494}
   - 114: {fileID: 241302493}
+  - 114: {fileID: 241302497}
   m_Layer: 0
   m_Name: Quit
   m_TagString: Untagged
@@ -604,6 +605,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 241302491}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &241302497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 241302491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0483946a6f117744befd8b4bb75bb05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &241518457
 GameObject:
   m_ObjectHideFlags: 0
@@ -1535,6 +1547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPicture: {fileID: 147500, guid: c046352a076eb4315a1fca647ea22de0, type: 2}
   itemPicture_bad: {fileID: 147500, guid: 9501c4280d37842da8bd9d9a923e8ece, type: 2}
+  explosion: {fileID: 100004, guid: 7c0ce6764df784b51a83f7026e13d79b, type: 2}
   score: 0
   life: 3
 --- !u!4 &488260622
@@ -3740,6 +3753,7 @@ GameObject:
   - 65: {fileID: 1590378101}
   - 23: {fileID: 1590378100}
   - 114: {fileID: 1590378099}
+  - 114: {fileID: 1590378103}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -3817,6 +3831,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1590378097}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1590378103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1590378097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0483946a6f117744befd8b4bb75bb05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1596956965
 GameObject:
   m_ObjectHideFlags: 0
