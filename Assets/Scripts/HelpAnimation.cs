@@ -14,6 +14,7 @@ public class HelpAnimation : MonoBehaviour {
 	private List<GameObject> Pictures = new List<GameObject>();
 	private GameObject Player;
 	private GameObject ButtonText;
+	private GameObject ButtonQuit;
 	private Transform getChild;
 	private bool helpDown = false;
 	private bool helpUp = false;
@@ -51,7 +52,10 @@ public class HelpAnimation : MonoBehaviour {
 		getChild = Details.transform.FindChild("Button");
 		getChild = getChild.transform.FindChild("Text");
 		ButtonText = getChild.gameObject;
-		
+
+		getChild = Details.transform.FindChild("Quit");
+		ButtonQuit = getChild.gameObject;
+
 		DeactivateAll();
 		Details.transform.position = PlayerPosition;	
 		
@@ -111,6 +115,7 @@ public class HelpAnimation : MonoBehaviour {
 		yield return new WaitForSeconds(1.0f);
 		Player.SetActive (true);
 		Canvas.SetActive (true);
+		ButtonQuit.SetActive (true);
 		foreach (GameObject picture in Pictures) {
 			if(picture != null)
 				picture.SetActive(true);
@@ -120,6 +125,7 @@ public class HelpAnimation : MonoBehaviour {
 	void DeactivateAll(){
 		Player.SetActive (false);
 		Canvas.SetActive (false);
+		ButtonQuit.SetActive (false);
 		foreach (GameObject picture in Pictures) {
 			if(picture != null)
 				picture.SetActive(false);
@@ -129,6 +135,7 @@ public class HelpAnimation : MonoBehaviour {
 	void LevelComplete(){
 		Canvas.SetActive (false);
 		Details.SetActive (false);
+		ButtonQuit.SetActive (false);
 		foreach (GameObject picture in Pictures) {
 			if(picture != null)
 				picture.SetActive(false);

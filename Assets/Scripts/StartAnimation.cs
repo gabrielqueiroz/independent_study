@@ -8,7 +8,7 @@ public class StartAnimation : MonoBehaviour {
 	private GameObject cam;
 	private GameObject startButton;
 	private PersistentController persistent;
-	private Vector3 goalPosition = new Vector3(0.0f,15.0f,-14.0f);
+	private Vector3 goalPosition = new Vector3(0.0f,15.0f,-4.0f);
 	private bool clicked = false;
 	private bool shake = false;
 	

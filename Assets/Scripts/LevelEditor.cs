@@ -6,8 +6,6 @@ using System.IO;
 
 public class LevelEditor : MonoBehaviour {
 	
-	public GameObject itemWord;
-	public GameObject itemWord_bad;
 	public GameObject itemPicture;
 	public GameObject itemPicture_bad;
 
@@ -147,10 +145,17 @@ public class LevelEditor : MonoBehaviour {
 			Application.LoadLevel(1);
 		}
 	}
+
+	public void QuitLevel(){
+		persistent.UpdateScore(Application.loadedLevel, score);
+		persistent.postHTML(persistent.returnLevelLog());
+		persistent.postHTML("\r\n"+persistent.getTime()+" quit level " +(Application.loadedLevel-2)+ " score " +score);
+		Application.LoadLevel (1);
+	}
 	
 	private void LoadLevel1(){
 
-		Stack<Vector3> levelPositions = randomPosition (6);
+		Stack<Vector3> levelPositions = randomPosition (33);
 
 		Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
 		levelObject.Add ("Cat_1", levelPositions.Pop() );
@@ -166,7 +171,7 @@ public class LevelEditor : MonoBehaviour {
 			Instantiate (itemPicture, position, rotation);
 		}
 
-		Dictionary<string, Vector3> levelObject_wrong = randomWrong (3, "cat",levelPositions);
+		Dictionary<string, Vector3> levelObject_wrong = randomWrong (30,"cat",levelPositions);
 
 		foreach (KeyValuePair<string, Vector3> pair in levelObject_wrong){			
 			Vector3 position = pair.Value;
@@ -180,7 +185,7 @@ public class LevelEditor : MonoBehaviour {
 
 	private void LoadLevel2(){
 
-		Stack<Vector3> levelPositions = randomPosition (12);
+		Stack<Vector3> levelPositions = randomPosition (33);
 		
 		Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
 		levelObject.Add ("car_1", levelPositions.Pop() );
@@ -199,7 +204,7 @@ public class LevelEditor : MonoBehaviour {
 			Instantiate (itemPicture, position, rotation);
 		}
 		
-		Dictionary<string, Vector3> levelObject_wrong = randomWrong (6, "car", levelPositions);
+		Dictionary<string, Vector3> levelObject_wrong = randomWrong (27, "car", levelPositions);
 		
 		foreach (KeyValuePair<string, Vector3> pair in levelObject_wrong){			
 			Vector3 position = pair.Value;
@@ -213,7 +218,7 @@ public class LevelEditor : MonoBehaviour {
 
 	
 	private void LoadLevel3(){
-        Stack<Vector3> levelPositions = randomPosition(6);
+        Stack<Vector3> levelPositions = randomPosition(33);
 
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
         levelObject.Add("pencil_1", levelPositions.Pop());
@@ -230,7 +235,7 @@ public class LevelEditor : MonoBehaviour {
             Instantiate(itemPicture, position, rotation);
         }
 
-        Dictionary<string, Vector3> levelObject_wrong = randomWrong(3, "pencil", levelPositions);
+        Dictionary<string, Vector3> levelObject_wrong = randomWrong(30, "pencil", levelPositions);
 
         foreach (KeyValuePair<string, Vector3> pair in levelObject_wrong)
         {
@@ -245,7 +250,7 @@ public class LevelEditor : MonoBehaviour {
 
     private void LoadLevel4()
     {
-        Stack<Vector3> levelPositions = randomPosition(12);
+        Stack<Vector3> levelPositions = randomPosition(33);
 
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
         levelObject.Add ("frog_1", levelPositions.Pop());
@@ -265,7 +270,7 @@ public class LevelEditor : MonoBehaviour {
             Instantiate(itemPicture, position, rotation);
         }
 
-        Dictionary<string, Vector3> levelObject_wrong = randomWrong(6, "frog", levelPositions);
+        Dictionary<string, Vector3> levelObject_wrong = randomWrong(27, "frog", levelPositions);
 
         foreach (KeyValuePair<string, Vector3> pair in levelObject_wrong)
         {
@@ -280,7 +285,7 @@ public class LevelEditor : MonoBehaviour {
 
     private void LoadLevel5()
     {
-        Stack<Vector3> levelPositions = randomPosition(9);
+        Stack<Vector3> levelPositions = randomPosition(33);
 
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
         levelObject.Add("horse_1", levelPositions.Pop());
@@ -297,7 +302,7 @@ public class LevelEditor : MonoBehaviour {
             Instantiate(itemPicture, position, rotation);
         }
 
-        Dictionary<string, Vector3> levelObject_wrong = randomWordsWrong(6, "horse", levelPositions);
+        Dictionary<string, Vector3> levelObject_wrong = randomWordsWrong(30, "horse", levelPositions);
 
         foreach (KeyValuePair<string, Vector3> pair in levelObject_wrong)
         {
@@ -459,10 +464,10 @@ public class LevelEditor : MonoBehaviour {
 		Vector3 testPosition;
 		bool validPosition;
 
-		positions.Add (new Vector3(Random.Range (-12, 12), 0 ,Random.Range (-12, 12)));
+		positions.Add (new Vector3(Random.Range (-72, 72), 0 ,Random.Range (-72, 72)));
 
 		while (qnt > 0) {
-			testPosition = new Vector3(Random.Range (-12, 12), 0 ,Random.Range (-12, 12)); 
+			testPosition = new Vector3(Random.Range (-72, 72), 0 ,Random.Range (-72, 72)); 
 			validPosition = true;
 
 			foreach(Vector3 pos in positions){
