@@ -14,17 +14,30 @@ public class PlayerController : MonoBehaviour {
 	private Vector3 mousePosition;
 	private GameObject Canvas;
 	private Image damageImage;
+	private PersistentController persistent;
 
 	public float flashSpeed = 0.1f;
 	public Color flashColour = new Color (1f, 0f, 0f, 1f);
 	
 	public bool damaged = false;
+	private bool accelerate = false;
+	private float time = 0f;
+	private bool sound = true;
 
 	void Start (){
 		Canvas = GameObject.Find ("Canvas");
 		Transform getChild = Canvas.transform.FindChild ("Damage");
 		GameObject child = getChild.gameObject;
 		damageImage = child.GetComponent<UnityEngine.UI.Image> ();
+		GameObject persistentObject = GameObject.FindGameObjectWithTag("Persistent");
+		if (persistentObject != null)
+		{
+			persistent = persistentObject.GetComponent<PersistentController>();
+		}
+		if (persistent == null)
+		{
+			Debug.Log("Cannot find 'Persistent Controller' script");
+		}
 	}
 
 	void Update ()
@@ -41,6 +54,13 @@ public class PlayerController : MonoBehaviour {
 		float hitdist = 0.0f;
 		// If the ray is parallel to the plane, Raycast will return false.
 		if (playerPlane.Raycast (ray, out hitdist) && Input.GetMouseButton (0)) {
+			//Log when player "accelerates"
+			if(!accelerate){
+				time = Time.time;
+				Debug.Log(persistent.getTime()+" accelerate ");
+				persistent.AddLevelLog("\r\n"+persistent.getTime()+" accelerate ");
+				accelerate = true;
+			}
 			// Get the point along the ray that hits the calculated distance.
 			Vector3 targetPoint = ray.GetPoint (hitdist);
 			// Determine the target rotation.  This is the rotation if the transform looks at the target point.
@@ -51,11 +71,23 @@ public class PlayerController : MonoBehaviour {
 			GetComponent<Rigidbody>().AddForce (transform.forward * speed);	
 			// Change the sprite that have the propulsion
 			spaceship.GetComponent<SpriteRenderer> ().sprite = propulsion;
+			// Add sound
+			if(sound){
+				spaceship.GetComponent<AudioSource>().Play();
+				sound = false;
+			}
 		} else {
 			// Change the sprite that don't have the propulsion
 			spaceship.GetComponent<SpriteRenderer> ().sprite = normal;
-			// Add sound
-			playSound();
+			if(accelerate){
+				float delta = Time.time-time;
+				persistent.AddLevelLog("\r\n"+persistent.getTime()+" brake "+delta.ToString());
+				Debug.Log(persistent.getTime()+" brake "+delta.ToString());
+				time = 0f;
+				accelerate = false;
+			}
+			sound = true;
+			spaceship.GetComponent<AudioSource>().Stop();
 		}
 
 		if(damaged) {
@@ -73,9 +105,4 @@ public class PlayerController : MonoBehaviour {
 			damageImage.color = flashColour;
 		}
 	}
-
-	void playSound(){
-		spaceship.GetComponent<AudioSource>().Play();
-	}
-
 }

@@ -62,7 +62,7 @@ public class DestroyByContact : MonoBehaviour {
 		GameObject child = getChild.gameObject;
 		
 		if (child.GetComponent<SpriteRenderer>().isVisible) {
-			
+			//Debug.Log (persistent.getTime()+" appear "+child.GetComponent<SpriteRenderer>().sprite.name);
 			if (other.name.Equals("PointingAt")){	
 				
 				if (!target.Equals(child.GetComponent<SpriteRenderer>().sprite.name)){
