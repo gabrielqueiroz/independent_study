@@ -9,6 +9,7 @@ TagManager:
   - ItemWordBad
   - Persistent
   - LevelEditor
+  - Boundary
   layers:
   - Default
   - TransparentFX

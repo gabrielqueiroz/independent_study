@@ -81,12 +81,12 @@ public class StartAnimation : MonoBehaviour {
 	IEnumerator shakeFalse()
 	{
 		yield return new WaitForSeconds(1.0f);
-		warnLabel.transform.position = new Vector3(0,-30f,0);
+		warnLabel.transform.position = new Vector3(0,-45f,-29f);
 		shake = false;
 	}
 
 	void shakeWarning(){
-		warnLabel.transform.position = new Vector3(Mathf.Sin(Time.time * 25),-30f,0);
+		warnLabel.transform.position = new Vector3(Mathf.Sin(Time.time * 25),-45f,-29f);
 	}
 
 	void AnimationDown(){	
