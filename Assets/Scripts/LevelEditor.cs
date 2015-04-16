@@ -100,7 +100,6 @@ public class LevelEditor : MonoBehaviour {
 		if (score == 3)
 		{
 			persistent.UpdateScore(Application.loadedLevel, score);
-			AudioSource.PlayClipAtPoint(winSound,transform.position);
 			StartCoroutine(LevelComplete());
 		}
 			
@@ -137,11 +136,16 @@ public class LevelEditor : MonoBehaviour {
 
 	IEnumerator LevelComplete()
 	{
-		while (true) {
-			Notification.SetActive(true);
+		if (!Notification.activeSelf) {
+			AudioSource.PlayClipAtPoint(winSound,transform.position);
 			Instantiate(explosion, Player.transform.position + new Vector3(0,0,3f), Player.transform.rotation);
 			Instantiate(explosion, Player.transform.position + new Vector3(-3f,0,3f), Player.transform.rotation);
 			Instantiate(explosion, Player.transform.position + new Vector3(3f,0,3f), Player.transform.rotation);
+		}
+
+		Notification.SetActive(true);
+
+		while (true) {
 			yield return new WaitForSeconds(3.0f);
 			persistent.postHTML(persistent.returnLevelLog());
 			persistent.postHTML("\r\n"+persistent.getTime()+" win level " + (Application.loadedLevel-2));
