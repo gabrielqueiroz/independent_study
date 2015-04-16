@@ -467,10 +467,10 @@ public class LevelEditor : MonoBehaviour {
 		Vector3 testPosition;
 		bool validPosition;
 
-		positions.Add (new Vector3(Random.Range (-72, 72), 0 ,Random.Range (-72, 72)));
+		positions.Add (new Vector3(Random.Range (-40, 40), 0 ,Random.Range (-40, 40)));
 
 		while (qnt > 0) {
-			testPosition = new Vector3(Random.Range (-72, 72), 0 ,Random.Range (-72, 72)); 
+			testPosition = new Vector3(Random.Range (-40, 40), 0 ,Random.Range (-40, 40)); 
 			validPosition = true;
 
 			foreach(Vector3 pos in positions){
