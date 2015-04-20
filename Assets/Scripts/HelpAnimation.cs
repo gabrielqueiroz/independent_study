@@ -77,6 +77,16 @@ public class HelpAnimation : MonoBehaviour {
 		if(leveleditor.getScore() == 3)
 			LevelComplete();
 
+		/**
+		foreach (GameObject picture in Pictures) {
+			if(!picture.activeSelf)
+				break;
+			getChild = picture.transform.FindChild("Sprite");
+			SpriteRenderer sprite = getChild.gameObject.GetComponent<SpriteRenderer>();
+			if(sprite.isVisible)
+				Debug.Log("SPRITE VISIBLE "+sprite.sprite.name);
+		}
+		*/
 	}
 	
 	void OnMouseDown() {

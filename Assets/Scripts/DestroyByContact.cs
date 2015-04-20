@@ -51,7 +51,11 @@ public class DestroyByContact : MonoBehaviour {
 		}
 		
 	}
-	
+
+	void Update(){
+
+	}
+
 	/**
 	 * Using on trigger stay to receive an upate per frame until the object is rendered in the screen
 	 */
@@ -59,38 +63,42 @@ public class DestroyByContact : MonoBehaviour {
 	void OnTriggerStay(Collider other) {
 		
 		Transform getChild = gameObject.transform.FindChild("Sprite");
+		SpriteRenderer sprite = getChild.gameObject.GetComponent<SpriteRenderer>();
 		GameObject child = getChild.gameObject;
-		
-		if (child.GetComponent<SpriteRenderer>().isVisible) {
-			//Debug.Log (persistent.getTime()+" appear "+child.GetComponent<SpriteRenderer>().sprite.name);
-			if (other.name.Equals("PointingAt")){	
-				
-				if (!target.Equals(child.GetComponent<SpriteRenderer>().sprite.name)){
-					target = child.GetComponent<SpriteRenderer> ().sprite.name;
-					Debug.Log (persistent.getTime()+" consider "+target);
-					persistent.AddLevelLog("\r\n"+persistent.getTime()+" consider "+target);
-				}
-				
-			} else {
-				
-				if (gameObject.name.Equals ("ItemWord(Clone)") || gameObject.name.Equals ("ItemPicture(Clone)")){
-					AudioSource.PlayClipAtPoint(score, transform.position);
-					Debug.Log (persistent.getTime()+" score good "+target);
-					persistent.AddLevelLog("\r\n"+persistent.getTime()+" score good "+target);
-					leveleditor.AddScore ();
-					Instantiate(explosion, transform.position, transform.rotation);
+
+		if (other.name.Equals ("PointingAt") || other.name.Equals ("Player")) {
+			
+				if (other.name.Equals("PointingAt")){	
+					if (!target.Equals(child.GetComponent<SpriteRenderer>().sprite.name)){
+						target = child.GetComponent<SpriteRenderer> ().sprite.name;
+						Debug.Log (persistent.getTime()+" consider "+target);
+						persistent.AddLevelLog("\r\n"+persistent.getTime()+" consider "+target);
+					}
+					
 				} else {
-					AudioSource.PlayClipAtPoint(wrong, transform.position);
-					Debug.Log (persistent.getTime()+" score bad "+target);
-					persistent.AddLevelLog("\r\n"+persistent.getTime()+" score bad "+target);
-					leveleditor.DecScore ();
-					playercontroller.damaged = true;
+					
+					if (gameObject.name.Equals ("ItemWord(Clone)") || gameObject.name.Equals ("ItemPicture(Clone)")){
+						AudioSource.PlayClipAtPoint(score, transform.position);
+						Debug.Log (persistent.getTime()+" score good "+target);
+						persistent.AddLevelLog("\r\n"+persistent.getTime()+" score good "+target);
+						leveleditor.AddScore ();
+						Instantiate(explosion, transform.position, transform.rotation);
+						Destroy (gameObject);
+						StartCoroutine(waitDestroy());
+					} else {
+						AudioSource.PlayClipAtPoint(wrong, transform.position);
+						Debug.Log (persistent.getTime()+" score bad "+target);
+						persistent.AddLevelLog("\r\n"+persistent.getTime()+" score bad "+target);
+						leveleditor.DecScore ();
+						playercontroller.damaged = true;
+						Destroy (gameObject);
+						StartCoroutine(waitDestroy());
+					}
+
 				}
-				Destroy (gameObject);
-				StartCoroutine(waitDestroy());
+				
 			}
-		}
-		
+
 	}
 
 	IEnumerator waitDestroy()
@@ -105,11 +113,12 @@ public class DestroyByContact : MonoBehaviour {
 		
 		Transform getChild = gameObject.transform.FindChild("Sprite");
 		GameObject child = getChild.gameObject;
-		
-		if (child.GetComponent<SpriteRenderer>().isVisible) {
+
+		if (!target.Equals ("")) {
 			Debug.Log(persistent.getTime()+" avoid "+child.GetComponent<SpriteRenderer>().sprite.name);
-			persistent.AddLevelLog( "\r\n"+persistent.getTime()+" score "+target);
+			persistent.AddLevelLog( "\r\n"+persistent.getTime()+" avoid "+target);
 			target = "";
-		}		
+		}
+	
 	}
 }

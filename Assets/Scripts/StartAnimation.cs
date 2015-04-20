@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 
 public class StartAnimation : MonoBehaviour {
@@ -11,9 +12,16 @@ public class StartAnimation : MonoBehaviour {
 	private Vector3 goalPosition = new Vector3(0.0f,15.0f,-4.0f);
 	private bool clicked = false;
 	private bool shake = false;
+	private List<string> codes;
 	
 	// Use this for initialization
 	void Start () {
+		codes = new List<string>();
+		codes.Add("00000");
+		codes.Add("11111");
+		codes.Add("22222");
+		codes.Add("33333");
+
 		cam = GameObject.Find ("Main Camera");
 		startButton = GameObject.Find ("Start Button");
 		warnLabel = GameObject.Find ("InputCanvas").transform.FindChild ("WarnLabel").gameObject;
@@ -37,9 +45,9 @@ public class StartAnimation : MonoBehaviour {
 		if (shake)
 			shakeWarning ();
 		if (Input.GetKeyDown ("enter")) {
-
+	
 			if (cam.transform.position == goalPosition) {
-				if(persistent.getSessionName().Length < 3){
+				if( !codes.Contains( persistent.getSessionName())){
 					warnLabel.SetActive(true);
 					shake = true;
 					StartCoroutine(shakeFalse());			
@@ -61,7 +69,7 @@ public class StartAnimation : MonoBehaviour {
 	
 	void OnMouseDown() {
 		if (cam.transform.position == goalPosition) {
-			if(persistent.getSessionName().Length < 3){
+			if( !codes.Contains( persistent.getSessionName())){
 				warnLabel.SetActive(true);
 				shake = true;
 				StartCoroutine(shakeFalse());			

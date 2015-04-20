@@ -28,7 +28,7 @@ GameObject:
   - 212: {fileID: 21272650}
   m_Layer: 0
   m_Name: Sprite
-  m_TagString: Untagged
+  m_TagString: Sprite
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,8 +131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c399f8c7cfed4bb1b1d7cb34e94fe0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: {fileID: 0}
-  wrong: {fileID: 0}
+  score: {fileID: 8300000, guid: 3fdc0c26c86727e47b5e223702571c71, type: 3}
+  wrong: {fileID: 8300000, guid: 61360f9cf37aa554b8e1a9f7e97d62a5, type: 3}
   explosion: {fileID: 100004, guid: 7c0ce6764df784b51a83f7026e13d79b, type: 2}
 --- !u!135 &13534500
 SphereCollider:
@@ -182,7 +182,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: d1938b795865c3940b7e6d4eb46f8089, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 21c27a9156f958f479bbca3e544f2b2f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
