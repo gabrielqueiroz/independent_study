@@ -76,6 +76,7 @@ public class HelpAnimation : MonoBehaviour {
 
 		if(leveleditor.getScore() == 3)
 			LevelComplete();
+
 	}
 	
 	void OnMouseDown() {

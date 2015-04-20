@@ -68,7 +68,6 @@ public class DestroyByContact : MonoBehaviour {
 				if (!target.Equals(child.GetComponent<SpriteRenderer>().sprite.name)){
 					target = child.GetComponent<SpriteRenderer> ().sprite.name;
 					Debug.Log (persistent.getTime()+" consider "+target);
-					//File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" consider "+target);
 					persistent.AddLevelLog("\r\n"+persistent.getTime()+" consider "+target);
 				}
 				
@@ -76,17 +75,17 @@ public class DestroyByContact : MonoBehaviour {
 				
 				if (gameObject.name.Equals ("ItemWord(Clone)") || gameObject.name.Equals ("ItemPicture(Clone)")){
 					AudioSource.PlayClipAtPoint(score, transform.position);
+					Debug.Log (persistent.getTime()+" score good "+target);
+					persistent.AddLevelLog("\r\n"+persistent.getTime()+" score good "+target);
 					leveleditor.AddScore ();
 					Instantiate(explosion, transform.position, transform.rotation);
 				} else {
 					AudioSource.PlayClipAtPoint(wrong, transform.position);
+					Debug.Log (persistent.getTime()+" score bad "+target);
+					persistent.AddLevelLog("\r\n"+persistent.getTime()+" score bad "+target);
 					leveleditor.DecScore ();
 					playercontroller.damaged = true;
 				}
-				Debug.Log (persistent.getTime()+" score "+target);
-				//File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" score "+target);
-				persistent.AddLevelLog("\r\n"+persistent.getTime()+" score "+target);
-
 				Destroy (gameObject);
 				StartCoroutine(waitDestroy());
 			}
@@ -109,7 +108,6 @@ public class DestroyByContact : MonoBehaviour {
 		
 		if (child.GetComponent<SpriteRenderer>().isVisible) {
 			Debug.Log(persistent.getTime()+" avoid "+child.GetComponent<SpriteRenderer>().sprite.name);
-			//File.AppendAllText (persistent.getFileName(), "\r\n"+persistent.getTime()+" avoid "+child.GetComponent<SpriteRenderer>().sprite.name);
 			persistent.AddLevelLog( "\r\n"+persistent.getTime()+" score "+target);
 			target = "";
 		}		
