@@ -67,7 +67,6 @@ public class DestroyByContact : MonoBehaviour {
 		GameObject child = getChild.gameObject;
 
 		if (other.name.Equals ("PointingAt") || other.name.Equals ("Player")) {
-			
 				if (other.name.Equals("PointingAt")){	
 					if (!target.Equals(child.GetComponent<SpriteRenderer>().sprite.name)){
 						target = child.GetComponent<SpriteRenderer> ().sprite.name;
@@ -76,19 +75,20 @@ public class DestroyByContact : MonoBehaviour {
 					}
 					
 				} else {
-					
+					Vector3 targetDir = transform.position - other.transform.position;
+					float angle = Vector3.Angle(other.transform.forward, targetDir);
 					if (gameObject.name.Equals ("ItemWord(Clone)") || gameObject.name.Equals ("ItemPicture(Clone)")){
 						AudioSource.PlayClipAtPoint(score, transform.position);
-						Debug.Log (persistent.getTime()+" score good "+target);
-						persistent.AddLevelLog("\r\n"+persistent.getTime()+" score good "+target);
+						Debug.Log (persistent.getTime()+" collect good "+target+" angle "+angle);
+						persistent.AddLevelLog("\r\n"+persistent.getTime()+" collect good "+target+" angle "+angle);
 						leveleditor.AddScore ();
 						Instantiate(explosion, transform.position, transform.rotation);
 						Destroy (gameObject);
 						StartCoroutine(waitDestroy());
 					} else {
 						AudioSource.PlayClipAtPoint(wrong, transform.position);
-						Debug.Log (persistent.getTime()+" score bad "+target);
-						persistent.AddLevelLog("\r\n"+persistent.getTime()+" score bad "+target);
+						Debug.Log (persistent.getTime()+" collect bad "+target+" angle "+angle);
+						persistent.AddLevelLog("\r\n"+persistent.getTime()+" collect bad "+target+" angle "+angle);
 						leveleditor.DecScore ();
 						playercontroller.damaged = true;
 						Destroy (gameObject);
