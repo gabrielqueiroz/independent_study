@@ -35,7 +35,7 @@ public class PersistentController : MonoBehaviour {
 		InputCanvas = GameObject.Find("InputCanvas");
 		Transform getInputField = InputCanvas.transform.FindChild("InputField");
 		InputField = getInputField.gameObject;
-		
+		progress.Clear();
 		progress.Add(1, 0);
 		progress.Add(2, 0);
 		progress.Add(3, 0);

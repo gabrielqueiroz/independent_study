@@ -17,7 +17,14 @@ public class LoadOnClick : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
-		if (!persistent.checkIfComplete(level-2))
+		if(level==1)
+			Application.LoadLevel (1);
+		else if(level==99999){
+			GameObject persistentObject = GameObject.FindGameObjectWithTag ("Persistent");
+			Destroy(persistentObject);
+			Application.LoadLevel(0);
+		}
+		else if (!persistent.checkIfComplete(level-2))
 			Application.LoadLevel (level);
 		else
 			Application.LoadLevel (1);
