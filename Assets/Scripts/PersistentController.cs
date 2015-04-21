@@ -153,4 +153,11 @@ public class PersistentController : MonoBehaviour {
 		}    
 	}  
 
+	public bool checkIfComplete(int level){
+		if (progress [level] == 3)
+			return true;
+		else
+			return false;
+	}
+
 }

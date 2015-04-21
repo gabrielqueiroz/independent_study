@@ -63,7 +63,6 @@ public class DestroyByContact : MonoBehaviour {
 	void OnTriggerStay(Collider other) {
 		
 		Transform getChild = gameObject.transform.FindChild("Sprite");
-		SpriteRenderer sprite = getChild.gameObject.GetComponent<SpriteRenderer>();
 		GameObject child = getChild.gameObject;
 
 		if (other.name.Equals ("PointingAt") || other.name.Equals ("Player")) {
