@@ -48,6 +48,12 @@ public class PersistentController : MonoBehaviour {
         progress.Add(10, 0);
         progress.Add(11, 0);
         progress.Add(12, 0);
+		progress.Add(13, 0);
+		progress.Add(14, 0);
+		progress.Add(15, 0);
+		progress.Add(16, 0);
+		progress.Add(17, 0);
+		progress.Add(18, 0);
 
 	}
 	
