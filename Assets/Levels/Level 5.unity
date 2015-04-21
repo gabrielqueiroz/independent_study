@@ -3483,6 +3483,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPicture: {fileID: 147500, guid: c046352a076eb4315a1fca647ea22de0, type: 2}
   itemPicture_bad: {fileID: 147500, guid: 9501c4280d37842da8bd9d9a923e8ece, type: 2}
+  itemText: {fileID: 147500, guid: 5e614ead92a180247aef05e449fed7d1, type: 2}
+  itemText_bad: {fileID: 147500, guid: 413b4607d0ff5ec44a7b31df94a15870, type: 2}
   explosion: {fileID: 100004, guid: 7c0ce6764df784b51a83f7026e13d79b, type: 2}
   score: 0
   life: 3

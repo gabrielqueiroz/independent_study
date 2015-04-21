@@ -8,6 +8,8 @@ public class LevelEditor : MonoBehaviour {
 	
 	public GameObject itemPicture;
 	public GameObject itemPicture_bad;
+	public GameObject itemText;
+	public GameObject itemText_bad;
 	public GameObject explosion;
 
 	private PersistentController persistent;
@@ -662,34 +664,34 @@ public class LevelEditor : MonoBehaviour {
 		}
 		
 		Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
-		levelObject.Add ("bed_1", levelPositions.Pop() );
-		levelObject.Add ("bed_2", levelPositions.Pop() );
-		levelObject.Add ("bed_3", levelPositions.Pop() );
-		levelObject.Add ("trafficlight_1", levelPositions.Pop() );
-		levelObject.Add ("trafficlight_2", levelPositions.Pop() );
-		levelObject.Add ("van_1", levelPositions.Pop() );
-		levelObject.Add ("car_1", levelPositions.Pop() );
-		levelObject.Add ("car_2", levelPositions.Pop() );
-		levelObject.Add ("car_3", levelPositions.Pop() );
-		levelObject.Add ("car_4", levelPositions.Pop() );
-		levelObject.Add ("frog_1", levelPositions.Pop() );
-		levelObject.Add ("frog_2", levelPositions.Pop() );
-		levelObject.Add ("frog_3", levelPositions.Pop() );
-		levelObject.Add ("cat_1", levelPositions.Pop() );
-		levelObject.Add ("cat_2", levelPositions.Pop() );
-		levelObject.Add ("cat_3", levelPositions.Pop() );
-		levelObject.Add ("cow_1", levelPositions.Pop() );
-		levelObject.Add ("cow_2", levelPositions.Pop() );
-		levelObject.Add ("cow_3", levelPositions.Pop() );
-		levelObject.Add ("dog_1", levelPositions.Pop() );
-		levelObject.Add ("dog_2", levelPositions.Pop() );
-		levelObject.Add ("dog_3", levelPositions.Pop() );
-		levelObject.Add ("horse_1", levelPositions.Pop() );
-		levelObject.Add ("horse_2", levelPositions.Pop() );
-		levelObject.Add ("horse_3", levelPositions.Pop() );
-		levelObject.Add ("horse_4", levelPositions.Pop() );
-		levelObject.Add ("plane_1", levelPositions.Pop() );
-		levelObject.Add ("plane_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("bed_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("bed_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("bed_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("trafficlight_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("trafficlight_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("van_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("car_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("car_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("car_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("car_4", levelPositions.Pop() );
+		levelObject_wrong.Add ("frog_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("frog_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("frog_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("cat_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("cat_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("cat_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("cow_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("cow_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("cow_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("dog_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("dog_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("dog_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("horse_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("horse_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("horse_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("horse_4", levelPositions.Pop() );
+		levelObject_wrong.Add ("plane_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("plane_2", levelPositions.Pop() );
 
 
 		foreach (KeyValuePair<string, Vector3> pair in levelObject_wrong)
@@ -726,40 +728,32 @@ public class LevelEditor : MonoBehaviour {
 		}
 		
 		Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
-		levelObject.Add ("bed_1", levelPositions.Pop() );
-		levelObject.Add ("bed_2", levelPositions.Pop() );
-		levelObject.Add ("bed_3", levelPositions.Pop() );
-		levelObject.Add ("trafficlight_1", levelPositions.Pop() );
-		levelObject.Add ("trafficlight_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("bed_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("bed_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("bed_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("trafficlight_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("trafficlight_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("van_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("car_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("car_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("car_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("car_4", levelPositions.Pop() );
+		levelObject_wrong.Add ("frog_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("frog_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("frog_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("cat_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("cat_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("cat_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("cow_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("cow_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("cow_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("dog_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("dog_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("dog_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("horse_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("horse_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("horse_3", levelPositions.Pop() );
 
-		levelObject.Add ("van_1", levelPositions.Pop() );
-		levelObject.Add ("car_1", levelPositions.Pop() );
-		levelObject.Add ("car_2", levelPositions.Pop() );
-		levelObject.Add ("car_3", levelPositions.Pop() );
-		levelObject.Add ("car_4", levelPositions.Pop() );
-
-		levelObject.Add ("car_5", levelPositions.Pop() );
-		levelObject.Add ("car_6", levelPositions.Pop() );
-		levelObject.Add ("frog_1", levelPositions.Pop() );
-		levelObject.Add ("frog_2", levelPositions.Pop() );
-		levelObject.Add ("frog_3", levelPositions.Pop() );
-
-		levelObject.Add ("cat_1", levelPositions.Pop() );
-		levelObject.Add ("cat_2", levelPositions.Pop() );
-		levelObject.Add ("cat_3", levelPositions.Pop() );
-		levelObject.Add ("cow_1", levelPositions.Pop() );
-		levelObject.Add ("cow_2", levelPositions.Pop() );
-
-		levelObject.Add ("cow_3", levelPositions.Pop() );
-		levelObject.Add ("dog_1", levelPositions.Pop() );
-		levelObject.Add ("dog_2", levelPositions.Pop() );
-		levelObject.Add ("dog_3", levelPositions.Pop() );
-		levelObject.Add ("horse_1", levelPositions.Pop() );
-
-		levelObject.Add ("horse_2", levelPositions.Pop() );
-		levelObject.Add ("horse_3", levelPositions.Pop() );
-		
-		
 		foreach (KeyValuePair<string, Vector3> pair in levelObject_wrong)
 		{
 			Vector3 position = pair.Value;
@@ -794,38 +788,32 @@ public class LevelEditor : MonoBehaviour {
 		}
 		
 		Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
-		levelObject.Add ("bed_1", levelPositions.Pop() );
-		levelObject.Add ("bed_2", levelPositions.Pop() );
-		levelObject.Add ("bed_3", levelPositions.Pop() );
-		levelObject.Add ("trafficlight_1", levelPositions.Pop() );
-		levelObject.Add ("trafficlight_2", levelPositions.Pop() );
-		
-		levelObject.Add ("van_1", levelPositions.Pop() );
-		levelObject.Add ("car_1", levelPositions.Pop() );
-		levelObject.Add ("car_2", levelPositions.Pop() );
-		levelObject.Add ("car_3", levelPositions.Pop() );
-		levelObject.Add ("car_4", levelPositions.Pop() );
-		
-		levelObject.Add ("car_5", levelPositions.Pop() );
-		levelObject.Add ("car_6", levelPositions.Pop() );
-		levelObject.Add ("frog_1", levelPositions.Pop() );
-		levelObject.Add ("frog_2", levelPositions.Pop() );
-		levelObject.Add ("frog_3", levelPositions.Pop() );
-		
-		levelObject.Add ("cat_1", levelPositions.Pop() );
-		levelObject.Add ("cat_2", levelPositions.Pop() );
-		levelObject.Add ("cat_3", levelPositions.Pop() );
-		levelObject.Add ("cow_1", levelPositions.Pop() );
-		levelObject.Add ("cow_2", levelPositions.Pop() );
-		
-		levelObject.Add ("cow_3", levelPositions.Pop() );
-		levelObject.Add ("dog_1", levelPositions.Pop() );
-		levelObject.Add ("dog_2", levelPositions.Pop() );
-		levelObject.Add ("dog_3", levelPositions.Pop() );
-		levelObject.Add ("horse_1", levelPositions.Pop() );
-		
-		levelObject.Add ("horse_2", levelPositions.Pop() );
-		levelObject.Add ("horse_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("bed_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("bed_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("bed_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("trafficlight_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("trafficlight_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("van_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("car_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("car_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("car_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("car_4", levelPositions.Pop() );
+		levelObject_wrong.Add ("frog_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("frog_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("frog_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("cat_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("cat_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("cat_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("cow_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("cow_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("cow_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("dog_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("dog_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("dog_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("horse_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("horse_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("horse_3", levelPositions.Pop() );
+
 		
 		
 		foreach (KeyValuePair<string, Vector3> pair in levelObject_wrong)
@@ -862,38 +850,31 @@ public class LevelEditor : MonoBehaviour {
 		}
 		
 		Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
-		levelObject.Add ("bed_1", levelPositions.Pop() );
-		levelObject.Add ("bed_2", levelPositions.Pop() );
-		levelObject.Add ("bed_3", levelPositions.Pop() );
-		levelObject.Add ("trafficlight_1", levelPositions.Pop() );
-		levelObject.Add ("trafficlight_2", levelPositions.Pop() );
-		
-		levelObject.Add ("van_1", levelPositions.Pop() );
-		levelObject.Add ("car_1", levelPositions.Pop() );
-		levelObject.Add ("car_2", levelPositions.Pop() );
-		levelObject.Add ("car_3", levelPositions.Pop() );
-		levelObject.Add ("car_4", levelPositions.Pop() );
-		
-		levelObject.Add ("car_5", levelPositions.Pop() );
-		levelObject.Add ("car_6", levelPositions.Pop() );
-		levelObject.Add ("frog_1", levelPositions.Pop() );
-		levelObject.Add ("frog_2", levelPositions.Pop() );
-		levelObject.Add ("frog_3", levelPositions.Pop() );
-		
-		levelObject.Add ("cat_1", levelPositions.Pop() );
-		levelObject.Add ("cat_2", levelPositions.Pop() );
-		levelObject.Add ("cat_3", levelPositions.Pop() );
-		levelObject.Add ("cow_1", levelPositions.Pop() );
-		levelObject.Add ("cow_2", levelPositions.Pop() );
-		
-		levelObject.Add ("cow_3", levelPositions.Pop() );
-		levelObject.Add ("dog_1", levelPositions.Pop() );
-		levelObject.Add ("dog_2", levelPositions.Pop() );
-		levelObject.Add ("dog_3", levelPositions.Pop() );
-		levelObject.Add ("horse_1", levelPositions.Pop() );
-		
-		levelObject.Add ("horse_2", levelPositions.Pop() );
-		levelObject.Add ("horse_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("bed_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("bed_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("bed_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("trafficlight_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("trafficlight_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("van_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("car_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("car_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("car_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("car_4", levelPositions.Pop() );
+		levelObject_wrong.Add ("frog_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("frog_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("frog_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("cat_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("cat_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("cat_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("cow_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("cow_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("cow_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("dog_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("dog_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("dog_3", levelPositions.Pop() );
+		levelObject_wrong.Add ("horse_1", levelPositions.Pop() );
+		levelObject_wrong.Add ("horse_2", levelPositions.Pop() );
+		levelObject_wrong.Add ("horse_3", levelPositions.Pop() );
 		
 		
 		foreach (KeyValuePair<string, Vector3> pair in levelObject_wrong)
@@ -920,27 +901,27 @@ public class LevelEditor : MonoBehaviour {
 		{
 			Vector3 position = pair.Value;
 			Quaternion rotation = Quaternion.identity;
-			Transform getChild = itemPicture.transform.FindChild("Sprite");
+			Transform getChild = itemText.transform.FindChild("Sprite");
 			GameObject child = getChild.gameObject;
-			child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentUpdates/" + pair.Key);
-			Instantiate(itemPicture, position, rotation);
+			child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentText/" + pair.Key);
+			Instantiate(itemText, position, rotation);
 		}
 		
 		Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
-		levelObject.Add ("lv16_4", levelPositions.Pop() );
-		levelObject.Add ("lv16_5", levelPositions.Pop() );
-		levelObject.Add ("lv16_6", levelPositions.Pop() );
-		levelObject.Add ("lv16_7", levelPositions.Pop() );
-		levelObject.Add ("lv16_8", levelPositions.Pop() );
+		levelObject_wrong.Add ("lv16_4", levelPositions.Pop() );
+		levelObject_wrong.Add ("lv16_5", levelPositions.Pop() );
+		levelObject_wrong.Add ("lv16_6", levelPositions.Pop() );
+		levelObject_wrong.Add ("lv16_7", levelPositions.Pop() );
+		levelObject_wrong.Add ("lv16_8", levelPositions.Pop() );
 				
 		foreach (KeyValuePair<string, Vector3> pair in levelObject_wrong)
 		{
 			Vector3 position = pair.Value;
 			Quaternion rotation = Quaternion.identity;
-			Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
+			Transform getChild = itemText_bad.transform.FindChild("Sprite");
 			GameObject child = getChild.gameObject;
-			child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentUpdates/" + pair.Key);
-			Instantiate(itemPicture_bad, position, rotation);
+			child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentText/" + pair.Key);
+			Instantiate(itemText_bad, position, rotation);
 		}
 	}
 
@@ -957,33 +938,33 @@ public class LevelEditor : MonoBehaviour {
 		{
 			Vector3 position = pair.Value;
 			Quaternion rotation = Quaternion.identity;
-			Transform getChild = itemPicture.transform.FindChild("Sprite");
+			Transform getChild = itemText.transform.FindChild("Sprite");
 			GameObject child = getChild.gameObject;
-			child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentUpdates/" + pair.Key);
-			Instantiate(itemPicture, position, rotation);
+			child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentText/" + pair.Key);
+			Instantiate(itemText, position, rotation);
 		}
 		
 		Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
-		levelObject.Add ("lv17_4", levelPositions.Pop() );
-		levelObject.Add ("lv17_5", levelPositions.Pop() );
-		levelObject.Add ("lv17_6", levelPositions.Pop() );
-		levelObject.Add ("lv17_7", levelPositions.Pop() );
-		levelObject.Add ("lv17_8", levelPositions.Pop() );
+		levelObject_wrong.Add ("lv17_4", levelPositions.Pop() );
+		levelObject_wrong.Add ("lv17_5", levelPositions.Pop() );
+		levelObject_wrong.Add ("lv17_6", levelPositions.Pop() );
+		levelObject_wrong.Add ("lv17_7", levelPositions.Pop() );
+		levelObject_wrong.Add ("lv17_8", levelPositions.Pop() );
 		
 		foreach (KeyValuePair<string, Vector3> pair in levelObject_wrong)
 		{
 			Vector3 position = pair.Value;
 			Quaternion rotation = Quaternion.identity;
-			Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
+			Transform getChild = itemText_bad.transform.FindChild("Sprite");
 			GameObject child = getChild.gameObject;
-			child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentUpdates/" + pair.Key);
-			Instantiate(itemPicture_bad, position, rotation);
+			child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentText/" + pair.Key);
+			Instantiate(itemText_bad, position, rotation);
 		}
 	}
 
 	private void LoadLevel18()
 	{
-		Stack<Vector3> levelPositions = randomPosition(8);
+		Stack<Vector3> levelPositions = randomPosition(9);
 		
 		Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
 		levelObject.Add ("lv18_1", levelPositions.Pop());
@@ -994,27 +975,28 @@ public class LevelEditor : MonoBehaviour {
 		{
 			Vector3 position = pair.Value;
 			Quaternion rotation = Quaternion.identity;
-			Transform getChild = itemPicture.transform.FindChild("Sprite");
+			Transform getChild = itemText.transform.FindChild("Sprite");
 			GameObject child = getChild.gameObject;
-			child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentUpdates/" + pair.Key);
-			Instantiate(itemPicture, position, rotation);
+			child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentText/" + pair.Key);
+			Instantiate(itemText, position, rotation);
 		}
 		
 		Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
-		levelObject.Add ("lv18_4", levelPositions.Pop() );
-		levelObject.Add ("lv18_5", levelPositions.Pop() );
-		levelObject.Add ("lv18_6", levelPositions.Pop() );
-		levelObject.Add ("lv18_7", levelPositions.Pop() );
-		levelObject.Add ("lv18_8", levelPositions.Pop() );
-		
+		levelObject_wrong.Add ("lv18_4", levelPositions.Pop() );
+		levelObject_wrong.Add ("lv18_5", levelPositions.Pop() );
+		levelObject_wrong.Add ("lv18_6", levelPositions.Pop() );
+		levelObject_wrong.Add ("lv18_7", levelPositions.Pop() );
+		levelObject_wrong.Add ("lv18_8", levelPositions.Pop() );
+		levelObject_wrong.Add ("lv18_9", levelPositions.Pop() );
+
 		foreach (KeyValuePair<string, Vector3> pair in levelObject_wrong)
 		{
 			Vector3 position = pair.Value;
 			Quaternion rotation = Quaternion.identity;
-			Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
+			Transform getChild = itemText_bad.transform.FindChild("Sprite");
 			GameObject child = getChild.gameObject;
-			child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentUpdates/" + pair.Key);
-			Instantiate(itemPicture_bad, position, rotation);
+			child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentText/" + pair.Key);
+			Instantiate(itemText_bad, position, rotation);
 		}
 	}
 

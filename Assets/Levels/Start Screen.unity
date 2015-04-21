@@ -881,7 +881,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1145403469}
-  m_Text: ENTER YOUR THREE LETTER SECRET CODE
+  m_Text: ENTER YOUR CODE
   m_OffsetZ: 0
   m_CharacterSize: .100000001
   m_LineSpacing: 1
