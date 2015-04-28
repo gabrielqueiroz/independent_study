@@ -1113,14 +1113,14 @@ public class LevelEditor : MonoBehaviour {
 		Vector3 testPosition;
 		bool validPosition;
 
-		positions.Add (new Vector3(Random.Range (-40, 40), 0 ,Random.Range (-40, 40)));
+		positions.Add (new Vector3(Random.Range (-35, 35), 0 ,Random.Range (-35, 35)));
 
 		while (qnt > 0) {
-			testPosition = new Vector3(Random.Range (-40, 40), 0 ,Random.Range (-40, 40)); 
+			testPosition = new Vector3(Random.Range (-35, 35), 0 ,Random.Range (-35, 35)); 
 			validPosition = true;
 
 			foreach(Vector3 pos in positions){
-				if((Vector3.Distance(pos,testPosition) <= 5.0f) || (Vector3.Distance(spaceShip,testPosition) <= 5.0f))
+				if((Vector3.Distance(pos,testPosition) <= 10.0f) || (Vector3.Distance(spaceShip,testPosition) <= 10.0f))
 					validPosition=false;				
 			}
 
