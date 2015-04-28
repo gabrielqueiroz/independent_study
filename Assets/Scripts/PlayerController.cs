@@ -68,7 +68,8 @@ public class PlayerController : MonoBehaviour {
 			// Smoothly rotate towards the target point.
 			transform.rotation = Quaternion.Slerp (transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 			// Add force in order to accelerate or slow down the spaceship
-			GetComponent<Rigidbody>().AddForce (transform.forward * speed);	
+			if(GetComponent<Rigidbody>().velocity.magnitude <= 5.0f)
+				GetComponent<Rigidbody>().AddForce (transform.forward * speed);	
 			// Change the sprite that have the propulsion
 			spaceship.GetComponent<SpriteRenderer> ().sprite = propulsion;
 			// Add sound

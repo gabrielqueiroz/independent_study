@@ -92,7 +92,8 @@ public class PersistentController : MonoBehaviour {
 	public void UpdateScore(int level, int score)
 	{
 		level = level - 2;
-		progress[level] = score;
+		if(score>progress[level])
+			progress[level] = score;
 	}
 	
 	public string getFileName(){
