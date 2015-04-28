@@ -1007,7 +1007,7 @@ public class LevelEditor : MonoBehaviour {
 
 	private void LoadLevel18()
 	{
-		Stack<Vector3> levelPositions = randomPosition(15);
+		Stack<Vector3> levelPositions = randomPosition(21);
 		
 		Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
 		levelObject.Add ("lv18_1", levelPositions.Pop());
@@ -1033,7 +1033,7 @@ public class LevelEditor : MonoBehaviour {
 
 		levelObject_wrong.Add ("lv18_9", new Vector3());
 
-		for (int i=0; i<2; i++) {
+		for (int i=0; i<3; i++) {
 			foreach (KeyValuePair<string, Vector3> pair in levelObject_wrong) {
 				Vector3 position = levelPositions.Pop();
 				Quaternion rotation = Quaternion.identity;

@@ -76,7 +76,7 @@ public class DestroyByContact : MonoBehaviour {
 				} else {
 					Vector3 targetDir = transform.position - other.transform.position;
 					float angle = Vector3.Angle(other.transform.forward, targetDir);
-					if (gameObject.name.Equals ("ItemWord(Clone)") || gameObject.name.Equals ("ItemPicture(Clone)")){
+					if (gameObject.name.Equals ("ItemText(Clone)") || gameObject.name.Equals ("ItemPicture(Clone)")){
 						AudioSource.PlayClipAtPoint(score, transform.position);
 						Debug.Log (persistent.getTime()+" collect good "+target+" angle "+angle);
 						persistent.AddLevelLog("\r\n"+persistent.getTime()+" collect good "+target+" angle "+angle);
