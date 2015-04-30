@@ -76,13 +76,13 @@ public class DestroyByContact : MonoBehaviour {
 				} else {
 					Vector3 targetDir = transform.position - other.transform.position;
 					float angle = Vector3.Angle(other.transform.forward, targetDir);
+					target = child.GetComponent<SpriteRenderer> ().sprite.name;
 					if (gameObject.name.Equals ("ItemText(Clone)") || gameObject.name.Equals ("ItemPicture(Clone)")){
 						AudioSource.PlayClipAtPoint(score, transform.position);
 						Debug.Log (persistent.getTime()+" collect good "+target+" angle "+angle);
 						persistent.AddLevelLog("\r\n"+persistent.getTime()+" collect good "+target+" angle "+angle);
 						leveleditor.AddScore ();
 						Instantiate(explosion, transform.position, transform.rotation);
-						Destroy (gameObject);
 						StartCoroutine(waitDestroy());
 					} else {
 						AudioSource.PlayClipAtPoint(wrong, transform.position);
@@ -90,10 +90,9 @@ public class DestroyByContact : MonoBehaviour {
 						persistent.AddLevelLog("\r\n"+persistent.getTime()+" collect bad "+target+" angle "+angle);
 						leveleditor.DecScore ();
 						playercontroller.damaged = true;
-						Destroy (gameObject);
 						StartCoroutine(waitDestroy());
 					}
-
+					Destroy (gameObject);
 				}
 				
 			}
