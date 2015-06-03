@@ -481,7 +481,7 @@ public class StartAnimation : MonoBehaviour {
             AnimationDown();
         if(shake)
             shakeWarning();
-        if(Input.GetKeyDown("enter")){
+        if(Input.GetKeyDown("enter") || Input.GetKeyDown("return")){
     
             if(cam.transform.position == goalPosition){
                 if(!codes.Contains(persistent.getSessionName())){
