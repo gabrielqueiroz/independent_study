@@ -19,6 +19,7 @@ public class StartAnimation : MonoBehaviour {
 		codes = new List<string>();
 		// Test File
 		codes.Add("TEST");
+		codes.Add("NEWTEST");
 		// Students Codes
 		codes.Add("11158");
 		codes.Add("11165");

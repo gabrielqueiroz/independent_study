@@ -16,20 +16,32 @@ public class AppearedInScreen : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.name.Equals ("ItemPicture(Clone)") || other.name.Equals ("ItemPicture Bad(Clone)")) {
+		if (other.name.Equals ("ItemPicture(Clone)")) {
 			Transform getChild = other.transform.FindChild("Sprite");
 			GameObject child = getChild.gameObject;
-			Debug.Log (persistent.getTime()+ " appear "+ child.GetComponent<SpriteRenderer>().sprite.name);
-			persistent.AddLevelLog("\r\n"+persistent.getTime()+" appear "+child.GetComponent<SpriteRenderer>().sprite.name);
+			Debug.Log (persistent.getTime()+ " appear good "+ child.GetComponent<SpriteRenderer>().sprite.name);
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" appear good "+child.GetComponent<SpriteRenderer>().sprite.name);
+		}
+		else if (other.name.Equals ("ItemPicture Bad(Clone)")){
+			Transform getChild = other.transform.FindChild("Sprite");
+			GameObject child = getChild.gameObject;
+			Debug.Log (persistent.getTime()+ " appear bad "+ child.GetComponent<SpriteRenderer>().sprite.name);
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" appear bad "+child.GetComponent<SpriteRenderer>().sprite.name);
 		}
 	}
 
 	void OnTriggerExit(Collider other){
-		if (other.name.Equals ("ItemPicture(Clone)") || other.name.Equals ("ItemPicture Bad(Clone)")) {
+		if (other.name.Equals ("ItemPicture(Clone)")) {
 			Transform getChild = other.transform.FindChild("Sprite");
 			GameObject child = getChild.gameObject;
-			Debug.Log (persistent.getTime()+" disappear "+child.GetComponent<SpriteRenderer>().sprite.name);
-			persistent.AddLevelLog("\r\n"+persistent.getTime()+" disappear "+child.GetComponent<SpriteRenderer>().sprite.name);
+			Debug.Log (persistent.getTime()+" disappear good "+child.GetComponent<SpriteRenderer>().sprite.name);
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" disappear good "+child.GetComponent<SpriteRenderer>().sprite.name);
+		}
+		else if (other.name.Equals ("ItemPicture Bad(Clone)")) {
+			Transform getChild = other.transform.FindChild("Sprite");
+			GameObject child = getChild.gameObject;
+			Debug.Log (persistent.getTime()+" disappear bad "+child.GetComponent<SpriteRenderer>().sprite.name);
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" disappear bad "+child.GetComponent<SpriteRenderer>().sprite.name);
 		}
 	}
 }

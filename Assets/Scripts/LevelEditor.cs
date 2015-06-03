@@ -43,92 +43,122 @@ public class LevelEditor : MonoBehaviour {
         }
 		
 		if (Application.loadedLevel == 3) {
-			persistent.postHTML("\r\n"+persistent.getTime()+" start level 1");
+			persistent.setTime();
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" start level 1");
 			LoadLevel1 ();	
 		}
 		
 		if (Application.loadedLevel == 4) {
-			persistent.postHTML("\r\n"+persistent.getTime()+" start level 2");
+			persistent.setTime();
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" start level 2");
 			LoadLevel2 ();
 		}
 		
 		if (Application.loadedLevel == 5) {
-			persistent.postHTML("\r\n"+persistent.getTime()+" start level 3");
+			persistent.setTime();
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" start level 3");
 			LoadLevel3 ();
 		}
 		
 		if (Application.loadedLevel == 6) {
-			persistent.postHTML("\r\n"+persistent.getTime()+" start level 4");
+			persistent.setTime();
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" start level 4");
 			LoadLevel4();
 		}
 		
 		if (Application.loadedLevel == 7) {
-			persistent.postHTML("\r\n"+persistent.getTime()+" start level 5");
+			persistent.setTime();
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" start level 5");
 			LoadLevel5();
 		}
 
 		if (Application.loadedLevel == 8) {
-			persistent.postHTML("\r\n"+persistent.getTime()+" start level 6");
+			persistent.setTime();
+
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" start level 6");
 			LoadLevel6 ();
 		}
 
 		if (Application.loadedLevel == 9) {
-			persistent.postHTML("\r\n"+persistent.getTime()+" start level 7");
+			persistent.setTime();
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" start level 7");
 			LoadLevel7 ();
 		}
 		
 		if (Application.loadedLevel == 10) {
-			persistent.postHTML("\r\n"+persistent.getTime()+" start level 8");
+			persistent.setTime();
+
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" start level 8");
 			LoadLevel8 ();
 		}
 		
 		if (Application.loadedLevel == 11) {
-			persistent.postHTML("\r\n"+persistent.getTime()+" start level 9");
+			persistent.setTime();
+
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" start level 9");
 			LoadLevel9 ();
 		}
 		
 		if (Application.loadedLevel == 12) {
-			persistent.postHTML("\r\n"+persistent.getTime()+" start level 10");
+			persistent.setTime();
+
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" start level 10");
 			LoadLevel10 ();
 		}
 		
 		if (Application.loadedLevel == 13) {
-			persistent.postHTML("\r\n"+persistent.getTime()+" start level 11");
+			persistent.setTime();
+
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" start level 11");
 			LoadLevel11 ();
 		}
 
 		if (Application.loadedLevel == 14) {
-			persistent.postHTML("\r\n"+persistent.getTime()+" start level 12");
+			persistent.setTime();
+
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" start level 12");
 			LoadLevel12 ();
 		}
 
 		if (Application.loadedLevel == 15) {
-			persistent.postHTML("\r\n"+persistent.getTime()+" start level 13");
+			persistent.setTime();
+
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" start level 13");
 			LoadLevel13 ();
 		}
 
 		if (Application.loadedLevel == 16) {
-			persistent.postHTML("\r\n"+persistent.getTime()+" start level 14");
+			persistent.setTime();
+
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" start level 14");
 			LoadLevel14 ();
 		}
 
 		if (Application.loadedLevel == 17) {
-			persistent.postHTML("\r\n"+persistent.getTime()+" start level 15");
+			persistent.setTime();
+
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" start level 15");
 			LoadLevel15 ();
 		}
 
 		if (Application.loadedLevel == 18) {
-			persistent.postHTML("\r\n"+persistent.getTime()+" start level 16");
+			persistent.setTime();
+
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" start level 16");
 			LoadLevel16 ();
 		}
 
 		if (Application.loadedLevel == 19) {
-			persistent.postHTML("\r\n"+persistent.getTime()+" start level 17");
+			persistent.setTime();
+
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" start level 17");
 			LoadLevel17 ();
 		}
 
 		if (Application.loadedLevel == 20) {
-			persistent.postHTML("\r\n"+persistent.getTime()+" start level 18");
+			persistent.setTime();
+
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" start level 18");
 			LoadLevel18 ();
 		}
 	}
@@ -141,8 +171,8 @@ public class LevelEditor : MonoBehaviour {
 		if (life == 0)
 		{
 			persistent.UpdateScore(Application.loadedLevel, score);
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" lose level " +(Application.loadedLevel-2)+ " score " +score);
 			persistent.postHTML( persistent.returnLevelLog() );
-			persistent.postHTML("\r\n"+persistent.getTime()+" lose level " +(Application.loadedLevel-2)+ " score " +score);
 			Application.LoadLevel(2);
 		}
 		
@@ -196,16 +226,18 @@ public class LevelEditor : MonoBehaviour {
 
 		while (true) {
 			yield return new WaitForSeconds(3.0f);
+			persistent.AddLevelLog("\r\n"+persistent.getTime()+" win level " + (Application.loadedLevel-2));
 			persistent.postHTML(persistent.returnLevelLog());
-			persistent.postHTML("\r\n"+persistent.getTime()+" win level " + (Application.loadedLevel-2));
 			Application.LoadLevel(1);
 		}
 	}
 
 	public void QuitLevel(){
+		Player.SetActive(false);
+		Canvas.SetActive(false);
 		persistent.UpdateScore(Application.loadedLevel, score);
+		persistent.AddLevelLog("\r\n"+persistent.getTime()+" quit level " +(Application.loadedLevel-2)+ " score " +score);
 		persistent.postHTML(persistent.returnLevelLog());
-		persistent.postHTML("\r\n"+persistent.getTime()+" quit level " +(Application.loadedLevel-2)+ " score " +score);
 		Application.LoadLevel (1);
 	}
 

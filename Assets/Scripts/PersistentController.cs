@@ -63,12 +63,10 @@ public class PersistentController : MonoBehaviour {
 		
 		if (Application.loadedLevel == 0) {
 			session = InputField.GetComponent<UnityEngine.UI.InputField>().text;
-
 			filename = Application.persistentDataPath +"/"+ session.ToUpper() + ".txt";
 		} else {
-			time = Time.timeSinceLevelLoad.ToString ("00.00");
+			setTime();
 		}
-		
 		if (Application.loadedLevel == 1) {
 			Canvas = GameObject.Find ("Canvas Select");
 			levels = GameObject.Find ("Levels");
@@ -107,7 +105,11 @@ public class PersistentController : MonoBehaviour {
 	public string getTime(){
 		return ("[" + time + "]");
 	}
-	
+
+	public void setTime(){
+		time = Time.timeSinceLevelLoad.ToString ("00.00");
+	}
+
 	public void createFile(){
 		//if (!File.Exists (filename))
 		//	File.Create (filename);
@@ -124,7 +126,7 @@ public class PersistentController : MonoBehaviour {
 	}
 
 	public void AddLevelLog(string log){
-		levelLog = levelLog + log;
+		levelLog += log;
 	}
 
 	public string returnLevelLog(){
