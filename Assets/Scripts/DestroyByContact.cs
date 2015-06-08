@@ -62,8 +62,13 @@ public class DestroyByContact : MonoBehaviour {
             if(other.name.Equals("PointingAt")){    
                 if(!target.Equals(child.GetComponent<SpriteRenderer>().sprite.name)){
                     target = child.GetComponent<SpriteRenderer>().sprite.name;
-                    Debug.Log(persistent.getTime() + " consider " + target);
-                    persistent.AddLevelLog("\r\n" + persistent.getTime() + " consider " + target);
+                    if(gameObject.name.Equals("ItemText(Clone)") || gameObject.name.Equals("ItemPicture(Clone)")){
+                        Debug.Log(persistent.getTime() + " consider good " + target);
+                        persistent.AddLevelLog("\r\n" + persistent.getTime() + " consider good " + target);
+                    } else{
+                        Debug.Log(persistent.getTime() + " consider bad " + target);
+                        persistent.AddLevelLog("\r\n" + persistent.getTime() + " consider bad " + target);
+                    }
                 }
                     
             } else{
@@ -105,8 +110,13 @@ public class DestroyByContact : MonoBehaviour {
         GameObject child = getChild.gameObject;
 
         if(!target.Equals("")){
-            Debug.Log(persistent.getTime() + " avoid " + child.GetComponent<SpriteRenderer>().sprite.name);
-            persistent.AddLevelLog("\r\n" + persistent.getTime() + " avoid " + target);
+            if(gameObject.name.Equals("ItemText(Clone)") || gameObject.name.Equals("ItemPicture(Clone)")){
+                Debug.Log(persistent.getTime() + " avoid good " + child.GetComponent<SpriteRenderer>().sprite.name);
+                persistent.AddLevelLog("\r\n" + persistent.getTime() + " avoid good " + target);
+            } else{
+                Debug.Log(persistent.getTime() + " avoid bad " + child.GetComponent<SpriteRenderer>().sprite.name);
+                persistent.AddLevelLog("\r\n" + persistent.getTime() + " avoid bad " + target);
+            }
             target = "";
         }
     
