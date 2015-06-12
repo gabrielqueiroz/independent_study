@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 public class LevelEditor : MonoBehaviour {
     
@@ -145,6 +146,7 @@ public class LevelEditor : MonoBehaviour {
             persistent.AddLevelLog("\r\n" + persistent.getTime() + " start level 18");
             LoadLevel18();
         }
+
     }
     
     void Update(){
@@ -233,10 +235,11 @@ public class LevelEditor : MonoBehaviour {
         foreach(KeyValuePair<string, Vector3> pair in levelObject){           
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
-            Transform getChild = itemPicture.transform.FindChild("Sprite");
+            Transform getChild = itemText.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("LevelContentUpdates/" + pair.Key);         
-            Instantiate(itemPicture, position, rotation);
+            child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("LevelContentWords/Word");
+            itemText.GetComponent<TextMesh>().text = pair.Key.ToUpper();
+            Instantiate(itemText, position, rotation);
         }
 
         Dictionary<string, Vector3> levelObject_wrong = randomWrong(30, "cat", levelPositions);

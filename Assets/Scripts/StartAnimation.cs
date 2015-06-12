@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-
 public class StartAnimation : MonoBehaviour {
 
     private GameObject warnLabel;
@@ -19,6 +18,7 @@ public class StartAnimation : MonoBehaviour {
         codes = new List<string>();
         // Test File
         codes.Add("TEST");
+        codes.Add("PNG");
         // Students Codes
         codes.Add("11158");
         codes.Add("11165");
