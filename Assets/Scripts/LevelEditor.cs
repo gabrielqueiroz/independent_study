@@ -240,7 +240,9 @@ public class LevelEditor : MonoBehaviour {
             Transform text = getChild.transform.FindChild("Text");
             GameObject textObject = text.gameObject;
             child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("LevelContentWords/Word");
-            textObject.GetComponent<TextMesh>().text = pair.Key.ToUpper();
+            textObject.GetComponent<TextMesh>().fontSize = 100;
+            textObject.GetComponent<TextMesh>().text = "cat";
+
             Instantiate(itemText, position, rotation);
         }
 
