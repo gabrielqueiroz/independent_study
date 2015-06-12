@@ -237,8 +237,10 @@ public class LevelEditor : MonoBehaviour {
             Quaternion rotation = Quaternion.identity;
             Transform getChild = itemText.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
+            Transform text = getChild.transform.FindChild("Text");
+            GameObject textObject = text.gameObject;
             child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("LevelContentWords/Word");
-            itemText.GetComponent<TextMesh>().text = pair.Key.ToUpper();
+            textObject.GetComponent<TextMesh>().text = pair.Key.ToUpper();
             Instantiate(itemText, position, rotation);
         }
 
