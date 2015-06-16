@@ -4,6 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Xml;
+using System.Linq;      
+using System.Xml.Linq;
 
 public class LevelEditor : MonoBehaviour {
     
@@ -11,6 +14,8 @@ public class LevelEditor : MonoBehaviour {
     public GameObject itemPicture_bad;
     public GameObject itemText;
     public GameObject itemText_bad;
+    public GameObject itemWord;
+    public GameObject itemWord_bad;
     public GameObject explosion;
     private PersistentController persistent;
     private DestroyByContact destroyByContact;
@@ -222,31 +227,52 @@ public class LevelEditor : MonoBehaviour {
     }
 
     /*********************************************START LEVELS EDIT**************************************************/
-    
+
     private void LoadLevel1(){
 
         Stack<Vector3> levelPositions = randomPosition(33);
-
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
-        levelObject.Add("Cat_1", levelPositions.Pop());
-        levelObject.Add("Cat_2", levelPositions.Pop());
-        levelObject.Add("Cat_3", levelPositions.Pop());
+        List<string> wrongObjects = randomWrong(30, "cat");
+        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
+        XDocument xdoc = XDocument.Load(Application.dataPath + "/Resources/LevelsXML/Level1.xml");
+
+        var levels = from lvl in xdoc.Descendants("level")
+        select new {
+            objects = lvl.Descendants("objects")
+        };
+        
+        foreach(var lvl in levels){                   
+            var objects = from x in lvl.objects.Descendants("object")
+            select new {
+                name        =  x.Element("name").Value,
+                type        =  System.Convert.ToInt32(x.Element("type").Value),
+                goodCollect =  System.Convert.ToInt32(x.Element("goodcollect").Value) != 0,
+            };
+            int goodObjects = 1;
+            foreach(var obj in objects){
+                if(obj.goodCollect && goodObjects <= 3){
+                    levelObject.Add(obj.name, levelPositions.Pop());
+                    goodObjects++;
+                }
+            }
+
+            foreach(string wrong in wrongObjects){
+                foreach(var obj in objects){
+                    if(obj.name.Equals(wrong))
+                        levelObject_wrong.Add(obj.name, levelPositions.Pop());
+                }
+            }
+
+        }
 
         foreach(KeyValuePair<string, Vector3> pair in levelObject){           
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
-            Transform getChild = itemText.transform.FindChild("Sprite");
+            Transform getChild = itemPicture.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            Transform text = getChild.transform.FindChild("Text");
-            GameObject textObject = text.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("LevelContentWords/Word");
-            textObject.GetComponent<TextMesh>().fontSize = 100;
-            textObject.GetComponent<TextMesh>().text = "cat";
-
-            Instantiate(itemText, position, rotation);
+            child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("LevelContentUpdates/" + pair.Key);  
+            Instantiate(itemPicture, position, rotation);
         }
-
-        Dictionary<string, Vector3> levelObject_wrong = randomWrong(30, "cat", levelPositions);
 
         foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){         
             Vector3 position = pair.Value;
@@ -259,28 +285,50 @@ public class LevelEditor : MonoBehaviour {
     }
 
     private void LoadLevel2(){
-
         Stack<Vector3> levelPositions = randomPosition(33);
-        
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
-        levelObject.Add("car_1", levelPositions.Pop());
-        levelObject.Add("car_2", levelPositions.Pop());
-        levelObject.Add("car_3", levelPositions.Pop());
-        levelObject.Add("car_4", levelPositions.Pop());
-        levelObject.Add("car_5", levelPositions.Pop());
-        levelObject.Add("car_6", levelPositions.Pop());
+        List<string> wrongObjects = randomWrong(27, "car");
+        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
+        XDocument xdoc = XDocument.Load(Application.dataPath + "/Resources/LevelsXML/Level2.xml");
+        
+        var levels = from lvl in xdoc.Descendants("level")
+        select new {
+            objects = lvl.Descendants("objects")
+        };
+        
+        foreach(var lvl in levels){                   
+            var objects = from x in lvl.objects.Descendants("object")
+            select new {
+                name        =  x.Element("name").Value,
+                type        =  System.Convert.ToInt32(x.Element("type").Value),
+                goodCollect =  System.Convert.ToInt32(x.Element("goodcollect").Value) != 0,
+            };
+            int goodObjects = 1;
+            foreach(var obj in objects){
+                if(obj.goodCollect && goodObjects <= 6){
+                    levelObject.Add(obj.name, levelPositions.Pop());
+                    goodObjects++;
+                }
+            }
+            
+            foreach(string wrong in wrongObjects){
+                foreach(var obj in objects){
+                    if(obj.name.Equals(wrong))
+                        levelObject_wrong.Add(obj.name, levelPositions.Pop());
+                }
+            }
+            
+        }
         
         foreach(KeyValuePair<string, Vector3> pair in levelObject){           
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
             Transform getChild = itemPicture.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("LevelContentUpdates/" + pair.Key);         
+            child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("LevelContentUpdates/" + pair.Key);  
             Instantiate(itemPicture, position, rotation);
         }
-        
-        Dictionary<string, Vector3> levelObject_wrong = randomWrong(27, "car", levelPositions);
-        
+                
         foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){         
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
@@ -293,692 +341,714 @@ public class LevelEditor : MonoBehaviour {
     
     private void LoadLevel3(){
         Stack<Vector3> levelPositions = randomPosition(33);
-
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
-        levelObject.Add("pencil_1", levelPositions.Pop());
-        levelObject.Add("pencil_2", levelPositions.Pop());
-        levelObject.Add("pencil_3", levelPositions.Pop());
-    
-        foreach(KeyValuePair<string, Vector3> pair in levelObject){
+        List<string> wrongObjects = randomWrong(30, "pencil");
+        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
+        XDocument xdoc = XDocument.Load(Application.dataPath + "/Resources/LevelsXML/Level3.xml");
+        
+        var levels = from lvl in xdoc.Descendants("level")
+        select new {
+            objects = lvl.Descendants("objects")
+        };
+        
+        foreach(var lvl in levels){                   
+            var objects = from x in lvl.objects.Descendants("object")
+            select new {
+                name        =  x.Element("name").Value,
+                type        =  System.Convert.ToInt32(x.Element("type").Value),
+                goodCollect =  System.Convert.ToInt32(x.Element("goodcollect").Value) != 0,
+            };
+            int goodObjects = 1;
+            foreach(var obj in objects){
+                if(obj.goodCollect && goodObjects <= 3){
+                    levelObject.Add(obj.name, levelPositions.Pop());
+                    goodObjects++;
+                }
+            }
+            
+            foreach(string wrong in wrongObjects){
+                foreach(var obj in objects){
+                    if(obj.name.Equals(wrong))
+                        levelObject_wrong.Add(obj.name, levelPositions.Pop());
+                }
+            }
+            
+        }
+        
+        foreach(KeyValuePair<string, Vector3> pair in levelObject){           
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
             Transform getChild = itemPicture.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentUpdates/" + pair.Key);
+            child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("LevelContentUpdates/" + pair.Key);  
             Instantiate(itemPicture, position, rotation);
         }
-
-        Dictionary<string, Vector3> levelObject_wrong = randomWrong(30, "pencil", levelPositions);
-
-        foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){
+                
+        foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){         
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
             Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentUpdates/" + pair.Key);
+            child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("LevelContentUpdates/" + pair.Key);         
             Instantiate(itemPicture_bad, position, rotation);
         }
     }
 
     private void LoadLevel4(){
         Stack<Vector3> levelPositions = randomPosition(33);
-
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
-        levelObject.Add("frog_1", levelPositions.Pop());
-        levelObject.Add("frog_2", levelPositions.Pop());
-        levelObject.Add("frog_3", levelPositions.Pop());
-        levelObject.Add("frog_4", levelPositions.Pop());
-        levelObject.Add("frog_5", levelPositions.Pop());
-        levelObject.Add("frog_6", levelPositions.Pop());
-
-        foreach(KeyValuePair<string, Vector3> pair in levelObject){
+        List<string> wrongObjects = randomWrong(27, "frog");
+        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
+        XDocument xdoc = XDocument.Load(Application.dataPath + "/Resources/LevelsXML/Level4.xml");
+        
+        var levels = from lvl in xdoc.Descendants("level")
+        select new {
+            objects = lvl.Descendants("objects")
+        };
+        
+        foreach(var lvl in levels){                   
+            var objects = from x in lvl.objects.Descendants("object")
+            select new {
+                name        =  x.Element("name").Value,
+                type        =  System.Convert.ToInt32(x.Element("type").Value),
+                goodCollect =  System.Convert.ToInt32(x.Element("goodcollect").Value) != 0,
+            };
+            int goodObjects = 1;
+            foreach(var obj in objects){
+                if(obj.goodCollect && goodObjects <= 6){
+                    levelObject.Add(obj.name, levelPositions.Pop());
+                    goodObjects++;
+                }
+            }
+            
+            foreach(string wrong in wrongObjects){
+                foreach(var obj in objects){
+                    if(obj.name.Equals(wrong))
+                        levelObject_wrong.Add(obj.name, levelPositions.Pop());
+                }
+            }
+            
+        }
+        
+        foreach(KeyValuePair<string, Vector3> pair in levelObject){           
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
             Transform getChild = itemPicture.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentUpdates/" + pair.Key);
+            child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("LevelContentUpdates/" + pair.Key);  
             Instantiate(itemPicture, position, rotation);
         }
-
-        Dictionary<string, Vector3> levelObject_wrong = randomWrong(27, "frog", levelPositions);
-
-        foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){
+                
+        foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){         
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
             Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentUpdates/" + pair.Key);
+            child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("LevelContentUpdates/" + pair.Key);         
             Instantiate(itemPicture_bad, position, rotation);
         }
     }
 
     private void LoadLevel5(){
-        Stack<Vector3> levelPositions = randomPosition(33);
 
+        Stack<Vector3> levelPositions = randomPosition(33);
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
-        levelObject.Add("horse_1", levelPositions.Pop());
-        levelObject.Add("horse_2", levelPositions.Pop());
-        levelObject.Add("horse_3", levelPositions.Pop());
+        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
+        XDocument xdoc = XDocument.Load(Application.dataPath + "/Resources/LevelsXML/Level5.xml");
+        
+        var levels = from lvl in xdoc.Descendants("level")
+        select new {
+            objects = lvl.Descendants("objects")
+        };
+        
+        foreach(var lvl in levels){                   
+            var objects = from x in lvl.objects.Descendants("object")
+            select new {
+                name        =  x.Element("name").Value,
+                type        =  System.Convert.ToInt32(x.Element("type").Value),
+                goodCollect =  System.Convert.ToInt32(x.Element("goodcollect").Value) != 0,
+            };
+            int badObjects = 1;
+            foreach(var obj in objects){
+                if(obj.goodCollect){
+                    levelObject.Add(obj.name, levelPositions.Pop());
+                } else{
+                    if(badObjects <= 30){
+                        levelObject_wrong.Add(obj.name, levelPositions.Pop());
+                        badObjects++;
+                    }
+                }
+            }
+        }
 
         foreach(KeyValuePair<string, Vector3> pair in levelObject){
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
-            Transform getChild = itemPicture.transform.FindChild("Sprite");
+            Transform getChild = itemWord.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentWords/" + pair.Key);
-            Instantiate(itemPicture, position, rotation);
+            createImageFromWord(getChild, child, pair.Key);
+            Instantiate(itemWord, position, rotation);
         }
 
-        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
-        levelObject_wrong.Add("dog_1", levelPositions.Pop());
-        levelObject_wrong.Add("angry_1", levelPositions.Pop());
-        levelObject_wrong.Add("bird_1", levelPositions.Pop());
-        levelObject_wrong.Add("band_1", levelPositions.Pop());
-        levelObject_wrong.Add("yellow_1", levelPositions.Pop());
-        
-        levelObject_wrong.Add("cat_1", levelPositions.Pop());
-        levelObject_wrong.Add("baby_1", levelPositions.Pop());
-        levelObject_wrong.Add("ketchup_1", levelPositions.Pop());
-        levelObject_wrong.Add("cat_2", levelPositions.Pop());
-        levelObject_wrong.Add("can_1", levelPositions.Pop());
-        
-        levelObject_wrong.Add("cap_1", levelPositions.Pop());
-        levelObject_wrong.Add("cup_1", levelPositions.Pop());
-        levelObject_wrong.Add("car_1", levelPositions.Pop());
-        levelObject_wrong.Add("plant_1", levelPositions.Pop());
-        levelObject_wrong.Add("red_1", levelPositions.Pop());
-        
-        levelObject_wrong.Add("cot_1", levelPositions.Pop());
-        levelObject_wrong.Add("cud_1", levelPositions.Pop());
-        levelObject_wrong.Add("cab_1", levelPositions.Pop());
-        levelObject_wrong.Add("cam_1", levelPositions.Pop());
-        levelObject_wrong.Add("camp_1", levelPositions.Pop());
-        
-        levelObject_wrong.Add("cast_1", levelPositions.Pop());
-        levelObject_wrong.Add("dog_2", levelPositions.Pop());
-        levelObject_wrong.Add("transportation_1", levelPositions.Pop());
-        levelObject_wrong.Add("tree_1", levelPositions.Pop());
-        levelObject_wrong.Add("pickle_1", levelPositions.Pop());
-        
-        levelObject_wrong.Add("phantom_1", levelPositions.Pop());
-        levelObject_wrong.Add("sun_1", levelPositions.Pop());
-        levelObject_wrong.Add("frog_1", levelPositions.Pop());
-        levelObject_wrong.Add("frog_2", levelPositions.Pop());
-        levelObject_wrong.Add("frog_3", levelPositions.Pop());
         
         foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
-            Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
+            Transform getChild = itemWord_bad.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentWords/" + pair.Key);
-            Instantiate(itemPicture_bad, position, rotation);
+            createImageFromWord(getChild, child, pair.Key);
+            Instantiate(itemWord_bad, position, rotation);
         }
     }
 
     private void LoadLevel6(){
         Stack<Vector3> levelPositions = randomPosition(33);
-
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
-        levelObject.Add("phone_1", levelPositions.Pop());
-        levelObject.Add("phone_2", levelPositions.Pop());
-        levelObject.Add("phone_3", levelPositions.Pop());
-
+        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
+        XDocument xdoc = XDocument.Load(Application.dataPath + "/Resources/LevelsXML/Level6.xml");
+        
+        var levels = from lvl in xdoc.Descendants("level")
+        select new {
+            objects = lvl.Descendants("objects")
+        };
+        
+        foreach(var lvl in levels){                   
+            var objects = from x in lvl.objects.Descendants("object")
+            select new {
+                name        =  x.Element("name").Value,
+                type        =  System.Convert.ToInt32(x.Element("type").Value),
+                goodCollect =  System.Convert.ToInt32(x.Element("goodcollect").Value) != 0,
+            };
+            int badObjects = 1;
+            foreach(var obj in objects){
+                if(obj.goodCollect){
+                    levelObject.Add(obj.name, levelPositions.Pop());
+                } else{
+                    if(badObjects <= 30){
+                        levelObject_wrong.Add(obj.name, levelPositions.Pop());
+                        badObjects++;
+                    }
+                }
+            }
+        }
+        
         foreach(KeyValuePair<string, Vector3> pair in levelObject){
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
-            Transform getChild = itemPicture.transform.FindChild("Sprite");
+            Transform getChild = itemWord.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentWords/" + pair.Key);
-            Instantiate(itemPicture, position, rotation);
+            createImageFromWord(getChild, child, pair.Key);
+            Instantiate(itemWord, position, rotation);
         }
-
-        Dictionary<string, Vector3> levelObject_wrong = randomWordsWrong(30, "phone", levelPositions);
-
+                
+                
         foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
-            Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
+            Transform getChild = itemWord_bad.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentWords/" + pair.Key);
-            Instantiate(itemPicture_bad, position, rotation);
+            createImageFromWord(getChild, child, pair.Key);
+            Instantiate(itemWord_bad, position, rotation);
         }
     }
 
     private void LoadLevel7(){
         Stack<Vector3> levelPositions = randomPosition(29);
-
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
-        levelObject.Add("cow_1", levelPositions.Pop());
-        levelObject.Add("cow_2", levelPositions.Pop());
-        levelObject.Add("cow_3", levelPositions.Pop());
-
+        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
+        XDocument xdoc = XDocument.Load(Application.dataPath + "/Resources/LevelsXML/Level7.xml");
+        
+        var levels = from lvl in xdoc.Descendants("level")
+        select new {
+            objects = lvl.Descendants("objects")
+        };
+        
+        foreach(var lvl in levels){                   
+            var objects = from x in lvl.objects.Descendants("object")
+            select new {
+                name        =  x.Element("name").Value,
+                type        =  System.Convert.ToInt32(x.Element("type").Value),
+                goodCollect =  System.Convert.ToInt32(x.Element("goodcollect").Value) != 0,
+            };
+            int badObjects = 1;
+            foreach(var obj in objects){
+                if(obj.goodCollect){
+                    levelObject.Add(obj.name, levelPositions.Pop());
+                } else{
+                    if(badObjects <= 13){
+                        levelObject_wrong.Add(obj.name, new Vector3());
+                        badObjects++;
+                    }
+                }
+            }
+        }
+        
         foreach(KeyValuePair<string, Vector3> pair in levelObject){
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
-            Transform getChild = itemPicture.transform.FindChild("Sprite");
+            Transform getChild = itemWord.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentWords/" + pair.Key);
-            Instantiate(itemPicture, position, rotation);
+            createImageFromWord(getChild, child, pair.Key);
+            Instantiate(itemWord, position, rotation);
         }
-        
-        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
-        levelObject_wrong.Add("cat_1", new Vector3());
-        levelObject_wrong.Add("can_1", new Vector3());
-        levelObject_wrong.Add("cap_1", new Vector3());
-        levelObject_wrong.Add("cup_1", new Vector3());
-        levelObject_wrong.Add("car_1", new Vector3());
-        
-        levelObject_wrong.Add("cot_1", new Vector3());
-        levelObject_wrong.Add("cud_1", new Vector3());
-        levelObject_wrong.Add("cab_1", new Vector3());
-        levelObject_wrong.Add("cam_1", new Vector3());
-        
-        levelObject_wrong.Add("camp_1", new Vector3());
-        levelObject_wrong.Add("cast_1", new Vector3());
-        levelObject_wrong.Add("cat_2", new Vector3());
-        levelObject_wrong.Add("cat_3", new Vector3());
 
+                
         for(int i=0; i<2; i++){
             foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){
                 Vector3 position = levelPositions.Pop();
                 Quaternion rotation = Quaternion.identity;
-                Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
+                Transform getChild = itemWord_bad.transform.FindChild("Sprite");
                 GameObject child = getChild.gameObject;
-                child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentWords/" + pair.Key);
-                Instantiate(itemPicture_bad, position, rotation);
+                createImageFromWord(getChild, child, pair.Key);
+                Instantiate(itemWord_bad, position, rotation);
             }
         }
     }
 
     private void LoadLevel8(){
         Stack<Vector3> levelPositions = randomPosition(33);
-        
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
-        levelObject.Add("animal_1", levelPositions.Pop());
-        levelObject.Add("animal_2", levelPositions.Pop());
-        levelObject.Add("animal_3", levelPositions.Pop());
-        levelObject.Add("brown_1", levelPositions.Pop());
-        levelObject.Add("monkey_1", levelPositions.Pop());
-
-        levelObject.Add("smiling_1", levelPositions.Pop());
+        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
+        XDocument xdoc = XDocument.Load(Application.dataPath + "/Resources/LevelsXML/Level8.xml");
+        
+        var levels = from lvl in xdoc.Descendants("level")
+        select new {
+            objects = lvl.Descendants("objects")
+        };
+        
+        foreach(var lvl in levels){                   
+            var objects = from x in lvl.objects.Descendants("object")
+            select new {
+                name        =  x.Element("name").Value,
+                type        =  System.Convert.ToInt32(x.Element("type").Value),
+                goodCollect =  System.Convert.ToInt32(x.Element("goodcollect").Value) != 0,
+            };
+            int badObjects = 1;
+            foreach(var obj in objects){
+                if(obj.goodCollect){
+                    levelObject.Add(obj.name, levelPositions.Pop());
+                } else{
+                    if(badObjects <= 27){
+                        levelObject_wrong.Add(obj.name, levelPositions.Pop());
+                        badObjects++;
+                    }
+                }
+            }
+        }
         
         foreach(KeyValuePair<string, Vector3> pair in levelObject){
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
-            Transform getChild = itemPicture.transform.FindChild("Sprite");
+            Transform getChild = itemWord.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentWords/" + pair.Key);
-            Instantiate(itemPicture, position, rotation);
+            createImageFromWord(getChild, child, pair.Key);
+            Instantiate(itemWord, position, rotation);
         }
         
-        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
-        levelObject_wrong.Add("dog_1", levelPositions.Pop());
-        levelObject_wrong.Add("angry_1", levelPositions.Pop());
-        levelObject_wrong.Add("bird_1", levelPositions.Pop());
-        levelObject_wrong.Add("band_1", levelPositions.Pop());
-        levelObject_wrong.Add("yellow_1", levelPositions.Pop());
-
-        levelObject_wrong.Add("horse_1", levelPositions.Pop());
-        levelObject_wrong.Add("baby_1", levelPositions.Pop());
-        levelObject_wrong.Add("ketchup_1", levelPositions.Pop());
-        levelObject_wrong.Add("cat_1", levelPositions.Pop());
-        levelObject_wrong.Add("can_1", levelPositions.Pop());
-
-        levelObject_wrong.Add("cap_1", levelPositions.Pop());
-        levelObject_wrong.Add("cup_1", levelPositions.Pop());
-        levelObject_wrong.Add("car_1", levelPositions.Pop());
-        levelObject_wrong.Add("plant_1", levelPositions.Pop());
-        levelObject_wrong.Add("red_1", levelPositions.Pop());
-
-        levelObject_wrong.Add("cot_1", levelPositions.Pop());
-        levelObject_wrong.Add("cud_1", levelPositions.Pop());
-        levelObject_wrong.Add("cab_1", levelPositions.Pop());
-        levelObject_wrong.Add("cam_1", levelPositions.Pop());
-        levelObject_wrong.Add("camp_1", levelPositions.Pop());
-
-        levelObject_wrong.Add("cast_1", levelPositions.Pop());
-        levelObject_wrong.Add("horse_2", levelPositions.Pop());
-        levelObject_wrong.Add("frog_1", levelPositions.Pop());
-        levelObject_wrong.Add("frog_2", levelPositions.Pop());
-        levelObject_wrong.Add("pickle_1", levelPositions.Pop());
-    
-        levelObject_wrong.Add("phantom_1", levelPositions.Pop());
-        levelObject_wrong.Add("sun_1", levelPositions.Pop());
-
+                
         foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
-            Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
+            Transform getChild = itemWord_bad.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentWords/" + pair.Key);
-            Instantiate(itemPicture_bad, position, rotation);
+            createImageFromWord(getChild, child, pair.Key);
+            Instantiate(itemWord_bad, position, rotation);
         }
     }
-
+        
     private void LoadLevel9(){
         Stack<Vector3> levelPositions = randomPosition(33);
-        
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
-        levelObject.Add("tree_1", levelPositions.Pop());
-        levelObject.Add("nature_1", levelPositions.Pop());
-        levelObject.Add("green_1", levelPositions.Pop());
-        levelObject.Add("plant_1", levelPositions.Pop());
-
+        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
+        XDocument xdoc = XDocument.Load(Application.dataPath + "/Resources/LevelsXML/Level9.xml");
+        
+        var levels = from lvl in xdoc.Descendants("level")
+        select new {
+            objects = lvl.Descendants("objects")
+        };
+        
+        foreach(var lvl in levels){                   
+            var objects = from x in lvl.objects.Descendants("object")
+            select new {
+                name        =  x.Element("name").Value,
+                type        =  System.Convert.ToInt32(x.Element("type").Value),
+                goodCollect =  System.Convert.ToInt32(x.Element("goodcollect").Value) != 0,
+            };
+            int badObjects = 1;
+            foreach(var obj in objects){
+                if(obj.goodCollect){
+                    levelObject.Add(obj.name, levelPositions.Pop());
+                } else{
+                    if(badObjects <= 29){
+                        levelObject_wrong.Add(obj.name, levelPositions.Pop());
+                        badObjects++;
+                    }
+                }
+            }
+        }
+        
         foreach(KeyValuePair<string, Vector3> pair in levelObject){
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
-            Transform getChild = itemPicture.transform.FindChild("Sprite");
+            Transform getChild = itemWord.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentWords/" + pair.Key);
-            Instantiate(itemPicture, position, rotation);
+            createImageFromWord(getChild, child, pair.Key);
+            Instantiate(itemWord, position, rotation);
         }
-        
-        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
-        levelObject_wrong.Add("bird_1", levelPositions.Pop());
-        levelObject_wrong.Add("band_1", levelPositions.Pop());
-        levelObject_wrong.Add("cat_1", levelPositions.Pop());
-        levelObject_wrong.Add("can_1", levelPositions.Pop());
-        levelObject_wrong.Add("cap_1", levelPositions.Pop());
-
-        levelObject_wrong.Add("cup_1", levelPositions.Pop());
-        levelObject_wrong.Add("car_1", levelPositions.Pop());
-        levelObject_wrong.Add("cot_1", levelPositions.Pop());
-        levelObject_wrong.Add("cud_1", levelPositions.Pop());
-        levelObject_wrong.Add("cab_1", levelPositions.Pop());
-
-        levelObject_wrong.Add("cam_1", levelPositions.Pop());
-        levelObject_wrong.Add("camp_1", levelPositions.Pop());
-        levelObject_wrong.Add("cast_1", levelPositions.Pop());
-        levelObject_wrong.Add("dog_1", levelPositions.Pop());
-        levelObject_wrong.Add("angry_1", levelPositions.Pop());
-
-        levelObject_wrong.Add("yellow_1", levelPositions.Pop());
-        levelObject_wrong.Add("horse_1", levelPositions.Pop());
-        levelObject_wrong.Add("baby_1", levelPositions.Pop());
-        levelObject_wrong.Add("ketchup_1", levelPositions.Pop());
-        levelObject_wrong.Add("fees_1", levelPositions.Pop());
-
-        levelObject_wrong.Add("transportation_1", levelPositions.Pop());
-        levelObject_wrong.Add("galloping_1", levelPositions.Pop());
-        levelObject_wrong.Add("pickle_1", levelPositions.Pop());
-        levelObject_wrong.Add("celebrate_1", levelPositions.Pop());
-        levelObject_wrong.Add("sun_1", levelPositions.Pop());
-
-        levelObject_wrong.Add("celebrate_2", levelPositions.Pop());
-        levelObject_wrong.Add("celebrate_3", levelPositions.Pop());
-        levelObject_wrong.Add("horse_2", levelPositions.Pop());
-        levelObject_wrong.Add("horse_3", levelPositions.Pop());
-
+                
+                
         foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
-            Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
+            Transform getChild = itemWord_bad.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentWords/" + pair.Key);
-            Instantiate(itemPicture_bad, position, rotation);
+            createImageFromWord(getChild, child, pair.Key);
+            Instantiate(itemWord_bad, position, rotation);
         }
     }
-
+        
     private void LoadLevel10(){
         Stack<Vector3> levelPositions = randomPosition(33);
-        
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
-        levelObject.Add("streetcar_1", levelPositions.Pop());
-        levelObject.Add("red_1", levelPositions.Pop());
-        levelObject.Add("transportation_1", levelPositions.Pop());
+        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
+        XDocument xdoc = XDocument.Load(Application.dataPath + "/Resources/LevelsXML/Level10.xml");
+        
+        var levels = from lvl in xdoc.Descendants("level")
+        select new {
+            objects = lvl.Descendants("objects")
+        };
+        
+        foreach(var lvl in levels){                   
+            var objects = from x in lvl.objects.Descendants("object")
+            select new {
+                name        =  x.Element("name").Value,
+                type        =  System.Convert.ToInt32(x.Element("type").Value),
+                goodCollect =  System.Convert.ToInt32(x.Element("goodcollect").Value) != 0,
+            };
+            int badObjects = 1;
+            foreach(var obj in objects){
+                if(obj.goodCollect){
+                    levelObject.Add(obj.name, levelPositions.Pop());
+                } else{
+                    if(badObjects <= 30){
+                        levelObject_wrong.Add(obj.name, levelPositions.Pop());
+                        badObjects++;
+                    }
+                }
+            }
+        }
         
         foreach(KeyValuePair<string, Vector3> pair in levelObject){
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
-            Transform getChild = itemPicture.transform.FindChild("Sprite");
+            Transform getChild = itemWord.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentWords/" + pair.Key);
-            Instantiate(itemPicture, position, rotation);
+            createImageFromWord(getChild, child, pair.Key);
+            Instantiate(itemWord, position, rotation);
         }
         
-        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
-        levelObject_wrong.Add("bird_1", levelPositions.Pop());
-        levelObject_wrong.Add("band_1", levelPositions.Pop());
-        levelObject_wrong.Add("cat_1", levelPositions.Pop());
-        levelObject_wrong.Add("can_1", levelPositions.Pop());
-        levelObject_wrong.Add("cap_1", levelPositions.Pop());
-
-        levelObject_wrong.Add("cup_1", levelPositions.Pop());
-        levelObject_wrong.Add("car_1", levelPositions.Pop());
-        levelObject_wrong.Add("cot_1", levelPositions.Pop());
-        levelObject_wrong.Add("cud_1", levelPositions.Pop());
-        levelObject_wrong.Add("cab_1", levelPositions.Pop());
-
-        levelObject_wrong.Add("cam_1", levelPositions.Pop());
-        levelObject_wrong.Add("camp_1", levelPositions.Pop());
-        levelObject_wrong.Add("cast_1", levelPositions.Pop());
-        levelObject_wrong.Add("dog_1", levelPositions.Pop());
-        levelObject_wrong.Add("angry_1", levelPositions.Pop());
-
-        levelObject_wrong.Add("celebrate_2", levelPositions.Pop());
-        levelObject_wrong.Add("celebrate_3", levelPositions.Pop());
-        levelObject_wrong.Add("horse_2", levelPositions.Pop());
-        levelObject_wrong.Add("horse_3", levelPositions.Pop());
-        levelObject_wrong.Add("galloping_1", levelPositions.Pop());
-
-        levelObject_wrong.Add("pickle_1", levelPositions.Pop());
-        levelObject_wrong.Add("celebrate_1", levelPositions.Pop());
-        levelObject_wrong.Add("frog_1", levelPositions.Pop());
-        levelObject_wrong.Add("frog_2", levelPositions.Pop());
-        levelObject_wrong.Add("frog_3", levelPositions.Pop());
-
-        levelObject_wrong.Add("yellow_1", levelPositions.Pop());
-        levelObject_wrong.Add("horse_1", levelPositions.Pop());
-        levelObject_wrong.Add("baby_1", levelPositions.Pop());
-        levelObject_wrong.Add("ketchup_1", levelPositions.Pop());
-        levelObject_wrong.Add("nature_1", levelPositions.Pop());
-
+                
         foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
-            Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
+            Transform getChild = itemWord_bad.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentWords/" + pair.Key);
-            Instantiate(itemPicture_bad, position, rotation);
+            createImageFromWord(getChild, child, pair.Key);
+            Instantiate(itemWord_bad, position, rotation);
         }
     }
-
+        
     private void LoadLevel11(){
         Stack<Vector3> levelPositions = randomPosition(33);
-        
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
-        levelObject.Add("airport_1", levelPositions.Pop());
-        levelObject.Add("hamburger_1", levelPositions.Pop());
-        levelObject.Add("lightning_1", levelPositions.Pop());
+        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
+        XDocument xdoc = XDocument.Load(Application.dataPath + "/Resources/LevelsXML/Level11.xml");
+        
+        var levels = from lvl in xdoc.Descendants("level")
+        select new {
+            objects = lvl.Descendants("objects")
+        };
+        
+        foreach(var lvl in levels){                   
+            var objects = from x in lvl.objects.Descendants("object")
+            select new {
+                name        =  x.Element("name").Value,
+                type        =  System.Convert.ToInt32(x.Element("type").Value),
+                goodCollect =  System.Convert.ToInt32(x.Element("goodcollect").Value) != 0,
+            };
+           
+            foreach(var obj in objects){
+                if(obj.goodCollect)
+                    levelObject.Add(obj.name, levelPositions.Pop());
+                else
+                    levelObject_wrong.Add(obj.name, new Vector3());
+            }
+        }
+
         
         foreach(KeyValuePair<string, Vector3> pair in levelObject){
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
-            Transform getChild = itemPicture.transform.FindChild("Sprite");
+            Transform getChild = itemWord.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentWords/" + pair.Key);
-            Instantiate(itemPicture, position, rotation);
+            createImageFromWord(getChild, child, pair.Key);
+            Instantiate(itemWord, position, rotation);
         }
-        
-        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
-        levelObject_wrong.Add("sun_1", new Vector3());
-        levelObject_wrong.Add("pink_1", new Vector3());
-        levelObject_wrong.Add("horse_1", new Vector3());
 
-        levelObject_wrong.Add("animal_1", new Vector3());
-        levelObject_wrong.Add("yellow_1", new Vector3());
-        levelObject_wrong.Add("galloping_1", new Vector3());
-
+                
         for(int i=0; i<5; i++){
             foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){
                 Vector3 position = levelPositions.Pop();
                 Quaternion rotation = Quaternion.identity;
-                Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
+                Transform getChild = itemWord_bad.transform.FindChild("Sprite");
                 GameObject child = getChild.gameObject;
-                child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentWords/" + pair.Key);
-                Instantiate(itemPicture_bad, position, rotation);
+                createImageFromWord(getChild, child, pair.Key);
+                Instantiate(itemWord_bad, position, rotation);
             }
         }
     }
 
     private void LoadLevel12(){
         Stack<Vector3> levelPositions = randomPosition(33);
-        
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
-        levelObject.Add("book_1", levelPositions.Pop());
-        levelObject.Add("book_2", levelPositions.Pop());
-        levelObject.Add("book_3", levelPositions.Pop());
-        levelObject.Add("desk_1", levelPositions.Pop());
-        levelObject.Add("pencil_1", levelPositions.Pop());
+        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
+        XDocument xdoc = XDocument.Load(Application.dataPath + "/Resources/LevelsXML/Level12.xml");
         
-        foreach(KeyValuePair<string, Vector3> pair in levelObject){
+        var levels = from lvl in xdoc.Descendants("level")
+        select new {
+            objects = lvl.Descendants("objects")
+        };
+        
+        foreach(var lvl in levels){                   
+            var objects = from x in lvl.objects.Descendants("object")
+            select new {
+                name        =  x.Element("name").Value,
+                type        =  System.Convert.ToInt32(x.Element("type").Value),
+                goodCollect =  System.Convert.ToInt32(x.Element("goodcollect").Value) != 0,
+            };
+            int goodObjects = 1;
+            int badObjects = 1;
+            foreach(var obj in objects){
+                if(obj.goodCollect && goodObjects <= 5){
+                    levelObject.Add(obj.name, levelPositions.Pop());
+                    goodObjects++;
+                } else{
+                    if(badObjects <= 28){
+                        levelObject_wrong.Add(obj.name, levelPositions.Pop());
+                        badObjects++;
+                    }
+                }
+            }
+        }
+        
+        foreach(KeyValuePair<string, Vector3> pair in levelObject){           
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
             Transform getChild = itemPicture.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentUpdates/" + pair.Key);
+            child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("LevelContentUpdates/" + pair.Key);  
             Instantiate(itemPicture, position, rotation);
         }
         
-        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
-        levelObject_wrong.Add("bed_1", levelPositions.Pop());
-        levelObject_wrong.Add("bed_2", levelPositions.Pop());
-        levelObject_wrong.Add("bed_3", levelPositions.Pop());
-        levelObject_wrong.Add("trafficlight_1", levelPositions.Pop());
-        levelObject_wrong.Add("trafficlight_2", levelPositions.Pop());
-        levelObject_wrong.Add("van_1", levelPositions.Pop());
-        levelObject_wrong.Add("car_1", levelPositions.Pop());
-        levelObject_wrong.Add("car_2", levelPositions.Pop());
-        levelObject_wrong.Add("car_3", levelPositions.Pop());
-        levelObject_wrong.Add("car_4", levelPositions.Pop());
-        levelObject_wrong.Add("frog_1", levelPositions.Pop());
-        levelObject_wrong.Add("frog_2", levelPositions.Pop());
-        levelObject_wrong.Add("frog_3", levelPositions.Pop());
-        levelObject_wrong.Add("cat_1", levelPositions.Pop());
-        levelObject_wrong.Add("cat_2", levelPositions.Pop());
-        levelObject_wrong.Add("cat_3", levelPositions.Pop());
-        levelObject_wrong.Add("cow_1", levelPositions.Pop());
-        levelObject_wrong.Add("cow_2", levelPositions.Pop());
-        levelObject_wrong.Add("cow_3", levelPositions.Pop());
-        levelObject_wrong.Add("dog_1", levelPositions.Pop());
-        levelObject_wrong.Add("dog_2", levelPositions.Pop());
-        levelObject_wrong.Add("dog_3", levelPositions.Pop());
-        levelObject_wrong.Add("horse_1", levelPositions.Pop());
-        levelObject_wrong.Add("horse_2", levelPositions.Pop());
-        levelObject_wrong.Add("horse_3", levelPositions.Pop());
-        levelObject_wrong.Add("horse_4", levelPositions.Pop());
-        levelObject_wrong.Add("plane_1", levelPositions.Pop());
-        levelObject_wrong.Add("plane_2", levelPositions.Pop());
-
-
-        foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){
+        foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){         
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
             Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentUpdates/" + pair.Key);
+            child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("LevelContentUpdates/" + pair.Key);         
             Instantiate(itemPicture_bad, position, rotation);
         }
     }
 
     private void LoadLevel13(){
         Stack<Vector3> levelPositions = randomPosition(33);
-        
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
-        levelObject.Add("eggs_1", levelPositions.Pop());
-        levelObject.Add("pancakes_1", levelPositions.Pop());
-        levelObject.Add("pasta_1", levelPositions.Pop());
-        levelObject.Add("tacos_1", levelPositions.Pop());
-        levelObject.Add("waffle_1", levelPositions.Pop());
-        levelObject.Add("waffle_2", levelPositions.Pop());
+        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
+        XDocument xdoc = XDocument.Load(Application.dataPath + "/Resources/LevelsXML/Level13.xml");
         
-        foreach(KeyValuePair<string, Vector3> pair in levelObject){
+        var levels = from lvl in xdoc.Descendants("level")
+        select new {
+            objects = lvl.Descendants("objects")
+        };
+        
+        foreach(var lvl in levels){                   
+            var objects = from x in lvl.objects.Descendants("object")
+            select new {
+                name        =  x.Element("name").Value,
+                type        =  System.Convert.ToInt32(x.Element("type").Value),
+                goodCollect =  System.Convert.ToInt32(x.Element("goodcollect").Value) != 0,
+            };
+            int badObjects = 1;
+            foreach(var obj in objects){
+                if(obj.goodCollect){
+                    levelObject.Add(obj.name, levelPositions.Pop());
+                } else{
+                    if(badObjects <= 27){
+                        levelObject_wrong.Add(obj.name, levelPositions.Pop());
+                        badObjects++;
+                    }
+                }
+            }
+        }
+        
+        foreach(KeyValuePair<string, Vector3> pair in levelObject){           
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
             Transform getChild = itemPicture.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentUpdates/" + pair.Key);
+            child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("LevelContentUpdates/" + pair.Key);  
             Instantiate(itemPicture, position, rotation);
         }
         
-        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
-        levelObject_wrong.Add("bed_1", levelPositions.Pop());
-        levelObject_wrong.Add("bed_2", levelPositions.Pop());
-        levelObject_wrong.Add("bed_3", levelPositions.Pop());
-        levelObject_wrong.Add("trafficlight_1", levelPositions.Pop());
-        levelObject_wrong.Add("trafficlight_2", levelPositions.Pop());
-        levelObject_wrong.Add("van_1", levelPositions.Pop());
-        levelObject_wrong.Add("car_1", levelPositions.Pop());
-        levelObject_wrong.Add("car_2", levelPositions.Pop());
-        levelObject_wrong.Add("car_3", levelPositions.Pop());
-        levelObject_wrong.Add("car_4", levelPositions.Pop());
-        levelObject_wrong.Add("frog_1", levelPositions.Pop());
-        levelObject_wrong.Add("frog_2", levelPositions.Pop());
-        levelObject_wrong.Add("frog_3", levelPositions.Pop());
-        levelObject_wrong.Add("cat_1", levelPositions.Pop());
-        levelObject_wrong.Add("cat_2", levelPositions.Pop());
-        levelObject_wrong.Add("cat_3", levelPositions.Pop());
-        levelObject_wrong.Add("cow_1", levelPositions.Pop());
-        levelObject_wrong.Add("cow_2", levelPositions.Pop());
-        levelObject_wrong.Add("cow_3", levelPositions.Pop());
-        levelObject_wrong.Add("dog_1", levelPositions.Pop());
-        levelObject_wrong.Add("dog_2", levelPositions.Pop());
-        levelObject_wrong.Add("dog_3", levelPositions.Pop());
-        levelObject_wrong.Add("horse_1", levelPositions.Pop());
-        levelObject_wrong.Add("horse_2", levelPositions.Pop());
-        levelObject_wrong.Add("horse_3", levelPositions.Pop());
-
-        foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){
+        foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){         
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
             Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentUpdates/" + pair.Key);
+            child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("LevelContentUpdates/" + pair.Key);         
             Instantiate(itemPicture_bad, position, rotation);
         }
     }
 
     private void LoadLevel14(){
         Stack<Vector3> levelPositions = randomPosition(33);
-        
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
-        levelObject.Add("pen_1", levelPositions.Pop());
-        levelObject.Add("pen_2", levelPositions.Pop());
-        levelObject.Add("pen_3", levelPositions.Pop());
-        levelObject.Add("pencil_1", levelPositions.Pop());
-        levelObject.Add("pencil_2", levelPositions.Pop());
-        levelObject.Add("pencil_3", levelPositions.Pop());
+        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
+        XDocument xdoc = XDocument.Load(Application.dataPath + "/Resources/LevelsXML/Level14.xml");
         
-        foreach(KeyValuePair<string, Vector3> pair in levelObject){
+        var levels = from lvl in xdoc.Descendants("level")
+        select new {
+            objects = lvl.Descendants("objects")
+        };
+        
+        foreach(var lvl in levels){                   
+            var objects = from x in lvl.objects.Descendants("object")
+            select new {
+                name        =  x.Element("name").Value,
+                type        =  System.Convert.ToInt32(x.Element("type").Value),
+                goodCollect =  System.Convert.ToInt32(x.Element("goodcollect").Value) != 0,
+            };
+            int badObjects = 1;
+            foreach(var obj in objects){
+                if(obj.goodCollect){
+                    levelObject.Add(obj.name, levelPositions.Pop());
+                } else{
+                    if(badObjects <= 26){
+                        levelObject_wrong.Add(obj.name, levelPositions.Pop());
+                        badObjects++;
+                    }
+                }
+            }
+        }
+        
+        foreach(KeyValuePair<string, Vector3> pair in levelObject){           
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
             Transform getChild = itemPicture.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentUpdates/" + pair.Key);
+            child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("LevelContentUpdates/" + pair.Key);  
             Instantiate(itemPicture, position, rotation);
         }
         
-        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
-        levelObject_wrong.Add("bed_1", levelPositions.Pop());
-        levelObject_wrong.Add("bed_2", levelPositions.Pop());
-        levelObject_wrong.Add("bed_3", levelPositions.Pop());
-        levelObject_wrong.Add("trafficlight_1", levelPositions.Pop());
-        levelObject_wrong.Add("trafficlight_2", levelPositions.Pop());
-        levelObject_wrong.Add("van_1", levelPositions.Pop());
-        levelObject_wrong.Add("car_1", levelPositions.Pop());
-        levelObject_wrong.Add("car_2", levelPositions.Pop());
-        levelObject_wrong.Add("car_3", levelPositions.Pop());
-        levelObject_wrong.Add("car_4", levelPositions.Pop());
-        levelObject_wrong.Add("frog_1", levelPositions.Pop());
-        levelObject_wrong.Add("frog_2", levelPositions.Pop());
-        levelObject_wrong.Add("frog_3", levelPositions.Pop());
-        levelObject_wrong.Add("cat_1", levelPositions.Pop());
-        levelObject_wrong.Add("cat_2", levelPositions.Pop());
-        levelObject_wrong.Add("cat_3", levelPositions.Pop());
-        levelObject_wrong.Add("cow_1", levelPositions.Pop());
-        levelObject_wrong.Add("cow_2", levelPositions.Pop());
-        levelObject_wrong.Add("cow_3", levelPositions.Pop());
-        levelObject_wrong.Add("dog_1", levelPositions.Pop());
-        levelObject_wrong.Add("dog_2", levelPositions.Pop());
-        levelObject_wrong.Add("dog_3", levelPositions.Pop());
-        levelObject_wrong.Add("horse_1", levelPositions.Pop());
-        levelObject_wrong.Add("horse_2", levelPositions.Pop());
-        levelObject_wrong.Add("horse_3", levelPositions.Pop());
-
-        
-        
-        foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){
+        foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){         
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
             Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentUpdates/" + pair.Key);
+            child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("LevelContentUpdates/" + pair.Key);         
             Instantiate(itemPicture_bad, position, rotation);
         }
     }
 
     private void LoadLevel15(){
         Stack<Vector3> levelPositions = randomPosition(33);
-        
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
-        levelObject.Add("train_1", levelPositions.Pop());
-        levelObject.Add("train_2", levelPositions.Pop());
-        levelObject.Add("plane_1", levelPositions.Pop());
-        levelObject.Add("plane_2", levelPositions.Pop());
-        levelObject.Add("plane_3", levelPositions.Pop());
-        levelObject.Add("rocketship_1", levelPositions.Pop());
+        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
+        XDocument xdoc = XDocument.Load(Application.dataPath + "/Resources/LevelsXML/Level15.xml");
         
-        foreach(KeyValuePair<string, Vector3> pair in levelObject){
+        var levels = from lvl in xdoc.Descendants("level")
+        select new {
+            objects = lvl.Descendants("objects")
+        };
+        
+        foreach(var lvl in levels){                   
+            var objects = from x in lvl.objects.Descendants("object")
+            select new {
+                name        =  x.Element("name").Value,
+                type        =  System.Convert.ToInt32(x.Element("type").Value),
+                goodCollect =  System.Convert.ToInt32(x.Element("goodcollect").Value) != 0,
+            };
+            int badObjects = 1;
+            foreach(var obj in objects){
+                if(obj.goodCollect){
+                    levelObject.Add(obj.name, levelPositions.Pop());
+                } else{
+                    if(badObjects <= 26){
+                        levelObject_wrong.Add(obj.name, levelPositions.Pop());
+                        badObjects++;
+                    }
+                }
+            }
+        }
+        
+        foreach(KeyValuePair<string, Vector3> pair in levelObject){           
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
             Transform getChild = itemPicture.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentUpdates/" + pair.Key);
+            child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("LevelContentUpdates/" + pair.Key);  
             Instantiate(itemPicture, position, rotation);
         }
         
-        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
-        levelObject_wrong.Add("bed_1", levelPositions.Pop());
-        levelObject_wrong.Add("bed_2", levelPositions.Pop());
-        levelObject_wrong.Add("bed_3", levelPositions.Pop());
-        levelObject_wrong.Add("trafficlight_1", levelPositions.Pop());
-        levelObject_wrong.Add("trafficlight_2", levelPositions.Pop());
-        levelObject_wrong.Add("van_1", levelPositions.Pop());
-        levelObject_wrong.Add("car_1", levelPositions.Pop());
-        levelObject_wrong.Add("car_2", levelPositions.Pop());
-        levelObject_wrong.Add("car_3", levelPositions.Pop());
-        levelObject_wrong.Add("car_4", levelPositions.Pop());
-        levelObject_wrong.Add("frog_1", levelPositions.Pop());
-        levelObject_wrong.Add("frog_2", levelPositions.Pop());
-        levelObject_wrong.Add("frog_3", levelPositions.Pop());
-        levelObject_wrong.Add("cat_1", levelPositions.Pop());
-        levelObject_wrong.Add("cat_2", levelPositions.Pop());
-        levelObject_wrong.Add("cat_3", levelPositions.Pop());
-        levelObject_wrong.Add("cow_1", levelPositions.Pop());
-        levelObject_wrong.Add("cow_2", levelPositions.Pop());
-        levelObject_wrong.Add("cow_3", levelPositions.Pop());
-        levelObject_wrong.Add("dog_1", levelPositions.Pop());
-        levelObject_wrong.Add("dog_2", levelPositions.Pop());
-        levelObject_wrong.Add("dog_3", levelPositions.Pop());
-        levelObject_wrong.Add("horse_1", levelPositions.Pop());
-        levelObject_wrong.Add("horse_2", levelPositions.Pop());
-        levelObject_wrong.Add("horse_3", levelPositions.Pop());
-        
-        
-        foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){
+        foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){         
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
             Transform getChild = itemPicture_bad.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentUpdates/" + pair.Key);
+            child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("LevelContentUpdates/" + pair.Key);         
             Instantiate(itemPicture_bad, position, rotation);
         }
     }
 
     private void LoadLevel16(){
         Stack<Vector3> levelPositions = randomPosition(18);
-        
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
-        levelObject.Add("lv16_1", levelPositions.Pop());
-        levelObject.Add("lv16_2", levelPositions.Pop());
-        levelObject.Add("lv16_3", levelPositions.Pop());
+        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
+        XDocument xdoc = XDocument.Load(Application.dataPath + "/Resources/LevelsXML/Level16.xml");
+        
+        var levels = from lvl in xdoc.Descendants("level")
+        select new {
+            objects = lvl.Descendants("objects")
+        };
+        
+        foreach(var lvl in levels){                   
+            var objects = from x in lvl.objects.Descendants("object")
+            select new {
+                name        =  x.Element("name").Value,
+                type        =  System.Convert.ToInt32(x.Element("type").Value),
+                goodCollect =  System.Convert.ToInt32(x.Element("goodcollect").Value) != 0,
+            };
+
+            foreach(var obj in objects){
+                if(obj.goodCollect){
+                    levelObject.Add(obj.name, levelPositions.Pop());
+                } else{
+
+                    levelObject_wrong.Add(obj.name, new Vector3());
+                   
+                }
+            }
+        }
+
         
         foreach(KeyValuePair<string, Vector3> pair in levelObject){
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
             Transform getChild = itemText.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentText/" + pair.Key);
+            createImageFromText(getChild, child, pair.Key);
             Instantiate(itemText, position, rotation);
         }
-        
-        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
-        levelObject_wrong.Add("lv16_4", new Vector3());
-        levelObject_wrong.Add("lv16_5", new Vector3());
-        levelObject_wrong.Add("lv16_6", new Vector3());
-        levelObject_wrong.Add("lv16_7", new Vector3());
-        levelObject_wrong.Add("lv16_8", new Vector3());
                 
         for(int i=0; i<3; i++){
             foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){
@@ -986,43 +1056,59 @@ public class LevelEditor : MonoBehaviour {
                 Quaternion rotation = Quaternion.identity;
                 Transform getChild = itemText_bad.transform.FindChild("Sprite");
                 GameObject child = getChild.gameObject;
-                child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentText/" + pair.Key);
+                createImageFromText(getChild, child, pair.Key);
                 Instantiate(itemText_bad, position, rotation);
             }
         }
     }
-
+        
     private void LoadLevel17(){
         Stack<Vector3> levelPositions = randomPosition(18);
-        
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
-        levelObject.Add("lv17_1", levelPositions.Pop());
-        levelObject.Add("lv17_2", levelPositions.Pop());
-        levelObject.Add("lv17_3", levelPositions.Pop());
+        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
+        XDocument xdoc = XDocument.Load(Application.dataPath + "/Resources/LevelsXML/Level17.xml");
+        
+        var levels = from lvl in xdoc.Descendants("level")
+        select new {
+            objects = lvl.Descendants("objects")
+        };
+        
+        foreach(var lvl in levels){                   
+            var objects = from x in lvl.objects.Descendants("object")
+            select new {
+                name        =  x.Element("name").Value,
+                type        =  System.Convert.ToInt32(x.Element("type").Value),
+                goodCollect =  System.Convert.ToInt32(x.Element("goodcollect").Value) != 0,
+            };
+            
+            foreach(var obj in objects){
+                if(obj.goodCollect){
+                    levelObject.Add(obj.name, levelPositions.Pop());
+                } else{
+                    
+                    levelObject_wrong.Add(obj.name, new Vector3());
+                    
+                }
+            }
+        }
+        
         
         foreach(KeyValuePair<string, Vector3> pair in levelObject){
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
             Transform getChild = itemText.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentText/" + pair.Key);
+            createImageFromText(getChild, child, pair.Key);
             Instantiate(itemText, position, rotation);
         }
         
-        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
-        levelObject_wrong.Add("lv17_4", new Vector3());
-        levelObject_wrong.Add("lv17_5", new Vector3());
-        levelObject_wrong.Add("lv17_6", new Vector3());
-        levelObject_wrong.Add("lv17_7", new Vector3());
-        levelObject_wrong.Add("lv17_8", new Vector3());
-
         for(int i=0; i<3; i++){
             foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){
                 Vector3 position = levelPositions.Pop();
                 Quaternion rotation = Quaternion.identity;
                 Transform getChild = itemText_bad.transform.FindChild("Sprite");
                 GameObject child = getChild.gameObject;
-                child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentText/" + pair.Key);
+                createImageFromText(getChild, child, pair.Key);
                 Instantiate(itemText_bad, position, rotation);
             }
         }
@@ -1030,37 +1116,51 @@ public class LevelEditor : MonoBehaviour {
 
     private void LoadLevel18(){
         Stack<Vector3> levelPositions = randomPosition(21);
-        
         Dictionary<string, Vector3> levelObject = new Dictionary<string, Vector3>();
-        levelObject.Add("lv18_1", levelPositions.Pop());
-        levelObject.Add("lv18_2", levelPositions.Pop());
-        levelObject.Add("lv18_3", levelPositions.Pop());
+        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
+        XDocument xdoc = XDocument.Load(Application.dataPath + "/Resources/LevelsXML/Level18.xml");
+        
+        var levels = from lvl in xdoc.Descendants("level")
+        select new {
+            objects = lvl.Descendants("objects")
+        };
+        
+        foreach(var lvl in levels){                   
+            var objects = from x in lvl.objects.Descendants("object")
+            select new {
+                name        =  x.Element("name").Value,
+                type        =  System.Convert.ToInt32(x.Element("type").Value),
+                goodCollect =  System.Convert.ToInt32(x.Element("goodcollect").Value) != 0,
+            };
+            
+            foreach(var obj in objects){
+                if(obj.goodCollect){
+                    levelObject.Add(obj.name, levelPositions.Pop());
+                } else{
+                    
+                    levelObject_wrong.Add(obj.name, new Vector3());
+                    
+                }
+            }
+        }
+        
         
         foreach(KeyValuePair<string, Vector3> pair in levelObject){
             Vector3 position = pair.Value;
             Quaternion rotation = Quaternion.identity;
             Transform getChild = itemText.transform.FindChild("Sprite");
             GameObject child = getChild.gameObject;
-            child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentText/" + pair.Key);
+            createImageFromText(getChild, child, pair.Key);
             Instantiate(itemText, position, rotation);
         }
         
-        Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
-        levelObject_wrong.Add("lv18_4", new Vector3());
-        levelObject_wrong.Add("lv18_5", new Vector3());
-        levelObject_wrong.Add("lv18_6", new Vector3());
-        levelObject_wrong.Add("lv18_7", new Vector3());
-        levelObject_wrong.Add("lv18_8", new Vector3());
-
-        levelObject_wrong.Add("lv18_9", new Vector3());
-
         for(int i=0; i<3; i++){
             foreach(KeyValuePair<string, Vector3> pair in levelObject_wrong){
                 Vector3 position = levelPositions.Pop();
                 Quaternion rotation = Quaternion.identity;
                 Transform getChild = itemText_bad.transform.FindChild("Sprite");
                 GameObject child = getChild.gameObject;
-                child.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("LevelContentText/" + pair.Key);
+                createImageFromText(getChild, child, pair.Key);
                 Instantiate(itemText_bad, position, rotation);
             }
         }
@@ -1068,17 +1168,17 @@ public class LevelEditor : MonoBehaviour {
 
     /*********************************************END LEVEL EDIT**************************************************/
 
-    private Dictionary<string, Vector3> randomWrong(int length, string levelWord, Stack<Vector3> positions){
-        Dictionary<string, Vector3> randomWrong = new Dictionary<string, Vector3>();
+    private List<string> randomWrong(int length, string levelWord){
+        List<string> randomWrong = new List<string>();
         List<string> allObjects = levelContent();
         
         for(int i = 0; i < length; i++){
             string current = allObjects[Random.Range(0, allObjects.Count)];
             
-            while(current.Contains(levelWord) || randomWrong.ContainsKey(current))
+            while(current.Contains(levelWord) || randomWrong.Contains(current))
                 current = allObjects[Random.Range(0, allObjects.Count)];
             
-            randomWrong.Add(current, positions.Pop());
+            randomWrong.Add(current);
         }
 
         return randomWrong;
@@ -1153,4 +1253,21 @@ public class LevelEditor : MonoBehaviour {
         return stack;
     }
 
+    void createImageFromWord(Transform getChild, GameObject child, string word){
+        string spriteWord = word.Remove(word.Length - 2);
+        float size = spriteWord.Length / 3f;
+        Transform text = getChild.transform.FindChild("Text");
+        GameObject textObject = text.gameObject;
+        child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("LevelContentWords/Word");
+        textObject.GetComponent<TextMesh>().fontSize = Mathf.RoundToInt(100 / size);
+        textObject.GetComponent<TextMesh>().text = spriteWord.ToUpper();
+    }
+    
+    void createImageFromText(Transform getChild, GameObject child, string phrase){
+        Transform text = getChild.transform.FindChild("Text");
+        GameObject textObject = text.gameObject;
+        child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("LevelContentText/Text");
+        textObject.GetComponent<TextMesh>().fontSize = 35;
+        textObject.GetComponent<TextMesh>().text = phrase;
+    }
 }

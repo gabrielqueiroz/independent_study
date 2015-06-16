@@ -1,0 +1,481 @@
+<level>
+	<objects>
+		<!-- List of objects that will appear on the screen -->
+		<object>
+			<name>airport_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>angry_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>animal_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>animal_2</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>animal_3</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>baby_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>band_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>bird_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>bird_2</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>bird_3</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>brown_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>cab_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>cam_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>camp_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>can_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>cap_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>car_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>cast_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>cat_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>cat_2</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>cat_3</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>celebrate_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>celebrate_2</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>celebrate_3</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>cot_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>cow_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>cow_2</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>cow_3</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>cud_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>cup_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>dog_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>dog_2</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>dog_3</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>edible_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>fees_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>fossil_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>frog_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>frog_2</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>frog_3</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>galloping_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>green_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>hamburguer_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>horse_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>horse_2</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>horse_3</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>ketchup_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>lightning_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>monkey_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>nature_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>nature_2</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>nature_3</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>phantom_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>philosophy_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>phone_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>1</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>phone_2</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>1</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>phone_3</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>1</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>phony_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>photography_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>pickle_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>pink_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>plant_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>red_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>smiling_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>streetcar_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>sun_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>transportation_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>tree_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>yellow_1</name>
+			<type>1</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+	</objects>
+</level>

@@ -181,14 +181,22 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163700}
-  m_Text: cat
+  m_Text: 'The parade caused
+
+    grandma to think about
+
+    her past in a way that
+
+    she might not have
+
+    otherwise'
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 4
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 100
+  m_FontSize: 35
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
@@ -231,7 +239,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 3.5
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!212 &21273260
 SpriteRenderer:
@@ -257,7 +265,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 90ceb38b3f035684a86fee3d73e03b8c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fe84a5b26c0bfdd419e687b8d95092ff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

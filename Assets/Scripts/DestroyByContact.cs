@@ -62,7 +62,7 @@ public class DestroyByContact : MonoBehaviour {
             if(other.name.Equals("PointingAt")){    
                 if(!target.Equals(child.GetComponent<SpriteRenderer>().sprite.name)){
                     target = child.GetComponent<SpriteRenderer>().sprite.name;
-                    if(gameObject.name.Equals("ItemText(Clone)") || gameObject.name.Equals("ItemPicture(Clone)")){
+                    if(gameObject.name.Equals("ItemText(Clone)") || gameObject.name.Equals("ItemPicture(Clone)") || gameObject.name.Equals("ItemWord(Clone)")){
                         Debug.Log(persistent.getTime() + " consider good " + target);
                         persistent.AddLevelLog("\r\n" + persistent.getTime() + " consider good " + target);
                     } else{
@@ -75,7 +75,7 @@ public class DestroyByContact : MonoBehaviour {
                 Vector3 targetDir = transform.position - other.transform.position;
                 float angle = Vector3.Angle(other.transform.forward, targetDir);
                 target = child.GetComponent<SpriteRenderer>().sprite.name;
-                if(gameObject.name.Equals("ItemText(Clone)") || gameObject.name.Equals("ItemPicture(Clone)")){
+                if(gameObject.name.Equals("ItemText(Clone)") || gameObject.name.Equals("ItemPicture(Clone)")|| gameObject.name.Equals("ItemWord(Clone)")){
                     AudioSource.PlayClipAtPoint(score, transform.position);
                     Debug.Log(persistent.getTime() + " collect good " + target + " angle " + angle);
                     persistent.AddLevelLog("\r\n" + persistent.getTime() + " collect good " + target + " angle " + angle);
@@ -110,7 +110,7 @@ public class DestroyByContact : MonoBehaviour {
         GameObject child = getChild.gameObject;
 
         if(!target.Equals("")){
-            if(gameObject.name.Equals("ItemText(Clone)") || gameObject.name.Equals("ItemPicture(Clone)")){
+            if(gameObject.name.Equals("ItemText(Clone)") || gameObject.name.Equals("ItemPicture(Clone)")|| gameObject.name.Equals("ItemWord(Clone)")){
                 Debug.Log(persistent.getTime() + " avoid good " + child.GetComponent<SpriteRenderer>().sprite.name);
                 persistent.AddLevelLog("\r\n" + persistent.getTime() + " avoid good " + target);
             } else{

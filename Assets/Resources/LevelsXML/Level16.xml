@@ -1,0 +1,76 @@
+<level>
+	<objects>
+		<!-- List of objects that will appear on the screen -->
+		<object>
+			<name>Stephen awoke
+after sunrise</name>
+			<type>0</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>1</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>He rubbed
+his eyes and got
+up unenvely</name>
+			<type>0</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>1</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>The thirst left a
+duty taste in
+his mouth</name>
+			<type>0</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>1</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>Stephen is
+feeling happy and
+refreshed</name>
+			<type>0</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>He was glad
+to see another
+dawn</name>
+			<type>0</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>His mouth was
+clean and
+pleasant</name>
+			<type>0</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>The stranger is
+a banker on his way
+to work</name>
+			<type>0</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+		<object>
+			<name>The setting of the
+story is a new
+supermarket</name>
+			<type>0</type>
+			<!-- 0 for images and 1 for text -->
+			<goodcollect>0</goodcollect>
+			<!-- 1 if the object is a good, right collect, 0 otherwise -->
+		</object>
+	</objects>
+</level>
