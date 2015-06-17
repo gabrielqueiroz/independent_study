@@ -1,4 +1,17 @@
 <level>
+<id>17</id>
+	<task>
+		<!-- The task the player has to accomplish -->
+		<text>Read this story and then collect phrases that describe what happens
+"I collected the things you had given me — the glittered birthday cards, a stuffed frog,
+a plastic yellow keychain shaped like a key, a postcard of an ugly dog, 
+post-it notes you left on my computer screen — and hid them in a shoebox. </text>
+		<!-- The text that will be shown on the prompt -->
+		<image></image>
+		<!-- The image that will be shown on the prompt. This field can be blank. -->
+		<elements>18</elements>
+		<!-- Quantity of elements that will appear on screen -->
+	</task>
 	<objects>
 		<!-- List of objects that will appear on the screen -->
 		<object>

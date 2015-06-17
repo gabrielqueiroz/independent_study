@@ -17,6 +17,7 @@ public class PersistentController : MonoBehaviour {
     private string session = "";
     private string time;
     private string levelLog = "";
+    private int currentLevel;
 
     void Awake(){
         DontDestroyOnLoad(gameObject);
@@ -84,7 +85,6 @@ public class PersistentController : MonoBehaviour {
     }
     
     public void UpdateScore(int level, int score){
-        level = level - 2;
         if(score > progress[level])
             progress[level] = score;
     }
@@ -107,6 +107,14 @@ public class PersistentController : MonoBehaviour {
 
     public void createFile(){
         StartCoroutine(writeFileName());
+    }
+
+    public void setCurrentLevel(int level){
+        currentLevel = level;
+    }
+
+    public int getCurrentLevel(){
+        return currentLevel;
     }
 
     IEnumerator writeFileName(){

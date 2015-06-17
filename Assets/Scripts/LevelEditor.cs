@@ -17,6 +17,7 @@ public class LevelEditor : MonoBehaviour {
     public GameObject itemWord;
     public GameObject itemWord_bad;
     public GameObject explosion;
+    public GameObject details;
     private PersistentController persistent;
     private DestroyByContact destroyByContact;
     private GameObject Player;
@@ -24,8 +25,13 @@ public class LevelEditor : MonoBehaviour {
     private GameObject Details;
     private GameObject Notification;
     private AudioClip winSound;
+    private string xmlFilesPath;
+    private List<Level> levels;
     public int score = 0;
     public int life = 3;
+
+    public LevelEditor(){
+    }
     
     void Start(){
 
@@ -35,6 +41,8 @@ public class LevelEditor : MonoBehaviour {
         Notification = GameObject.Find("Notification");
         Notification.SetActive(false);
         winSound = Resources.Load<AudioClip>("Sounds/level-win");
+        xmlFilesPath = Application.dataPath + "/Resources/LevelsXML/";
+        levels = new List<Level>();
 
         GameObject persistentObject = GameObject.FindGameObjectWithTag("Persistent");
         if(persistentObject != null){
@@ -43,13 +51,13 @@ public class LevelEditor : MonoBehaviour {
         if(persistent == null){
             Debug.Log("Cannot find 'Persistent Controller' script");
         }
-        
-        if(Application.loadedLevel == 3){
-            persistent.setTime();
-            persistent.AddLevelLog("\r\n" + persistent.getTime() + " start level 1");
-            LoadLevel1();  
-        }
-        
+
+        LoadLevels();
+        persistent.setTime();
+        persistent.AddLevelLog("\r\n" + persistent.getTime() + " start level " + persistent.getCurrentLevel());
+        LoadLevel(persistent.getCurrentLevel());  
+
+        /*
         if(Application.loadedLevel == 4){
             persistent.setTime();
             persistent.AddLevelLog("\r\n" + persistent.getTime() + " start level 2");
@@ -150,7 +158,7 @@ public class LevelEditor : MonoBehaviour {
             persistent.setTime();
             persistent.AddLevelLog("\r\n" + persistent.getTime() + " start level 18");
             LoadLevel18();
-        }
+        }*/
 
     }
     
@@ -160,19 +168,77 @@ public class LevelEditor : MonoBehaviour {
             HelpUpdate();
 
         if(life == 0){
-            persistent.UpdateScore(Application.loadedLevel, score);
-            persistent.AddLevelLog("\r\n" + persistent.getTime() + " lose level " + (Application.loadedLevel - 2) + " score " + score);
+            persistent.UpdateScore(persistent.getCurrentLevel(), score);
+            persistent.AddLevelLog("\r\n" + persistent.getTime() + " lose level " + persistent.getCurrentLevel() + " score " + score);
             persistent.postHTML(persistent.returnLevelLog());
             Application.LoadLevel(2);
         }
         
         if(score == 3){
-            persistent.UpdateScore(Application.loadedLevel, score);
+            persistent.UpdateScore(persistent.getCurrentLevel(), score);
             StartCoroutine(LevelComplete());
         }
            
         if(Input.GetKeyDown(KeyCode.Escape))
             QuitLevel();
+    }
+
+    public void LoadLevels(){
+        DirectoryInfo d = new DirectoryInfo(xmlFilesPath);
+        FileInfo[] files = d.GetFiles("*.xml");
+        
+        foreach(FileInfo file in files)
+            this.LoadFile(file.Name);
+
+        this.levels = this.levels.OrderBy(x => x.id).ToList();
+
+    }
+
+    private void LoadFile(string _filename){
+        Level objLevel;
+        XDocument xdoc = XDocument.Load(this.xmlFilesPath + _filename);
+        
+        var lvls = from lvl in xdoc.Descendants("level")
+        select new {
+            id      = System.Convert.ToInt32(lvl.Element("id").Value),
+            task    = lvl.Descendants("task"),
+            objects = lvl.Descendants("objects")
+        };
+
+
+        foreach(var lvl in lvls){
+            objLevel = new Level();
+            objLevel.id = lvl.id;
+            var tasks = from t in lvl.task
+            select new {
+                text = t.Element("text").Value,
+                sprite = t.Element("image").Value,
+                elements = System.Convert.ToInt32(t.Element("elements").Value)
+            };
+
+            foreach(var task in tasks){
+                objLevel.text = task.text;
+                objLevel.sprite = task.sprite;
+                objLevel.elements = task.elements;
+            }
+            
+            var objects = from x in lvl.objects.Descendants("object")
+            select new {
+                name        =  x.Element("name").Value,
+                type        =  System.Convert.ToInt32(x.Element("type").Value),
+                goodCollect =  System.Convert.ToInt32(x.Element("goodcollect").Value) != 0
+            };
+            
+            foreach(var obj in objects){
+                objLevel.type = obj.type;
+                if(obj.goodCollect) 
+                    objLevel.goodObjects.Add(obj.name, new Vector3());
+                else 
+                    objLevel.badObjects.Add(obj.name, new Vector3());
+            }
+            this.levels.Add(objLevel);
+        }
+
     }
 
     public int getScore(){
@@ -190,7 +256,7 @@ public class LevelEditor : MonoBehaviour {
         if(score <= 3){
             Transform getChild = Canvas.transform.FindChild("Heart_" + life);
             GameObject child = getChild.gameObject;
-            child.GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load <Sprite>("Sprites/DeadHeart");
+            child.GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load <Sprite>("GameSprites/DeadHeart");
             life--;
         }
     }
@@ -211,7 +277,7 @@ public class LevelEditor : MonoBehaviour {
 
         while(true){
             yield return new WaitForSeconds(3.0f);
-            persistent.AddLevelLog("\r\n" + persistent.getTime() + " win level " + (Application.loadedLevel - 2));
+            persistent.AddLevelLog("\r\n" + persistent.getTime() + " win level " + persistent.getCurrentLevel());
             persistent.postHTML(persistent.returnLevelLog());
             Application.LoadLevel(1);
         }
@@ -220,13 +286,67 @@ public class LevelEditor : MonoBehaviour {
     public void QuitLevel(){
         Player.SetActive(false);
         Canvas.SetActive(false);
-        persistent.UpdateScore(Application.loadedLevel, score);
-        persistent.AddLevelLog("\r\n" + persistent.getTime() + " quit level " + (Application.loadedLevel - 2) + " score " + score);
+        persistent.UpdateScore(persistent.getCurrentLevel(), score);
+        persistent.AddLevelLog("\r\n" + persistent.getTime() + " quit level " + persistent.getCurrentLevel() + " score " + score);
         persistent.postHTML(persistent.returnLevelLog());
         Application.LoadLevel(1);
     }
 
     /*********************************************START LEVELS EDIT**************************************************/
+
+    public void LoadLevel(int lvl){
+        Level level = levels.ElementAt(lvl - 1);
+        Stack<Vector3> levelPositions = randomPosition(level.elements);
+        GameObject itemGood;
+        GameObject itemBad;
+
+        Transform getText = details.transform.FindChild("Text");
+        GameObject text = getText.gameObject;
+        text.GetComponent<TextMesh>().text = level.text;
+        if(level.sprite != null){
+            Transform getSprite = details.transform.FindChild("Sprite");
+            GameObject sprite = getSprite.gameObject;
+            text.GetComponent<TextMesh>().text = level.text;
+            sprite.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("Images/" + level.sprite);
+        }
+
+        if(level.type == 0){
+            itemGood = itemPicture;
+            itemBad = itemPicture_bad;
+        } else{
+            if(level.goodObjects.ElementAt(0).Key.Length > 20){
+                itemGood = itemWord;
+                itemBad = itemWord_bad;
+            } else{
+                itemGood = itemText;
+                itemBad = itemText_bad;
+            }
+        }
+        int good = 0;
+        foreach(KeyValuePair<string, Vector3> pair in level.goodObjects){
+            if(good < 3){
+                Vector3 position = levelPositions.Pop();
+                Quaternion rotation = Quaternion.identity;
+                Transform getChild = itemGood.transform.FindChild("Sprite");
+                GameObject child = getChild.gameObject;
+                child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("Images/" + pair.Key);  
+                Instantiate(itemGood, position, rotation);
+                good++;
+            }
+        }
+        int bad = 0;
+        foreach(KeyValuePair<string, Vector3> pair in level.badObjects){  
+            if(bad < 30){
+                Vector3 position = levelPositions.Pop();
+                Quaternion rotation = Quaternion.identity;
+                Transform getChild = itemBad.transform.FindChild("Sprite");
+                GameObject child = getChild.gameObject;
+                child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("Images/" + pair.Key);         
+                Instantiate(itemBad, position, rotation);
+                bad++;
+            }
+        }
+    }
 
     private void LoadLevel1(){
 
@@ -236,12 +356,19 @@ public class LevelEditor : MonoBehaviour {
         Dictionary<string, Vector3> levelObject_wrong = new Dictionary<string, Vector3>();
         XDocument xdoc = XDocument.Load(Application.dataPath + "/Resources/LevelsXML/Level1.xml");
 
+        Transform getPrompt = details.transform.FindChild("Text");
+        GameObject prompt = getPrompt.gameObject;
+
         var levels = from lvl in xdoc.Descendants("level")
         select new {
+            task    = lvl.Element("task").Value,
             objects = lvl.Descendants("objects")
+
         };
         
-        foreach(var lvl in levels){                   
+        foreach(var lvl in levels){ 
+            prompt.GetComponent<TextMesh>().text = lvl.task;
+            //objLevel.task = lvl.task;
             var objects = from x in lvl.objects.Descendants("object")
             select new {
                 name        =  x.Element("name").Value,

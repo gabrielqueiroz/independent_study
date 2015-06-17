@@ -1,4 +1,16 @@
 <level>
+<id>14</id>
+	<task>
+		<!-- The task the player has to accomplish -->
+		<text>find three objects that 
+are sometimes used to record
+words on paper</text>
+		<!-- The text that will be shown on the prompt -->
+		<image></image>
+		<!-- The image that will be shown on the prompt. This field can be blank. -->
+		<elements>33</elements>
+		<!-- Quantity of elements that will appear on screen -->
+	</task>
 	<objects>
 		<!-- List of objects that will appear on the screen -->
 		<object>

@@ -23,9 +23,10 @@ public class LoadOnClick : MonoBehaviour {
             GameObject persistentObject = GameObject.FindGameObjectWithTag("Persistent");
             Destroy(persistentObject);
             Application.LoadLevel(0);
-        } else if(!persistent.checkIfComplete(level - 2))
-            Application.LoadLevel(level);
-        else
+        } else if(!persistent.checkIfComplete(level - 2)){
+            persistent.setCurrentLevel(level-2);
+            Application.LoadLevel(3);
+        } else
             Application.LoadLevel(1);
     }
 
