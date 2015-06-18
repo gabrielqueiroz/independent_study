@@ -181,15 +181,11 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163700}
-  m_Text: 'The parade caused
+  m_Text: 'The thirst left a
 
-    grandma to think about
+    duty taste in
 
-    her past in a way that
-
-    she might not have
-
-    otherwise'
+    his mouth'
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1

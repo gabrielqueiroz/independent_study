@@ -74,9 +74,9 @@ public class PersistentController : MonoBehaviour {
                 Transform getLevelChild = levels.transform.FindChild(pair.Key + "/Background");
                 GameObject childLevel = getLevelChild.gameObject;
                 if(pair.Value == 3){
-                    childLevel.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/won");
+                    childLevel.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("GameSprites/won");
                 } else if(pair.Value != 0){
-                    childLevel.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/notWon");
+                    childLevel.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("GameSprites/notWon");
                     child.SetActive(true);
                     child.GetComponent<Scrollbar>().size = pair.Value / 3f;
                 }

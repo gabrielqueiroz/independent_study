@@ -25,7 +25,6 @@ public class LevelEditor : MonoBehaviour {
     private GameObject Details;
     private GameObject Notification;
     private AudioClip winSound;
-    private string xmlFilesPath;
     private List<Level> levels;
     public int score = 0;
     public int life = 3;
@@ -41,7 +40,6 @@ public class LevelEditor : MonoBehaviour {
         Notification = GameObject.Find("Notification");
         Notification.SetActive(false);
         winSound = Resources.Load<AudioClip>("Sounds/level-win");
-        xmlFilesPath = Application.dataPath + "/Resources/LevelsXML/";
         levels = new List<Level>();
 
         GameObject persistentObject = GameObject.FindGameObjectWithTag("Persistent");
@@ -82,20 +80,22 @@ public class LevelEditor : MonoBehaviour {
     }
 
     public void LoadLevels(){
-        DirectoryInfo d = new DirectoryInfo(xmlFilesPath);
-        FileInfo[] files = d.GetFiles("*.xml");
+        Object[] xmlFiles = Resources.LoadAll("LevelsXML");
+        //DirectoryInfo d = new DirectoryInfo(xmlFilesPath);
+        //FileInfo[] files = d.GetFiles("*.xml");
         
-        foreach(FileInfo file in files)
-            this.LoadFile(file.Name);
-
+        foreach(Object xml in xmlFiles){
+            this.LoadFile(xml.name);
+        }
         this.levels = this.levels.OrderBy(x => x.id).ToList();
 
     }
 
-    private void LoadFile(string _filename){
+    private void LoadFile(string xml){
         Level objLevel;
-        XDocument xdoc = XDocument.Load(this.xmlFilesPath + _filename);
-        
+        TextAsset textXML = (TextAsset)  Resources.Load("LevelsXML/"+xml);
+        XDocument xdoc = XDocument.Parse(textXML.text);
+        //XDocument xdoc = XDocument.Load(this.xmlFilesPath + _filename);
         var lvls = from lvl in xdoc.Descendants("level")
         select new {
             id      = System.Convert.ToInt32(lvl.Element("id").Value),
@@ -207,7 +207,7 @@ public class LevelEditor : MonoBehaviour {
             description=level.text.Remove(0,69);
             level.text = temp;
             text.GetComponent<TextMesh>().fontSize = 70;
-            Debug.Log(description);
+            textDescription.GetComponent<TextMesh>().fontSize = 50;
         }
         text.GetComponent<TextMesh>().text = level.text;
         textDescription.GetComponent<TextMesh>().text = description;
@@ -256,7 +256,7 @@ public class LevelEditor : MonoBehaviour {
                 Instantiate(itemGood, position, rotation);
         }
         int bad = 0;
-        for(int i = 0; i< badObjectsIndex;i++){
+        for(int i = 0; i<= badObjectsIndex;i++){
         foreach(KeyValuePair<string, Vector3> pair in level.badObjects){  
             if(bad < qtdBadObjects){
                 Vector3 position = levelPositions.Pop();

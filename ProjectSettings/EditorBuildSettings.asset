@@ -41,7 +41,7 @@ EditorBuildSettings:
     path: Assets/Levels/Level 14.unity
   - enabled: 0
     path: Assets/Levels/Level 15.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Levels/Level 16.unity
   - enabled: 0
     path: Assets/Levels/Level 17.unity
