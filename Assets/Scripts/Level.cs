@@ -18,4 +18,13 @@ public class Level {
         badObjects = new Dictionary<string, Vector3>();
     }
 
+    public double getLenght(){
+        double size = goodObjects.Count;
+        double lenght = 0;
+        foreach(KeyValuePair<string, Vector3> pair in goodObjects){
+            lenght += pair.Key.Length;
+        }
+        return lenght / size;
+    }
+
 }

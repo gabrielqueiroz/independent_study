@@ -2,7 +2,8 @@
 <id>16</id>
 	<task>
 		<!-- The task the player has to accomplish -->
-		<text>Read this story and then collect phrases that describe what happens
+		<text>Read this story and then collect
+phrases that describe what happens
 "The sun slid through cracks in the decaying wall and cut through his slumber impatiently. 
 Stephen rubbed his eyes and groaned. His thirst for revenge lifted him unevenly to his feet. 
 By now the familiar thirst left a hollow, dusty taste in his mouth, as if biting into dry tears."</text>
@@ -17,7 +18,7 @@ By now the familiar thirst left a hollow, dusty taste in his mouth, as if biting
 		<object>
 			<name>Stephen awoke
 after sunrise</name>
-			<type>0</type>
+			<type>1</type>
 			<!-- 0 for images and 1 for text -->
 			<goodcollect>1</goodcollect>
 			<!-- 1 if the object is a good, right collect, 0 otherwise -->
@@ -26,7 +27,7 @@ after sunrise</name>
 			<name>He rubbed
 his eyes and got
 up unenvely</name>
-			<type>0</type>
+			<type>1</type>
 			<!-- 0 for images and 1 for text -->
 			<goodcollect>1</goodcollect>
 			<!-- 1 if the object is a good, right collect, 0 otherwise -->
@@ -35,7 +36,7 @@ up unenvely</name>
 			<name>The thirst left a
 duty taste in
 his mouth</name>
-			<type>0</type>
+			<type>1</type>
 			<!-- 0 for images and 1 for text -->
 			<goodcollect>1</goodcollect>
 			<!-- 1 if the object is a good, right collect, 0 otherwise -->
@@ -44,7 +45,7 @@ his mouth</name>
 			<name>Stephen is
 feeling happy and
 refreshed</name>
-			<type>0</type>
+			<type>1</type>
 			<!-- 0 for images and 1 for text -->
 			<goodcollect>0</goodcollect>
 			<!-- 1 if the object is a good, right collect, 0 otherwise -->
@@ -53,7 +54,7 @@ refreshed</name>
 			<name>He was glad
 to see another
 dawn</name>
-			<type>0</type>
+			<type>1</type>
 			<!-- 0 for images and 1 for text -->
 			<goodcollect>0</goodcollect>
 			<!-- 1 if the object is a good, right collect, 0 otherwise -->
@@ -62,7 +63,7 @@ dawn</name>
 			<name>His mouth was
 clean and
 pleasant</name>
-			<type>0</type>
+			<type>1</type>
 			<!-- 0 for images and 1 for text -->
 			<goodcollect>0</goodcollect>
 			<!-- 1 if the object is a good, right collect, 0 otherwise -->
@@ -71,7 +72,7 @@ pleasant</name>
 			<name>The stranger is
 a banker on his way
 to work</name>
-			<type>0</type>
+			<type>1</type>
 			<!-- 0 for images and 1 for text -->
 			<goodcollect>0</goodcollect>
 			<!-- 1 if the object is a good, right collect, 0 otherwise -->
@@ -80,7 +81,7 @@ to work</name>
 			<name>The setting of the
 story is a new
 supermarket</name>
-			<type>0</type>
+			<type>1</type>
 			<!-- 0 for images and 1 for text -->
 			<goodcollect>0</goodcollect>
 			<!-- 1 if the object is a good, right collect, 0 otherwise -->

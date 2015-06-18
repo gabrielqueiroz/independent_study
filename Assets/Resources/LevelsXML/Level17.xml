@@ -2,7 +2,8 @@
 <id>17</id>
 	<task>
 		<!-- The task the player has to accomplish -->
-		<text>Read this story and then collect phrases that describe what happens
+		<text>Read this story and then collect
+phrases that describe what happens
 "I collected the things you had given me — the glittered birthday cards, a stuffed frog,
 a plastic yellow keychain shaped like a key, a postcard of an ugly dog, 
 post-it notes you left on my computer screen — and hid them in a shoebox. </text>
@@ -18,7 +19,7 @@ post-it notes you left on my computer screen — and hid them in a shoebox. </te
 			<name>The collection of items is
 meaningful because they were given by
 the same person</name>
-			<type>0</type>
+			<type>1</type>
 			<!-- 0 for images and 1 for text -->
 			<goodcollect>1</goodcollect>
 			<!-- 1 if the object is a good, right collect, 0 otherwise -->
@@ -27,7 +28,7 @@ the same person</name>
 			<name>The narrator is unsure
 of their true motivation for
 hiding the items</name>
-			<type>0</type>
+			<type>1</type>
 			<!-- 0 for images and 1 for text -->
 			<goodcollect>1</goodcollect>
 			<!-- 1 if the object is a good, right collect, 0 otherwise -->
@@ -36,7 +37,7 @@ hiding the items</name>
 			<name>It's clear the narrator
 saved messages that
 were never sent</name>
-			<type>0</type>
+			<type>1</type>
 			<!-- 0 for images and 1 for text -->
 			<goodcollect>1</goodcollect>
 			<!-- 1 if the object is a good, right collect, 0 otherwise -->
@@ -45,7 +46,7 @@ were never sent</name>
 			<name>These items are
 valuable because they
 are expensive</name>
-			<type>0</type>
+			<type>1</type>
 			<!-- 0 for images and 1 for text -->
 			<goodcollect>0</goodcollect>
 			<!-- 1 if the object is a good, right collect, 0 otherwise -->
@@ -54,7 +55,7 @@ are expensive</name>
 			<name>The narrator kept a
 postcard of a cute dog
 because it is funny</name>
-			<type>0</type>
+			<type>1</type>
 			<!-- 0 for images and 1 for text -->
 			<goodcollect>0</goodcollect>
 			<!-- 1 if the object is a good, right collect, 0 otherwise -->
@@ -63,7 +64,7 @@ because it is funny</name>
 			<name>It's clear that the
 items are in the box
 to remain safe</name>
-			<type>0</type>
+			<type>1</type>
 			<!-- 0 for images and 1 for text -->
 			<goodcollect>0</goodcollect>
 			<!-- 1 if the object is a good, right collect, 0 otherwise -->
@@ -72,7 +73,7 @@ to remain safe</name>
 			<name>The narrator is unsure
 of what the items in the box
 have in common</name>
-			<type>0</type>
+			<type>1</type>
 			<!-- 0 for images and 1 for text -->
 			<goodcollect>0</goodcollect>
 			<!-- 1 if the object is a good, right collect, 0 otherwise -->
@@ -81,7 +82,7 @@ have in common</name>
 			<name>The narrrator is preparing
 a speech to the American people
 on immigration policy</name>
-			<type>0</type>
+			<type>1</type>
 			<!-- 0 for images and 1 for text -->
 			<goodcollect>0</goodcollect>
 			<!-- 1 if the object is a good, right collect, 0 otherwise -->
