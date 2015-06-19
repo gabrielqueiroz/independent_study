@@ -81,9 +81,7 @@ public class LevelEditor : MonoBehaviour {
 
     public void LoadLevels(){
         Object[] xmlFiles = Resources.LoadAll("LevelsXML");
-        //DirectoryInfo d = new DirectoryInfo(xmlFilesPath);
-        //FileInfo[] files = d.GetFiles("*.xml");
-        
+
         foreach(Object xml in xmlFiles){
             this.LoadFile(xml.name);
         }
@@ -95,7 +93,6 @@ public class LevelEditor : MonoBehaviour {
         Level objLevel;
         TextAsset textXML = (TextAsset)  Resources.Load("LevelsXML/"+xml);
         XDocument xdoc = XDocument.Parse(textXML.text);
-        //XDocument xdoc = XDocument.Load(this.xmlFilesPath + _filename);
         var lvls = from lvl in xdoc.Descendants("level")
         select new {
             id      = System.Convert.ToInt32(lvl.Element("id").Value),
@@ -276,60 +273,7 @@ public class LevelEditor : MonoBehaviour {
         }
     }
 
-    /*********************************************END LEVEL EDIT**************************************************/
 
-    private List<string> randomWrong(int length, string levelWord){
-        List<string> randomWrong = new List<string>();
-        List<string> allObjects = levelContent();
-        
-        for(int i = 0; i < length; i++){
-            string current = allObjects[Random.Range(0, allObjects.Count)];
-            
-            while(current.Contains(levelWord) || randomWrong.Contains(current))
-                current = allObjects[Random.Range(0, allObjects.Count)];
-            
-            randomWrong.Add(current);
-        }
-
-        return randomWrong;
-    }
-
-    private Dictionary<string, Vector3> randomWordsWrong(int length, string levelWord, Stack<Vector3> positions){
-        Dictionary<string, Vector3> randomWrong = new Dictionary<string, Vector3>();
-        List<string> allObjects = levelContentWord();
-
-        for(int i = 0; i < length; i++){
-            string current = allObjects[Random.Range(0, allObjects.Count)];
-
-            while(current.Contains(levelWord) || randomWrong.ContainsKey(current))
-                current = allObjects[Random.Range(0, allObjects.Count)];
-
-            randomWrong.Add(current, positions.Pop());
-        }
-
-        return randomWrong;
-    }
-
-    List<string> levelContent(){
-        List<string> levelContent = new List<string>();
-        Object[] sprites = Resources.LoadAll("Images");
-
-        foreach(Object o in sprites) 
-            levelContent.Add(o.name);
-        
-        return levelContent;
-    }
-
-    List<string> levelContentWord(){
-        List<string> levelContent = new List<string>();
-        Object[] sprites = Resources.LoadAll("Images");
-        
-        foreach(Object o in sprites) 
-            levelContent.Add(o.name);
-
-        return levelContent;
-    }
-    
     Stack<Vector3> randomPosition(int qnt){
         List<Vector3> positions = new List<Vector3>();
         Stack<Vector3> stack = new Stack<Vector3>();
@@ -377,7 +321,7 @@ public class LevelEditor : MonoBehaviour {
         Transform text = getChild.transform.FindChild("Text");
         GameObject textObject = text.gameObject;
         child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("Images/Text");
-        textObject.GetComponent<TextMesh>().fontSize = 35;
+        textObject.GetComponent<TextMesh>().fontSize = 45;
         textObject.GetComponent<TextMesh>().text = phrase;
     }
 }

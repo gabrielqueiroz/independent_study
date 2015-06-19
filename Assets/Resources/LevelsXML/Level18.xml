@@ -18,7 +18,8 @@ but the flag bearer. Then Barbara said: "Who is Uncle Mark?" </text>
 		<!-- List of objects that will appear on the screen -->
 		<object>
 			<name>The grandmother
-casually shared important
+casually shared
+important
 information for the
 first time</name>
 			<type>1</type>
@@ -28,7 +29,8 @@ first time</name>
 		</object>
 		<object>
 			<name>Barbara suddenly
-realized she may have
+realized she
+may have
 a new relative</name>
 			<type>1</type>
 			<!-- 0 for images and 1 for text -->
@@ -36,10 +38,13 @@ a new relative</name>
 			<!-- 1 if the object is a good, right collect, 0 otherwise -->
 		</object>
 		<object>
-			<name>The parade caused
-grandma to think about
-her past in a way that
-she might not have
+			<name>The parade
+caused
+grandma to think
+about her past
+in a way that
+she might not
+have
 otherwise</name>
 			<type>1</type>
 			<!-- 0 for images and 1 for text -->
@@ -47,8 +52,10 @@ otherwise</name>
 			<!-- 1 if the object is a good, right collect, 0 otherwise -->
 		</object>
 		<object>
-			<name>Grandma is attending
-a parade because Uncle Mark
+			<name>Grandma is
+attending
+a parade because
+Uncle Mark
 invited her</name>
 			<type>1</type>
 			<!-- 0 for images and 1 for text -->
@@ -56,9 +63,12 @@ invited her</name>
 			<!-- 1 if the object is a good, right collect, 0 otherwise -->
 		</object>
 		<object>
-			<name>Uncle Mark arrived late
-to the parade, but grandma
-was happy to see him</name>
+			<name>Uncle Mark
+arrived late
+to the parade,
+but grandma
+was happy
+to see him</name>
 			<type>1</type>
 			<!-- 0 for images and 1 for text -->
 			<goodcollect>0</goodcollect>
@@ -73,7 +83,8 @@ been married once</name>
 			<!-- 1 if the object is a good, right collect, 0 otherwise -->
 		</object>
 		<object>
-			<name>Barbara and Grandma
+			<name>Barbara and
+Grandma
 have always taken
 Uncle Mark to the
 parade</name>
@@ -84,7 +95,8 @@ parade</name>
 		</object>
 		<object>
 			<name>Grandma was
-disappointed that Uncle Mark
+disappointed that
+Uncle Mark
 was the flag bearer</name>
 			<type>1</type>
 			<!-- 0 for images and 1 for text -->
@@ -92,9 +104,11 @@ was the flag bearer</name>
 			<!-- 1 if the object is a good, right collect, 0 otherwise -->
 		</object>
 		<object>
-			<name>Barbara and Uncle Mark
+			<name>Barbara and
+Uncle Mark
 were proud to bear
-their flags for grandma</name>
+their flags
+for grandma</name>
 			<type>1</type>
 			<!-- 0 for images and 1 for text -->
 			<goodcollect>0</goodcollect>

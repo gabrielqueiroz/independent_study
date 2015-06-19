@@ -2801,7 +2801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPicture: {fileID: 147500, guid: c046352a076eb4315a1fca647ea22de0, type: 2}
   itemPicture_bad: {fileID: 147500, guid: 9501c4280d37842da8bd9d9a923e8ece, type: 2}
-  itemText: {fileID: 180930, guid: 5e614ead92a180247aef05e449fed7d1, type: 2}
+  itemText: {fileID: 179866, guid: 5e614ead92a180247aef05e449fed7d1, type: 2}
   itemText_bad: {fileID: 179670, guid: 413b4607d0ff5ec44a7b31df94a15870, type: 2}
   itemWord: {fileID: 116864, guid: 032a99a0958aaa44bbaeb4be070c7d0b, type: 2}
   itemWord_bad: {fileID: 184300, guid: 325e44ecfa62abc4ab2c61d842439034, type: 2}
@@ -21625,6 +21625,7 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+  m_StereoMirrorMode: 0
 --- !u!4 &1844177478
 Transform:
   m_ObjectHideFlags: 0
