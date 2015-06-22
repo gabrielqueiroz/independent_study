@@ -2,8 +2,7 @@
 <id>12</id>
 	<task>
 		<!-- The task the player has to accomplish -->
-		<text>find three objects that 
-are used by teachers at school</text>
+		<text>find three objects that are used by teachers at school</text>
 		<!-- The text that will be shown on the prompt -->
 		<image></image>
 		<!-- The image that will be shown on the prompt. This field can be blank. -->

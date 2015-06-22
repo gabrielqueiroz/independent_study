@@ -33,25 +33,9 @@ public class PersistentController : MonoBehaviour {
         Transform getInputField = InputCanvas.transform.FindChild("InputField");
         InputField = getInputField.gameObject;
         progress.Clear();
-        progress.Add(1, 0);
-        progress.Add(2, 0);
-        progress.Add(3, 0);
-        progress.Add(4, 0);
-        progress.Add(5, 0);
-        progress.Add(6, 0);
-        progress.Add(7, 0);
-        progress.Add(8, 0);
-        progress.Add(9, 0);
-        progress.Add(10, 0);
-        progress.Add(11, 0);
-        progress.Add(12, 0);
-        progress.Add(13, 0);
-        progress.Add(14, 0);
-        progress.Add(15, 0);
-        progress.Add(16, 0);
-        progress.Add(17, 0);
-        progress.Add(18, 0);
-
+        for(int i=1; i<=getNumberOfLevels(); i++){
+            progress.Add(i, 0);
+        }
     }
     
     // Update is called once per frame
@@ -115,6 +99,11 @@ public class PersistentController : MonoBehaviour {
 
     public int getCurrentLevel(){
         return currentLevel;
+    }
+
+    public int getNumberOfLevels(){
+        Object[] xmlFiles = Resources.LoadAll("LevelsXML");
+        return xmlFiles.Length;
     }
 
     IEnumerator writeFileName(){

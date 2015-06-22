@@ -2,9 +2,7 @@
 <id>13</id>
 	<task>
 		<!-- The task the player has to accomplish -->
-		<text>find three objects that 
-are edible and prepared
-in kitchens</text>
+		<text>find three objects that are edible and prepared in kitchens</text>
 		<!-- The text that will be shown on the prompt -->
 		<image></image>
 		<!-- The image that will be shown on the prompt. This field can be blank. -->

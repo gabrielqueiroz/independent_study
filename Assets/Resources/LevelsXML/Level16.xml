@@ -2,11 +2,8 @@
 <id>16</id>
 	<task>
 		<!-- The task the player has to accomplish -->
-		<text>Read this story and then collect
-phrases that describe what happens
-"The sun slid through cracks in the decaying wall and cut through his slumber impatiently. 
-Stephen rubbed his eyes and groaned. His thirst for revenge lifted him unevenly to his feet. 
-By now the familiar thirst left a hollow, dusty taste in his mouth, as if biting into dry tears."</text>
+		<text>Read this story and then collect phrases that describe what happens
+"The sun slid through cracks in the decaying wall and cut through his slumber impatiently. Stephen rubbed his eyes and groaned. His thirst for revenge lifted him unevenly to his feet. By now the familiar thirst left a hollow, dusty taste in his mouth, as if biting into dry tears."</text>
 		<!-- The text that will be shown on the prompt -->
 		<image></image>
 		<!-- The image that will be shown on the prompt. This field can be blank. -->

@@ -91,7 +91,7 @@ public class LevelEditor : MonoBehaviour {
 
     private void LoadFile(string xml){
         Level objLevel;
-        TextAsset textXML = (TextAsset)  Resources.Load("LevelsXML/"+xml);
+        TextAsset textXML = (TextAsset)Resources.Load("LevelsXML/" + xml);
         XDocument xdoc = XDocument.Parse(textXML.text);
         var lvls = from lvl in xdoc.Descendants("level")
         select new {
@@ -200,18 +200,17 @@ public class LevelEditor : MonoBehaviour {
         Transform getDescription = details.transform.FindChild("Text Description");
         GameObject textDescription = getDescription.gameObject;
         if(level.text.Contains("Read this story")){
-            string temp = level.text.Substring(0,68);
-            description=level.text.Remove(0,69);
+            string temp = level.text.Substring(0, 68);
+            description = level.text.Remove(0, 69);
             level.text = temp;
             text.GetComponent<TextMesh>().fontSize = 70;
-            textDescription.GetComponent<TextMesh>().fontSize = 50;
+            textDescription.GetComponent<TextMesh>().fontSize = 45;
         }
-        text.GetComponent<TextMesh>().text = level.text;
-        textDescription.GetComponent<TextMesh>().text = description;
+        text.GetComponent<TextMesh>().text = ResolveTextSize(level.text, 30);
+        textDescription.GetComponent<TextMesh>().text = ResolveTextSize(description, 55);
         if(level.sprite != null){
             Transform getSprite = details.transform.FindChild("Sprite");
             GameObject sprite = getSprite.gameObject;
-            text.GetComponent<TextMesh>().text = level.text;
             sprite.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("Images/" + level.sprite);
         }
         if(level.type == 0){
@@ -227,12 +226,12 @@ public class LevelEditor : MonoBehaviour {
             }
         }
         int qtdGoodObjects = level.goodObjects.Count;
-        if(qtdGoodObjects>3){
+        if(qtdGoodObjects > 3){
             while(level.goodObjects.Count>3){
-                int r = Random.Range(0,level.goodObjects.Count);
+                int r = Random.Range(0, level.goodObjects.Count);
                 string key = level.goodObjects.Keys.ElementAt(r);
                 level.goodObjects.Remove(key);
-           }
+            }
         }
         int qtdBadObjects = level.elements - 3;
         int badObjectsIndex = 0;
@@ -240,39 +239,38 @@ public class LevelEditor : MonoBehaviour {
             badObjectsIndex = qtdBadObjects / level.badObjects.Count;
         }
         foreach(KeyValuePair<string, Vector3> pair in level.goodObjects){
-                Vector3 position = levelPositions.Pop();
-                Quaternion rotation = Quaternion.identity;
-                Transform getChild = itemGood.transform.FindChild("Sprite");
-                GameObject child = getChild.gameObject;
-                if(itemGood.Equals(itemWord))
-                    createImageFromWord(getChild, child, pair.Key);
-                else if(itemGood.Equals(itemText))
-                    createImageFromText(getChild, child, pair.Key);
-                else
-                    child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("Images/" + pair.Key);  
-                Instantiate(itemGood, position, rotation);
+            Vector3 position = levelPositions.Pop();
+            Quaternion rotation = Quaternion.identity;
+            Transform getChild = itemGood.transform.FindChild("Sprite");
+            GameObject child = getChild.gameObject;
+            if(itemGood.Equals(itemWord))
+                createImageFromWord(getChild, child, pair.Key);
+            else if(itemGood.Equals(itemText))
+                createImageFromText(getChild, child, pair.Key);
+            else
+                child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("Images/" + pair.Key);  
+            Instantiate(itemGood, position, rotation);
         }
         int bad = 0;
-        for(int i = 0; i<= badObjectsIndex;i++){
-        foreach(KeyValuePair<string, Vector3> pair in level.badObjects){  
-            if(bad < qtdBadObjects){
-                Vector3 position = levelPositions.Pop();
-                Quaternion rotation = Quaternion.identity;
-                Transform getChild = itemBad.transform.FindChild("Sprite");
-                GameObject child = getChild.gameObject;
-                if(itemBad.Equals(itemWord_bad))
-                    createImageFromWord(getChild, child, pair.Key);
-                else if(itemBad.Equals(itemText_bad))
-                    createImageFromText(getChild, child, pair.Key);
-                else
-                    child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("Images/" + pair.Key);  
-                Instantiate(itemBad, position, rotation);
-                bad++;
+        for(int i = 0; i<= badObjectsIndex; i++){
+            foreach(KeyValuePair<string, Vector3> pair in level.badObjects){  
+                if(bad < qtdBadObjects){
+                    Vector3 position = levelPositions.Pop();
+                    Quaternion rotation = Quaternion.identity;
+                    Transform getChild = itemBad.transform.FindChild("Sprite");
+                    GameObject child = getChild.gameObject;
+                    if(itemBad.Equals(itemWord_bad))
+                        createImageFromWord(getChild, child, pair.Key);
+                    else if(itemBad.Equals(itemText_bad))
+                        createImageFromText(getChild, child, pair.Key);
+                    else
+                        child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("Images/" + pair.Key);  
+                    Instantiate(itemBad, position, rotation);
+                    bad++;
+                }
             }
         }
-        }
     }
-
 
     Stack<Vector3> randomPosition(int qnt){
         List<Vector3> positions = new List<Vector3>();
@@ -322,7 +320,7 @@ public class LevelEditor : MonoBehaviour {
         GameObject textObject = text.gameObject;
         child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("Images/Text");
         textObject.GetComponent<TextMesh>().fontSize = 45;
-        textObject.GetComponent<TextMesh>().text = ResolveTextSize(phrase,15);
+        textObject.GetComponent<TextMesh>().text = ResolveTextSize(phrase, 15);
     }
 
     private string ResolveTextSize(string input, int lineLength){
@@ -350,7 +348,7 @@ public class LevelEditor : MonoBehaviour {
                 line = s;
             }
             // Append current word into current line
-            else {
+            else{
                 line = temp;
             }
         }
@@ -359,6 +357,6 @@ public class LevelEditor : MonoBehaviour {
         result += line;
         
         // Remove first " " char
-        return result.Substring(1,result.Length-1);
+        return result.Substring(1, result.Length - 1);
     }
 }

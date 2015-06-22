@@ -2,8 +2,7 @@
 <id>8</id>
 	<task>
 		<!-- The task the player has to accomplish -->
-		<text>find the word that describes 
-this object three times</text>
+		<text>find the word that describes this object three times</text>
 		<!-- The text that will be shown on the prompt -->
 		<image>monkey_1</image>
 		<!-- The image that will be shown on the prompt. This field can be blank. -->

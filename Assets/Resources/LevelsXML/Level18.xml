@@ -2,12 +2,8 @@
 <id>18</id>
 	<task>
 		<!-- The task the player has to accomplish -->
-		<text>Read this story and then collect
-phrases that describe what happens
-"We were halfway through the parade when our grandmother said she'd been married before,
-to the flag bearer on the World War II float. We asked her when. For a year, she said,
-adding that Uncle Mark was only our half-uncle. For most of the afternoon we thought of nothing
-but the flag bearer. Then Barbara said: "Who is Uncle Mark?" </text>
+		<text>Read this story and then collect phrases that describe what happens
+"We were halfway through the parade when our grandmother said she'd been married before, to the flag bearer on the World War II float. We asked her when. For a year, she said, adding that Uncle Mark was only our half-uncle. For most of the afternoon we thought of nothing but the flag bearer. Then Barbara said: "Who is Uncle Mark?" </text>
 		<!-- The text that will be shown on the prompt -->
 		<image></image>
 		<!-- The image that will be shown on the prompt. This field can be blank. -->

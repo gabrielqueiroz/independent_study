@@ -12,6 +12,7 @@ TagManager:
   - Boundary
   - Sprite
   - Details
+  - Level
   layers:
   - Default
   - TransparentFX
