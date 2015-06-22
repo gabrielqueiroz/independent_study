@@ -311,7 +311,7 @@ public class LevelEditor : MonoBehaviour {
         Transform text = getChild.transform.FindChild("Text");
         GameObject textObject = text.gameObject;
         child.GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("Images/Word");
-        textObject.GetComponent<TextMesh>().fontSize = Mathf.RoundToInt(100 / size);
+        textObject.GetComponent<TextMesh>().fontSize = Mathf.RoundToInt(90 / size);
         textObject.GetComponent<TextMesh>().text = spriteWord.ToUpper();
     }
     
