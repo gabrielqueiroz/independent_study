@@ -6,4 +6,4 @@ Reading Rocket is a game designed for the stealth assessment of reading level in
 
 * **More**
 
-For more information please consult http://nil.cs.uno.edu/projects/.
+For more information please visit http://nil.cs.uno.edu/projects/.
